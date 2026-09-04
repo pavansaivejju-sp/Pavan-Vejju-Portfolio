@@ -4,24 +4,20 @@
 }
 
 .container {
-  max-width: 80rem;
+  max-width: 82rem;
   margin: 0 auto;
-  padding: 4rem 1.5rem;
+  padding: 2.5rem 1.5rem 6rem;
 }
 
 .content {
-  border: 1px solid rgb(255 255 255 / 70%);
   border-radius: 1.5rem;
-  padding: 1.5rem;
-  background: rgb(255 255 255 / 55%);
-  box-shadow: 0 24px 70px rgb(67 91 120 / 12%);
-  backdrop-filter: blur(8px);
+  transition: all 0.3s ease;
 }
 
 .dashboardSections {
   display: flex;
   flex-direction: column;
-  gap: 4rem;
+  gap: 3.5rem;
 }
 
 .dashboardSection {
@@ -29,16 +25,12 @@
 }
 
 .dashboardSection + .dashboardSection {
-  border-top: 1px solid rgb(148 163 184 / 25%);
-  padding-top: 4rem;
+  border-top: 1px solid #EFE7DC;
+  padding-top: 3.5rem;
 }
 
 @media (min-width: 640px) {
   .container {
-    padding: 4rem 2.5rem;
-  }
-
-  .content {
-    padding: 2.5rem;
+    padding: 2.5rem 2rem 6rem;
   }
 }

@@ -1,29 +1,108 @@
-.section {
-  color: #334155;
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #BA8F55;
+  text-transform: uppercase;
 }
 
 .title {
-  margin: 0 0 1.5rem;
-  color: #020617;
-  font-size: 1.5rem;
-  font-weight: 700;
+  margin: 0;
+  font-size: clamp(2rem, 4.5vw, 3rem);
+  font-weight: 900;
+  color: #211A15;
+  letter-spacing: -0.03em;
 }
 
 .card {
-  border: 1px solid #fed7aa;
-  border-radius: 0.5rem;
-  padding: 2rem;
-  background: #fff7ed;
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.75rem;
+  padding: 2.25rem;
+  box-shadow: 0 10px 30px rgba(33, 26, 21, 0.05);
+  transition: box-shadow 0.25s ease;
 }
 
-.message {
-  margin: 0;
-  color: #334155;
-  font-size: 1.125rem;
+.card:hover {
+  box-shadow: 0 16px 40px rgba(33, 26, 21, 0.09);
 }
 
-.hint {
-  margin: 0.5rem 0 0;
-  color: #64748b;
-  font-size: 0.875rem;
+.statusRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
 }
+
+.onlineDot {
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 9999px;
+  background-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+}
+
+.locationTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.desc {
+  margin: 0 0 1.75rem 0;
+  color: #635B55;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #EFE7DC;
+}
+
+.detailItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.detailLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #8C827A;
+  text-transform: uppercase;
+}
+
+.detailValue {
+  font-size: 0.88rem;
+  color: #211A15;
+  line-height: 1.5;
+}
+
+.detailValue a {
+  color: #A2773D;
+  text-decoration: underline;
+  font-weight: 700;
+  transition: color 0.15s ease;
+}
+
+.detailValue a:hover {
+  color: #BA8F55;
+}
+

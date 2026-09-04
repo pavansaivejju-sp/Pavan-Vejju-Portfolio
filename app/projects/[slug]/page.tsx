@@ -1,8 +1,6 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import projectsData from '../../data/projects.json';
-import { projectImageMap } from '../../data/projectImages';
 import styles from './page.module.css';
 
 interface ProjectPageProps {
@@ -21,10 +19,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
     notFound();
   }
 
-  const images = project.images
-    .map((imageId) => projectImageMap[imageId])
-    .filter(Boolean);
-  const heroImage = images[0];
 
   return (
     <main className={styles.page}>

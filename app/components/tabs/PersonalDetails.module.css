@@ -1,69 +1,462 @@
-.section {
-  color: #334155;
-}
-
-.title {
-  margin: 0 0 1.5rem;
-  color: #020617;
-  font-size: 1.5rem;
-  font-weight: 700;
-}
-
-.content {
+.container {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2.5rem;
 }
 
-.snapshot {
+/* Signature Hero Section */
+.heroSection {
+  padding: 3rem 0 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: relative;
-  overflow: hidden;
-  border-radius: 1rem;
-  padding: 2rem;
-  background: #020617;
-  box-shadow: 0 10px 20px rgb(15 23 42 / 18%);
-  color: white;
 }
 
-.snapshotGlow {
-  position: absolute;
-  top: -4rem;
-  right: -3rem;
-  width: 10rem;
-  height: 10rem;
-  border-radius: 50%;
-  background: rgb(59 130 246 / 30%);
-  filter: blur(2rem);
-}
-
-.eyebrow {
-  position: relative;
-  margin: 0 0 0.75rem;
-  color: #93c5fd;
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
+.heroTagBadge {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #A2773D;
+  background: rgba(186, 143, 85, 0.1);
+  border: 1px solid rgba(186, 143, 85, 0.3);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
   text-transform: uppercase;
 }
 
-.snapshotTitle {
+.heroPunchline {
+  font-size: clamp(2.6rem, 7vw, 5.2rem);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #211A15;
+  margin: 1.5rem 0 1rem;
+}
+
+.punchlineEmphasis {
+  font-style: italic;
+  color: #211A15;
   position: relative;
-  max-width: 48rem;
+}
+
+.redDot {
+  color: #BA8F55;
+}
+
+.heroIntroRow {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  margin-bottom: 0.85rem;
+}
+
+.heroIntroDivider {
+  height: 3px;
+  width: 3.5rem;
+  background: #BA8F55;
+  border-radius: 9999px;
+}
+
+.heroName {
+  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-weight: 900;
+  color: #211A15;
   margin: 0;
-  font-size: 1.5rem;
+  letter-spacing: -0.02em;
+}
+
+.heroRole {
+  font-size: clamp(0.95rem, 2vw, 1.15rem);
+  color: #635B55;
   font-weight: 600;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
 }
 
-.summary {
+.heroRoleDivider {
+  color: #BA8F55;
+  margin: 0 0.5rem;
+  font-weight: 800;
+}
+
+.heroActions {
+  margin-top: 0.5rem;
+}
+
+/* Signature Statement Banner (AAVARNA Luxury Espresso & Gold State) */
+.statementSection {
+  background: #211A15;
+  color: #FCFAF7;
+  border: 1px solid #BA8F55;
+  border-radius: 1.75rem;
+  padding: 3.5rem 2rem;
+  text-align: center;
   position: relative;
-  max-width: 56rem;
-  margin: 1rem 0 0;
-  color: #cbd5e1;
-  line-height: 1.75;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(33, 26, 21, 0.18);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-@media (min-width: 640px) {
-  .snapshotTitle {
-    font-size: 1.5rem;
+.statementSection:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 55px rgba(33, 26, 21, 0.28);
+}
+
+.statementTop {
+  font-size: clamp(1.1rem, 2.5vw, 1.85rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.95;
+  margin-bottom: 0.5rem;
+  color: #BA8F55;
+}
+
+.statementBottom {
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #FCFAF7;
+}
+
+/* Profile Snapshot Console */
+.profileCard {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.75rem;
+  padding: 2.25rem;
+  box-shadow: 0 10px 30px rgba(33, 26, 21, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.profileCard:hover {
+  box-shadow: 0 16px 40px rgba(33, 26, 21, 0.09);
+}
+
+.profileCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #BA8F55, rgba(186, 143, 85, 0.35), transparent);
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #BA8F55;
+  text-transform: uppercase;
+}
+
+.experienceBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #A2773D;
+  background: rgba(186, 143, 85, 0.12);
+  border: 1px solid rgba(186, 143, 85, 0.3);
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+}
+
+.headline {
+  margin: 0 0 1rem 0;
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #211A15;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.summaryText {
+  margin: 0 0 2rem 0;
+  font-size: 0.95rem;
+  color: #635B55;
+  line-height: 1.7;
+  max-width: 58rem;
+}
+
+/* 4 Architectural Pillars */
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #EFE7DC;
+}
+
+.pillar {
+  display: flex;
+  gap: 0.85rem;
+  align-items: flex-start;
+  padding: 1.15rem;
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.15rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+}
+
+.pillar:hover {
+  border-color: #BA8F55;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(186, 143, 85, 0.12);
+}
+
+.pillarIcon {
+  font-size: 1.35rem;
+  line-height: 1;
+  background: rgba(186, 143, 85, 0.12);
+  padding: 0.5rem;
+  border-radius: 0.65rem;
+  border: 1px solid rgba(186, 143, 85, 0.25);
+}
+
+.pillar h5 {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.pillar p {
+  margin: 0;
+  font-size: 0.775rem;
+  color: #635B55;
+  line-height: 1.45;
+}
+
+/* Production KPIs */
+.kpiGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.kpiCard {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.25rem;
+  padding: 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 16px rgba(33, 26, 21, 0.04);
+}
+
+.kpiCard:hover {
+  transform: translateY(-3px);
+  border-color: #BA8F55;
+  box-shadow: 0 10px 24px rgba(186, 143, 85, 0.15);
+}
+
+.kpiNumber {
+  font-size: 2rem;
+  font-weight: 900;
+  font-family: var(--font-geist-mono), monospace;
+  color: #BA8F55;
+}
+
+.kpiLabel {
+  font-size: 0.88rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.kpiSub {
+  font-size: 0.75rem;
+  color: #8C827A;
+  line-height: 1.4;
+}
+
+/* Career Timeline */
+.timelineSection {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.75rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(33, 26, 21, 0.05);
+}
+
+.timelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid #EFE7DC;
+}
+
+.timelineTitle {
+  margin: 0.25rem 0 0 0;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.yearPills {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.yearBtn {
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
+  color: #635B55;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.yearBtn:hover {
+  background: #EFE7DC;
+  color: #211A15;
+  border-color: #BA8F55;
+}
+
+.activeYearBtn {
+  background: #211A15;
+  color: #FCFAF7;
+  border-color: #211A15;
+  box-shadow: 0 4px 12px rgba(33, 26, 21, 0.2);
+}
+
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 1.35rem;
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.15rem;
+  animation: fadeIn 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.timelineItem:hover {
+  border-color: #BA8F55;
+  box-shadow: 0 8px 24px rgba(186, 143, 85, 0.1);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 680px) {
+  .timelineItem {
+    flex-direction: row;
+    align-items: flex-start;
   }
 }
+
+.timelinePeriodBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #A2773D;
+  background: rgba(186, 143, 85, 0.1);
+  border: 1px solid rgba(186, 143, 85, 0.28);
+  padding: 0.35rem 0.75rem;
+  border-radius: 0.5rem;
+  white-space: nowrap;
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  flex: 1;
+}
+
+.roleLine {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.timelineRole {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.companyTag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #BA8F55;
+}
+
+.projectName {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #211A15;
+  font-weight: 700;
+}
+
+.highlightText {
+  margin: 0.25rem 0 0.5rem 0;
+  font-size: 0.85rem;
+  color: #635B55;
+  line-height: 1.6;
+}
+
+.techPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.techPill {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: #211A15;
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  padding: 0.22rem 0.6rem;
+  border-radius: 9999px;
+  transition: all 0.15s ease;
+}
+
+.techPill:hover {
+  background: #BA8F55;
+  color: #211A15;
+  border-color: #BA8F55;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+

@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  color: #334155;
+  color: #211A15;
 }
 
 .container {
@@ -12,52 +12,56 @@
 .backLink {
   display: inline-flex;
   gap: 0.5rem;
-  color: #2563eb;
+  color: #A2773D;
   font-size: 0.85rem;
-  font-weight: 700;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   text-decoration: none;
+  transition: all 0.2s ease;
 }
 
 .backLink:hover {
-  color: #1d4ed8;
+  color: #BA8F55;
+  transform: translateX(-4px);
 }
 
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.5rem;
   align-items: center;
-  padding: 4rem 0 3rem;
+  padding: 3rem 0 2.5rem;
 }
 
 .heroCopy {
-  max-width: 38rem;
+  max-width: 48rem;
 }
 
 .eyebrow,
 .sectionEyebrow {
   margin: 0 0 0.6rem;
-  color: #2563eb;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
+  color: #BA8F55;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .title {
   margin: 0;
-  color: #020617;
-  font-size: clamp(2.2rem, 5vw, 4.5rem);
-  font-weight: 800;
+  color: #211A15;
+  font-size: clamp(2.2rem, 5vw, 4.2rem);
+  font-weight: 900;
   letter-spacing: -0.04em;
-  line-height: 0.98;
+  line-height: 1.05;
 }
 
 .lead {
-  max-width: 34rem;
+  max-width: 46rem;
   margin: 1.5rem 0 0;
-  color: #475569;
-  font-size: 1.05rem;
+  color: #635B55;
+  font-size: 1.1rem;
   line-height: 1.7;
 }
 
@@ -66,25 +70,25 @@
   flex-wrap: wrap;
   gap: 0.5rem 1rem;
   margin-top: 1.5rem;
-  color: #64748b;
-  font-size: 0.8rem;
-  font-weight: 600;
+  color: #8C827A;
+  font-size: 0.85rem;
+  font-weight: 700;
 }
 
 .heroMeta span + span::before {
   padding-right: 1rem;
   content: '/';
-  color: #93c5fd;
+  color: #BA8F55;
 }
 
 .heroVisual {
   position: relative;
   min-height: 22rem;
   overflow: hidden;
-  border: 1px solid rgb(148 163 184 / 25%);
+  border: 1px solid #EFE7DC;
   border-radius: 0.5rem;
   background: #0f172a;
-  box-shadow: 0 20px 45px rgb(67 91 120 / 14%);
+  box-shadow: 0 20px 45px rgba(33, 26, 21, 0.08);
 }
 
 .heroImage {
@@ -95,7 +99,7 @@
   display: flex;
   align-items: flex-end;
   padding: 2rem;
-  background: radial-gradient(circle at 15% 20%, #2563eb, transparent 35%), linear-gradient(135deg, #0f172a, #164e63);
+  background: radial-gradient(circle at 15% 20%, #BA8F55, transparent 35%), linear-gradient(135deg, #211A15, #382E26);
   color: white;
   font-size: 1.8rem;
   font-weight: 800;
@@ -113,7 +117,8 @@
   height: 8rem;
   overflow: hidden;
   border-radius: 0.35rem;
-  background: #e2e8f0;
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
 }
 
 .galleryImage img {
@@ -125,7 +130,7 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.6fr);
   gap: 3rem;
   padding-top: 3rem;
-  border-top: 1px solid rgb(148 163 184 / 25%);
+  border-top: 1px solid #EFE7DC;
 }
 
 .mainColumn {
@@ -136,15 +141,16 @@
 
 .sectionBlock h2 {
   margin: 0;
-  color: #020617;
-  font-size: 1.7rem;
-  font-weight: 750;
+  color: #211A15;
+  font-size: 1.75rem;
+  font-weight: 800;
 }
 
 .sectionBlock > p:not(.sectionEyebrow) {
   max-width: 46rem;
   margin: 1rem 0 0;
-  color: #475569;
+  color: #635B55;
+  font-size: 1rem;
   line-height: 1.8;
 }
 
@@ -155,7 +161,7 @@
   margin: 1.25rem 0 0;
   padding: 0;
   list-style: none;
-  color: #475569;
+  color: #635B55;
   line-height: 1.65;
 }
 
@@ -168,24 +174,25 @@
   position: absolute;
   top: 0.7rem;
   left: 0;
-  width: 0.4rem;
-  height: 0.4rem;
+  width: 0.45rem;
+  height: 0.45rem;
   border-radius: 50%;
-  background: #3b82f6;
+  background: #BA8F55;
   content: '';
 }
 
 .sidebar {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.25rem;
 }
 
 .factCard {
-  border: 1px solid rgb(148 163 184 / 22%);
-  border-radius: 0.5rem;
-  padding: 1.35rem;
-  background: rgb(255 255 255 / 65%);
+  border: 1px solid #EFE7DC;
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  background: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(33, 26, 21, 0.05);
 }
 
 .facts {
@@ -202,18 +209,18 @@
 }
 
 .facts dt {
-  color: #94a3b8;
-  font-size: 0.65rem;
-  font-weight: 700;
+  color: #8C827A;
+  font-size: 0.68rem;
+  font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
 
 .facts dd {
   margin: 0;
-  color: #334155;
-  font-size: 0.85rem;
-  font-weight: 600;
+  color: #211A15;
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
 .technology {
@@ -223,13 +230,71 @@
 }
 
 .technology span {
-  border: 1px solid #bfdbfe;
+  border: 1px solid #EFE7DC;
   border-radius: 999px;
-  padding: 0.3rem 0.55rem;
-  background: #eff6ff;
-  color: #1e40af;
-  font-size: 0.7rem;
+  padding: 0.35rem 0.65rem;
+  background: #F8F4EE;
+  color: #211A15;
+  font-size: 0.72rem;
   font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+}
+
+@media (max-width: 480px) {
+  .projectContent {
+    padding: 0.75rem;
+  }
+}
+
+/* =========================================
+   PREMIUM STYLES FOR PROJECT DETAIL PAGE
+   ========================================= */
+:global(body[data-version="premium"]) .title {
+  color: #f8fafc;
+}
+
+:global(body[data-version="premium"]) .eyebrow,
+:global(body[data-version="premium"]) .sectionEyebrow {
+  color: #fbbf24;
+}
+
+:global(body[data-version="premium"]) .lead {
+  color: #cbd5e1;
+}
+
+:global(body[data-version="premium"]) .backLink {
+  color: #fbbf24;
+}
+
+:global(body[data-version="premium"]) .sectionBlock h2 {
+  color: #f8fafc;
+}
+
+:global(body[data-version="premium"]) .sectionBlock > p:not(.sectionEyebrow) {
+  color: #cbd5e1;
+}
+
+:global(body[data-version="premium"]) .responsibilities {
+  color: #cbd5e1;
+}
+
+:global(body[data-version="premium"]) .responsibilities li::before {
+  background: #f59e0b;
+}
+
+:global(body[data-version="premium"]) .factCard {
+  background: rgba(17, 24, 39, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+:global(body[data-version="premium"]) .facts dd {
+  color: #f1f5f9;
+}
+
+:global(body[data-version="premium"]) .technology span {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
 }
 
 @media (max-width: 800px) {

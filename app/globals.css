@@ -1,8 +1,28 @@
 @import "tailwindcss";
 
 :root {
-  --background: #dceef9;
-  --foreground: #172033;
+  /* AAVARNA Luxury Design System Color Tokens */
+  --background: #FCFAF7;
+  --foreground: #211A15;
+  --color-canvas: #FCFAF7;
+  --color-espresso: #211A15;
+  --color-gold: #BA8F55;
+  --color-gold-dark: #A2773D;
+  --color-gold-light: #DFCAAB;
+  --color-card: #FFFFFF;
+  --color-card-muted: #F8F4EE;
+  --color-border: #EFE7DC;
+
+  /* Aliased tokens for seamless component theming */
+  --orange-primary: #BA8F55;
+  --orange-hover: #A2773D;
+  --orange-glow: rgba(186, 143, 85, 0.35);
+  --cream-card: #FFFFFF;
+  --cream-card-hover: #F8F4EE;
+  --cream-card-border: #EFE7DC;
+  --text-dark: #211A15;
+  --text-muted: #635B55;
+  --text-light-muted: #8C827A;
 }
 
 @theme inline {
@@ -12,14 +32,162 @@
   --font-mono: var(--font-geist-mono);
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: light;
+}
+
 body {
-  background: var(--background);
+  background-color: #FCFAF7;
   color: var(--foreground);
-  font-family: var(--font-geist-sans), sans-serif;
-  background-image: linear-gradient(115deg, #d7eafa 0%, #d8f2e5 52%, #eef0fa 100%);
+  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(circle at 10% 10%, rgba(186, 143, 85, 0.05), transparent 40%),
+    radial-gradient(circle at 90% 20%, rgba(33, 26, 21, 0.03), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(186, 143, 85, 0.04), transparent 50%);
   background-attachment: fixed;
+}
+
+/* Outline Typography Classes */
+.outline-text,
+.outline-crimson,
+.outline-orange,
+.outline-gold {
+  -webkit-text-stroke: 2px #BA8F55;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.outline-text:hover,
+.outline-crimson:hover,
+.outline-orange:hover,
+.outline-gold:hover {
+  -webkit-text-fill-color: #BA8F55;
+  color: #BA8F55;
+}
+
+.outline-white {
+  -webkit-text-stroke: 2px #FFFFFF;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.outline-white:hover {
+  -webkit-text-fill-color: #FFFFFF;
+  color: #FFFFFF;
+}
+
+/* Reference Action Link CTA style (matching AAVARNA gold with arrow) */
+.ref-action-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #A2773D;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.ref-action-cta:hover {
+  color: #BA8F55;
+  transform: translateX(4px);
+}
+
+.ref-action-cta .arrow {
+  font-size: 1.15rem;
+  line-height: 1;
+  transition: transform 0.25s ease;
+}
+
+.ref-action-cta:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Signature Luxury CTA Button */
+.explore-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.85rem;
+  background: #211A15;
+  color: #FCFAF7;
+  border: 1px solid #BA8F55;
+  border-radius: 9999px;
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(33, 26, 21, 0.14);
+}
+
+.explore-btn:hover {
+  background: #BA8F55;
+  border-color: #A2773D;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(186, 143, 85, 0.35);
+  color: #211A15;
+}
+
+.explore-btn .arrow-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: transform 0.25s ease;
+}
+
+.explore-btn:hover .arrow-icon {
+  transform: translateX(4px);
+}
+
+/* Custom minimal scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FCFAF7;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(186, 143, 85, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #BA8F55;
+}
+
+::selection {
+  background: rgba(186, 143, 85, 0.25);
+  color: #211A15;
 }
 
 button {
   cursor: pointer;
+  font-family: inherit;
 }
+
