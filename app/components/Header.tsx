@@ -47,98 +47,21 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Top Status & Recruiter Action Bar */}
-        <div className={styles.topBar}>
-          <div className={styles.statusGroup}>
-            <span className={styles.statusDot} />
-            <span className={styles.statusText}>
-              Available for <strong>Senior / Lead Front-End Roles</strong> &amp; High-Impact Contracts
-            </span>
-          </div>
-
-          <div className={styles.topActions}>
-            <button
-              type="button"
-              onClick={() => setShowResumeModal(true)}
-              className={styles.resumeBtn}
-            >
-              📄 ATS Resume Preview
-            </button>
-            <button
-              type="button"
-              onClick={onOpenChatbot}
-              className={styles.hireBtn}
-            >
-              💬 Let&apos;s Talk (AI Assistant)
-            </button>
-
-            {/* Signature Circular Burger Toggle from just-a-web-developer.com */}
-            <button
-              type="button"
-              className={`${styles.burgerToggle} ${isMenuOpen ? styles.burgerOpen : ''}`}
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              aria-expanded={isMenuOpen}
-              aria-label={isMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
-            >
-              <div className={styles.burgerLines}>
-                <span className={styles.burgerLine} />
-                <span className={styles.burgerLine} />
-                <span className={styles.burgerLine} />
-              </div>
-            </button>
-          </div>
+        {/* Brand identity */}
+        <div className={styles.brand}>
+          <button
+            type="button"
+            onClick={() => onTabChange('personal')}
+            className={styles.brandButton}
+          >
+            <span className={styles.brandName}>{personalData.name}</span>
+            <span className={styles.brandDivider}>/</span>
+            <span className={styles.brandRole}>Senior Front-End Specialist</span>
+          </button>
         </div>
 
-        {/* Identity & Main Console Row */}
-        <div className={styles.mainRow}>
-          <div className={styles.identityBlock}>
-            {/* Signature Typography Logo from Reference Site */}
-            <div className={styles.brandLogo}>
-              <div className={styles.logoTop}>JUST A</div>
-              <div className={styles.logoBottom}>FRONT-END DEVELOPER</div>
-              <div className={styles.logoSub}>
-                <span>{personalData.name}</span>
-                <span className={styles.logoDot}>•</span>
-                <span className={styles.highlightText}>5.5+ Yrs Production Experience</span>
-              </div>
-            </div>
-
-            <div className={styles.quickMetricsRow}>
-              <span className={styles.metricChip}>⚡ React 19 &amp; Next.js</span>
-              <span className={styles.metricChip}>🧩 Micro Frontends</span>
-              <span className={styles.metricChip}>📡 SignalR Telemetry</span>
-              <span className={styles.metricChip}>📊 Highcharts &amp; Recharts</span>
-              <span className={styles.metricChip}>🛡️ Stryker Mutation Testing</span>
-            </div>
-          </div>
-
-          <div className={styles.contactBlock}>
-            <a className={styles.contactItem} href={`mailto:${personalData.email}`}>
-              <span className={styles.contactIcon}>✉</span> {personalData.email}
-            </a>
-            <a className={styles.contactItem} href={`tel:${personalData.mobile}`}>
-              <span className={styles.contactIcon}>📞</span> +91 {personalData.mobile}
-            </a>
-            <a
-              className={`${styles.contactItem} ${styles.linkedinLink}`}
-              href={personalData.linkedin}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span className={styles.contactIcon}>💼</span> LinkedIn Profile
-            </a>
-            <button
-              type="button"
-              onClick={onOpenChatbot}
-              className={styles.chatShortcutBtn}
-            >
-              🤖 Open PavanBot Assistant
-            </button>
-          </div>
-        </div>
-
-        {/* Console Navigation Bar */}
-        <nav className={styles.navBar} aria-label="Developer console navigation">
+        {/* Clean Center Navigation Bar */}
+        <nav className={styles.navBar} aria-label="Developer navigation">
           <div className={styles.navList}>
             {tabs.map((tab) => (
               <button
@@ -152,6 +75,41 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
             ))}
           </div>
         </nav>
+
+        {/* Right Actions */}
+        <div className={styles.actions}>
+          <button
+            type="button"
+            onClick={() => setShowResumeModal(true)}
+            className={styles.resumeBtn}
+            title="Preview ATS-Optimized Resume"
+          >
+            📄 Resume
+          </button>
+          <button
+            type="button"
+            onClick={onOpenChatbot}
+            className={styles.hireBtn}
+            title="Chat with AI Recruiter Assistant"
+          >
+            💬 Let&apos;s Talk
+          </button>
+
+          {/* Clean Circular Burger Toggle */}
+          <button
+            type="button"
+            className={`${styles.burgerToggle} ${isMenuOpen ? styles.burgerOpen : ''}`}
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-expanded={isMenuOpen}
+            aria-label={isMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
+          >
+            <div className={styles.burgerLines}>
+              <span className={styles.burgerLine} />
+              <span className={styles.burgerLine} />
+              <span className={styles.burgerLine} />
+            </div>
+          </button>
+        </div>
       </div>
 
       {/* Signature Fullscreen Circular Clip-Path Overlay Navigation */}

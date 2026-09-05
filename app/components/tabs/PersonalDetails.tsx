@@ -57,37 +57,153 @@ export default function PersonalDetails() {
 
   return (
     <div className={styles.container}>
-      {/* Signature Hero Section (inspired by just-a-web-developer.com) */}
-      <div className={styles.heroSection}>
-        <div className={styles.heroTagBadge}>SENIOR FRONT-END SPECIALIST</div>
-
-        <h1 className={styles.heroPunchline}>
-          Built for scale. <br />
-          Designed for <span className={styles.punchlineEmphasis}>impact<span className={styles.redDot}>.</span></span>
-        </h1>
-
-        <div className={styles.heroIntroRow}>
-          <div className={styles.heroIntroDivider} />
-          <h2 className={styles.heroName}>
-            Hi, I am <span className="outline-text">Pavan</span>
-          </h2>
+      {/* 0-Scroll Recruiter Impact Hero */}
+      <section className={styles.heroSection}>
+        {/* Eyebrow & Status Row */}
+        <div className={styles.heroTopMeta}>
+          <span className={styles.heroTagBadge}>✦ SENIOR FRONT-END SPECIALIST ✦</span>
+          <span className={styles.experienceHighlight}>
+            <span className={styles.expIcon}>🏆</span>
+            <strong>5.5+ Years</strong> Production Experience
+          </span>
+          <span className={styles.availabilityBadge}>
+            <span className={styles.pulseDot} />
+            Available for Senior / Lead Roles
+          </span>
         </div>
 
-        <p className={styles.heroRole}>
-          Senior Front-End Developer <span className={styles.heroRoleDivider}>|</span> React 19 &amp; Next.js <span className={styles.heroRoleDivider}>|</span> Real-Time Telemetry Specialist
-        </p>
+        {/* Name & Headline */}
+        <div className={styles.heroIntro}>
+          <h1 className={styles.heroName}>
+            Hi, I am <span className="outline-text">Pavan Sai Vejju</span>
+          </h1>
+          <p className={styles.heroHeadline}>
+            Senior React &amp; Next.js Engineer architecting high-scale enterprise platforms,
+            real-time telemetry pipelines, and responsive micro-frontend systems.
+          </p>
+        </div>
 
-        <div className={styles.heroActions}>
+        {/* Agenda Item 1: What Tech Stack I Worked On (Prominent Grid) */}
+        <div className={styles.heroTechSection}>
+          <div className={styles.heroSectionLabel}>
+            <span>WHAT TECH STACK I WORKED ON</span>
+            <span className={styles.heroLabelHint}>(Core Production Competencies)</span>
+          </div>
+          <div className={styles.heroTechGrid}>
+            <div className={styles.techCategoryCol}>
+              <span className={styles.categoryName}>Core &amp; Frameworks</span>
+              <div className={styles.techBadgeRow}>
+                <span className={styles.heroTechPill}>⚡ React 19 / 18</span>
+                <span className={styles.heroTechPill}>▲ Next.js 16/15</span>
+                <span className={styles.heroTechPill}>📘 TypeScript</span>
+                <span className={styles.heroTechPill}>🟨 JavaScript (ES6+)</span>
+                <span className={styles.heroTechPill}>🎨 Tailwind CSS</span>
+              </div>
+            </div>
+
+            <div className={styles.techCategoryCol}>
+              <span className={styles.categoryName}>Architecture &amp; Real-Time</span>
+              <div className={styles.techBadgeRow}>
+                <span className={styles.heroTechPill}>🧩 Micro Frontends</span>
+                <span className={styles.heroTechPill}>📡 SignalR WebSockets</span>
+                <span className={styles.heroTechPill}>📊 Highcharts &amp; Recharts</span>
+                <span className={styles.heroTechPill}>📋 TanStack Form</span>
+                <span className={styles.heroTechPill}>🔄 Redux Saga</span>
+              </div>
+            </div>
+
+            <div className={styles.techCategoryCol}>
+              <span className={styles.categoryName}>State, APIs &amp; Testing</span>
+              <div className={styles.techBadgeRow}>
+                <span className={styles.heroTechPill}>🌐 GraphQL &amp; REST</span>
+                <span className={styles.heroTechPill}>🧪 Jest &amp; RTL</span>
+                <span className={styles.heroTechPill}>🛡️ Stryker Mutation</span>
+                <span className={styles.heroTechPill}>⚙️ Azure DevOps CI/CD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Agenda Item 2: My Select Work (Instant 3-Card Strip Above the Fold) */}
+        <div className={styles.heroSelectWork}>
+          <div className={styles.heroSectionLabel}>
+            <span>MY SELECT WORK</span>
+            <span className={styles.heroLabelHint}>(Enterprise Platforms Delivered)</span>
+          </div>
+          <div className={styles.selectWorkGrid}>
+            <div className={styles.selectWorkCard}>
+              <div className={styles.workCardTop}>
+                <span className={styles.workIndex}>01</span>
+                <span className={styles.workCompany}>Electronic Arts (EA)</span>
+              </div>
+              <h4 className={styles.workTitle}>FC26 Stats Analytics Platform</h4>
+              <p className={styles.workDesc}>
+                High-scale gaming analytics dashboard with micro-frontends, Recharts, and Stryker testing.
+              </p>
+              <div className={styles.workTechTags}>
+                <span>React 19</span>
+                <span>Next.js</span>
+                <span>Recharts</span>
+                <span>Stryker</span>
+              </div>
+            </div>
+
+            <div className={styles.selectWorkCard}>
+              <div className={styles.workCardTop}>
+                <span className={styles.workIndex}>02</span>
+                <span className={styles.workCompany}>Amphora Software</span>
+              </div>
+              <h4 className={styles.workTitle}>Symphony Trade Capture</h4>
+              <p className={styles.workDesc}>
+                Real-time energy trading deal capture with dynamic TanStack Forms and GraphQL pipelines.
+              </p>
+              <div className={styles.workTechTags}>
+                <span>React</span>
+                <span>TanStack Form</span>
+                <span>GraphQL</span>
+                <span>Redux-Saga</span>
+              </div>
+            </div>
+
+            <div className={styles.selectWorkCard}>
+              <div className={styles.workCardTop}>
+                <span className={styles.workIndex}>03</span>
+                <span className={styles.workCompany}>UGL &amp; Pacific National</span>
+              </div>
+              <h4 className={styles.workTitle}>Locomotive Telemetry CMS</h4>
+              <p className={styles.workDesc}>
+                Real-time SignalR train vibration monitoring, Highcharts heatmaps, and Fluent UI controls.
+              </p>
+              <div className={styles.workTechTags}>
+                <span>React</span>
+                <span>SignalR</span>
+                <span>Highcharts</span>
+                <span>Fluent UI</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Direct Action CTAs */}
+        <div className={styles.heroActionsRow}>
           <a href="#projects" className="explore-btn">
             <span className="circle" aria-hidden="true">
               <svg className="arrow-icon" viewBox="0 0 24 24">
                 <path d="M5 12h14M12 5l7 7-7 7" />
               </svg>
             </span>
-            <span className="button-text">Explore my work</span>
+            <span className="button-text">Explore All Projects</span>
+          </a>
+
+          <a href="#telemetry" className={styles.secondaryCtaBtn}>
+            <span>Launch Telemetry Lab ⟶</span>
+          </a>
+
+          <a href="#tech-stack" className={styles.tertiaryCtaBtn}>
+            <span>View Full Tech Matrix ⟶</span>
           </a>
         </div>
-      </div>
+      </section>
 
       {/* Signature Statement Banner (inspired by Christoph Nagel's red section) */}
       <div className={styles.statementSection}>

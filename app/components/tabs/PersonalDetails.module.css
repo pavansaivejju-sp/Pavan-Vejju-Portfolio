@@ -4,84 +4,307 @@
   gap: 2.5rem;
 }
 
-/* Signature Hero Section */
+/* 0-Scroll Recruiter Impact Hero */
 .heroSection {
-  padding: 3rem 0 2rem;
+  padding: 1.5rem 0 2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 1.5rem;
   position: relative;
 }
 
+.heroTopMeta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
 .heroTagBadge {
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
-  color: #A2773D;
+  letter-spacing: 0.12em;
+  color: #BA8F55;
   background: rgba(186, 143, 85, 0.1);
   border: 1px solid rgba(186, 143, 85, 0.3);
-  padding: 0.35rem 0.85rem;
+  padding: 0.3rem 0.75rem;
   border-radius: 9999px;
   text-transform: uppercase;
 }
 
-.heroPunchline {
-  font-size: clamp(2.6rem, 7vw, 5.2rem);
-  font-weight: 900;
-  line-height: 1.05;
-  letter-spacing: -0.04em;
-  color: #211A15;
-  margin: 1.5rem 0 1rem;
-}
-
-.punchlineEmphasis {
-  font-style: italic;
-  color: #211A15;
-  position: relative;
-}
-
-.redDot {
-  color: #BA8F55;
-}
-
-.heroIntroRow {
-  display: flex;
+.experienceHighlight {
+  display: inline-flex;
   align-items: center;
-  gap: 1.25rem;
-  margin-bottom: 0.85rem;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #211A15;
+  background: #FFFFFF;
+  border: 1px solid #BA8F55;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  box-shadow: 0 2px 8px rgba(186, 143, 85, 0.15);
 }
 
-.heroIntroDivider {
-  height: 3px;
-  width: 3.5rem;
-  background: #BA8F55;
+.expIcon {
+  font-size: 0.95rem;
+}
+
+.availabilityBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #059669;
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  padding: 0.3rem 0.8rem;
   border-radius: 9999px;
 }
 
+.pulseDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.3);
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.heroIntro {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
 .heroName {
-  font-size: clamp(1.8rem, 4.5vw, 3.2rem);
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 900;
   color: #211A15;
   margin: 0;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
 }
 
-.heroRole {
-  font-size: clamp(0.95rem, 2vw, 1.15rem);
+.heroHeadline {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
   color: #635B55;
-  font-weight: 600;
-  margin: 0 0 2rem 0;
-  line-height: 1.6;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 58rem;
 }
 
-.heroRoleDivider {
-  color: #BA8F55;
-  margin: 0 0.5rem;
+/* Agenda Item 1: What Tech Stack I Worked On */
+.heroTechSection {
+  display: flex;
+  flex-direction: column;
+}
+
+.heroSectionLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
   font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #BA8F55;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
 }
 
-.heroActions {
+.heroLabelHint {
+  font-size: 0.7rem;
+  color: #8C827A;
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+.heroTechGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.85rem;
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.25rem;
+  padding: 1.15rem 1.35rem;
+  box-shadow: 0 4px 16px rgba(33, 26, 21, 0.04);
+}
+
+.techCategoryCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.categoryName {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #8C827A;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.techBadgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.heroTechPill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #211A15;
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  transition: all 0.15s ease;
+}
+
+.heroTechPill:hover {
+  background: #BA8F55;
+  color: #211A15;
+  border-color: #BA8F55;
+}
+
+/* Agenda Item 2: My Select Work */
+.heroSelectWork {
+  display: flex;
+  flex-direction: column;
+}
+
+.selectWorkGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0.85rem;
+}
+
+.selectWorkCard {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 1.25rem;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(33, 26, 21, 0.04);
+  position: relative;
+}
+
+.selectWorkCard:hover {
+  border-color: #BA8F55;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(186, 143, 85, 0.12);
+}
+
+.workCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.workIndex {
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: #BA8F55;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.workCompany {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #8C827A;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.workTitle {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #211A15;
+}
+
+.workDesc {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #635B55;
+  line-height: 1.45;
+  flex: 1;
+}
+
+.workTechTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.4rem;
+}
+
+.workTechTags span {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #A2773D;
+  background: rgba(186, 143, 85, 0.1);
+  border: 1px solid rgba(186, 143, 85, 0.2);
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+}
+
+/* Hero Action CTAs */
+.heroActionsRow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.85rem;
   margin-top: 0.5rem;
+}
+
+.secondaryCtaBtn {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #211A15;
+  background: #FFFFFF;
+  border: 1px solid #BA8F55;
+  padding: 0.75rem 1.4rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(33, 26, 21, 0.06);
+}
+
+.secondaryCtaBtn:hover {
+  background: #BA8F55;
+  color: #211A15;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(186, 143, 85, 0.25);
+}
+
+.tertiaryCtaBtn {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #635B55;
+  text-decoration: none;
+  padding: 0.75rem 1rem;
+  transition: color 0.2s ease;
+}
+
+.tertiaryCtaBtn:hover {
+  color: #BA8F55;
 }
 
 /* Signature Statement Banner (AAVARNA Luxury Espresso & Gold State) */

@@ -1,68 +1,105 @@
 .header {
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 50;
-  background: rgba(252, 250, 247, 0.95);
+  background: rgba(252, 250, 247, 0.96);
   border-bottom: 1px solid #EFE7DC;
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(16px);
 }
 
 .container {
   max-width: 82rem;
   margin: 0 auto;
-  padding: 1.25rem 1.5rem 0;
-}
-
-/* Top Bar */
-.topBar {
+  padding: 0.85rem 1.5rem;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  padding-bottom: 1rem;
-  margin-bottom: 1.25rem;
-  border-bottom: 1px solid #EFE7DC;
+  gap: 1.5rem;
 }
 
-.statusGroup {
+/* Brand Identity */
+.brand {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  flex-shrink: 0;
 }
 
-.statusDot {
-  width: 0.55rem;
-  height: 0.55rem;
-  border-radius: 9999px;
-  background-color: #10b981;
-  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35);
-  animation: pulseDot 2s infinite;
+.brandButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  text-align: left;
 }
 
-@keyframes pulseDot {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.2);
-  }
-}
-
-.statusText {
-  font-size: 0.78rem;
-  color: #635B55;
-}
-
-.statusText strong {
+.brandName {
+  font-size: 1.05rem;
+  font-weight: 900;
   color: #211A15;
+  letter-spacing: -0.02em;
 }
 
-.topActions {
+.brandDivider {
+  color: #BA8F55;
+  font-weight: 800;
+  font-size: 0.9rem;
+}
+
+.brandRole {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #BA8F55;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Center Navigation Bar */
+.navBar {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.navTab {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #635B55;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.42rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.navTab:hover {
+  color: #211A15;
+  background: #F8F4EE;
+  border-color: #EFE7DC;
+}
+
+.activeNavTab {
+  color: #FCFAF7;
+  background: #211A15;
+  border-color: #211A15;
+  box-shadow: 0 2px 8px rgba(33, 26, 21, 0.15);
+}
+
+/* Right Actions */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-shrink: 0;
 }
 
 .resumeBtn {
@@ -71,16 +108,17 @@
   color: #A2773D;
   font-size: 0.75rem;
   font-weight: 700;
-  padding: 0.5rem 1rem;
+  padding: 0.45rem 0.95rem;
   border-radius: 9999px;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
+  white-space: nowrap;
 }
 
 .resumeBtn:hover {
   background: #BA8F55;
   color: #211A15;
-  box-shadow: 0 4px 14px rgba(186, 143, 85, 0.3);
+  box-shadow: 0 3px 12px rgba(186, 143, 85, 0.3);
 }
 
 .hireBtn {
@@ -88,15 +126,16 @@
   color: #FCFAF7;
   font-size: 0.75rem;
   font-weight: 800;
-  padding: 0.5rem 1.15rem;
+  padding: 0.45rem 1.05rem;
   border-radius: 9999px;
-  border: 1px solid #211A15;
+  border: 1px solid #BA8F55;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 16px rgba(33, 26, 21, 0.15);
+  transition: all 0.2s ease;
+  box-shadow: 0 3px 12px rgba(33, 26, 21, 0.15);
+  white-space: nowrap;
 }
 
 .hireBtn:hover {
@@ -104,13 +143,13 @@
   color: #211A15;
   border-color: #A2773D;
   transform: translateY(-1px);
-  box-shadow: 0 6px 22px rgba(186, 143, 85, 0.35);
+  box-shadow: 0 4px 16px rgba(186, 143, 85, 0.35);
 }
 
 /* Circular Burger Toggle Button */
 .burgerToggle {
-  width: 46px;
-  height: 46px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background-color: #211A15;
   border: 1px solid #BA8F55;
@@ -121,8 +160,9 @@
   padding: 0;
   position: relative;
   z-index: 10001;
-  transition: all 0.25s ease;
-  box-shadow: 0 4px 14px rgba(33, 26, 21, 0.15);
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(33, 26, 21, 0.15);
+  flex-shrink: 0;
 }
 
 .burgerToggle:hover {
@@ -135,8 +175,8 @@
 }
 
 .burgerLines {
-  width: 22px;
-  height: 15px;
+  width: 18px;
+  height: 12px;
   position: relative;
   display: block;
 }
@@ -144,8 +184,8 @@
 .burgerLine {
   position: absolute;
   left: 0;
-  width: 22px;
-  height: 2.2px;
+  width: 18px;
+  height: 2px;
   background-color: #FCFAF7;
   border-radius: 999px;
   transform-origin: center;
@@ -157,7 +197,7 @@
 }
 
 .burgerLine:nth-child(2) {
-  top: 6.5px;
+  top: 5px;
 }
 
 .burgerLine:nth-child(3) {
@@ -166,7 +206,7 @@
 
 /* Burger Morphing into 'X' when open */
 .burgerOpen .burgerLine:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: translateY(5px) rotate(45deg);
 }
 
 .burgerOpen .burgerLine:nth-child(2) {
@@ -175,184 +215,23 @@
 }
 
 .burgerOpen .burgerLine:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
+  transform: translateY(-5px) rotate(-45deg);
 }
 
-/* Brand Identity Row */
-.mainRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
+@media (max-width: 900px) {
+  .navBar {
+    display: none;
+  }
 }
 
-.identityBlock {
-  flex: 1;
-}
-
-.brandLogo {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-
-.logoTop {
-  font-size: 1.4rem;
-  font-weight: 800;
-  color: #211A15;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-
-.logoBottom {
-  font-size: 2.3rem;
-  font-weight: 900;
-  color: #BA8F55;
-  letter-spacing: -0.05em;
-  line-height: 1.05;
-  margin-top: 0.15rem;
-}
-
-.logoSub {
-  font-size: 0.85rem;
-  color: #635B55;
-  margin-top: 0.45rem;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  font-weight: 600;
-}
-
-.logoDot {
-  color: #BA8F55;
-}
-
-.highlightText {
-  color: #211A15;
-  font-weight: 700;
-}
-
-.quickMetricsRow {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.45rem;
-  margin-top: 0.75rem;
-}
-
-.metricChip {
-  font-size: 0.72rem;
-  font-weight: 700;
-  background: #FFFFFF;
-  border: 1px solid #EFE7DC;
-  color: #A2773D;
-  padding: 0.3rem 0.75rem;
-  border-radius: 9999px;
-  transition: all 0.2s;
-}
-
-.metricChip:hover {
-  background: #BA8F55;
-  color: #211A15;
-  border-color: #BA8F55;
-}
-
-/* Contact Block */
-.contactBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  min-width: 17.5rem;
-  background: #FFFFFF;
-  border: 1px solid #EFE7DC;
-  padding: 1.25rem 1.35rem;
-  border-radius: 1.5rem;
-  box-shadow: 0 4px 20px rgba(33, 26, 21, 0.05);
-}
-
-.contactItem {
-  font-size: 0.825rem;
-  color: #635B55;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.contactItem:hover {
-  color: #BA8F55;
-  transform: translateX(3px);
-}
-
-.contactIcon {
-  color: #BA8F55;
-  font-size: 1rem;
-}
-
-.linkedinLink {
-  color: #211A15;
-  font-weight: 700;
-}
-
-.chatShortcutBtn {
-  margin-top: 0.5rem;
-  background: #211A15;
-  border: 1px solid #BA8F55;
-  color: #FCFAF7;
-  font-size: 0.75rem;
-  font-weight: 800;
-  padding: 0.55rem 0.95rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s;
-  text-align: center;
-  box-shadow: 0 3px 10px rgba(33, 26, 21, 0.15);
-}
-
-.chatShortcutBtn:hover {
-  background: #BA8F55;
-  color: #211A15;
-}
-
-/* Console Nav Bar */
-.navBar {
-  border-top: 1px solid #EFE7DC;
-  padding: 0.5rem 0;
-  overflow-x: auto;
-}
-
-.navList {
-  display: flex;
-  gap: 0.5rem;
-  min-width: max-content;
-}
-
-.navTab {
-  background: transparent;
-  border: 1px solid transparent;
-  color: #635B55;
-  font-size: 0.825rem;
-  font-weight: 700;
-  padding: 0.55rem 1.15rem;
-  border-radius: 9999px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  position: relative;
-}
-
-.navTab:hover {
-  color: #BA8F55;
-  background: rgba(186, 143, 85, 0.08);
-}
-
-.activeNavTab {
-  color: #FCFAF7;
-  background: #211A15;
-  border-color: #211A15;
-  box-shadow: 0 4px 14px rgba(33, 26, 21, 0.15);
+@media (max-width: 560px) {
+  .brandRole,
+  .brandDivider {
+    display: none;
+  }
+  .resumeBtn {
+    display: none;
+  }
 }
 
 /* Fullscreen Circular Clip-Path Overlay Navigation */
