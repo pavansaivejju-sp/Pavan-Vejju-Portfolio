@@ -4,19 +4,18 @@ import { useState } from 'react';
 import Header from './components/Header';
 import Body from './components/Body';
 import PavanChatbot from './components/chatbot/PavanChatbot';
+import RecruiterFastTrackModal from './components/modals/RecruiterFastTrackModal';
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState('personal');
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isRecruiterModalOpen, setIsRecruiterModalOpen] = useState(false);
 
   const handleTabChange = (tab: string) => {
     setActiveTab(tab);
-
-    if (['personal', 'telemetry', 'tech-stack', 'projects'].includes(tab)) {
-      window.setTimeout(() => {
-        document.getElementById(tab)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 0);
-    }
+    window.setTimeout(() => {
+      document.getElementById(tab)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0);
   };
 
   return (
@@ -25,14 +24,22 @@ export default function Home() {
         activeTab={activeTab}
         onTabChange={handleTabChange}
         onOpenChatbot={() => setIsChatOpen(true)}
+        onOpenRecruiterModal={() => setIsRecruiterModalOpen(true)}
       />
-      <Body activeTab={activeTab} />
+      <Body
+        activeTab={activeTab}
+        onOpenRecruiterModal={() => setIsRecruiterModalOpen(true)}
+      />
       <PavanChatbot
         isOpen={isChatOpen}
         onToggle={() => setIsChatOpen(!isChatOpen)}
         onClose={() => setIsChatOpen(false)}
       />
+      <RecruiterFastTrackModal
+        isOpen={isRecruiterModalOpen}
+        onClose={() => setIsRecruiterModalOpen(false)}
+        onOpenChatbot={() => setIsChatOpen(true)}
+      />
     </div>
   );
 }
-

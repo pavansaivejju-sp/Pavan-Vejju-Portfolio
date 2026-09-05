@@ -1,0 +1,321 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(33, 26, 21, 0.75);
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: #FCFAF7;
+  border: 1px solid #BA8F55;
+  border-radius: 1.5rem;
+  width: 100%;
+  max-width: 50rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 25px 50px -12px rgba(33, 26, 21, 0.35);
+  display: flex;
+  flex-direction: column;
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.header {
+  padding: 1.75rem 2rem 1.25rem;
+  border-bottom: 1px solid #EFE7DC;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #BA8F55;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: #211A15;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: #635B55;
+  margin: 0;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 1.8rem;
+  line-height: 1;
+  color: #8C827A;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: color 0.2s ease;
+}
+
+.closeBtn:hover {
+  color: #211A15;
+}
+
+.body {
+  padding: 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Hiring Manager 30-second pitch */
+.pitchCard {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-left: 4px solid #BA8F55;
+  border-radius: 0.85rem;
+  padding: 1.25rem;
+}
+
+.pitchHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.pitchLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #BA8F55;
+}
+
+.copyBtn {
+  background: #F8F4EE;
+  border: 1px solid #EFE7DC;
+  color: #211A15;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.copyBtn:hover {
+  background: #BA8F55;
+  color: #FCFAF7;
+  border-color: #BA8F55;
+}
+
+.pitchText {
+  font-size: 0.86rem;
+  color: #211A15;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Screening Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.gridItem {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.itemLabel {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #8C827A;
+  text-transform: uppercase;
+}
+
+.itemValue {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #211A15;
+  line-height: 1.45;
+}
+
+.itemValueHighlight {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #BA8F55;
+}
+
+.itemValueAvailable {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+.pulseDot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 9999px;
+  background-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.25);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+/* Tech Pills */
+.techSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.techSectionLabel {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #BA8F55;
+  text-transform: uppercase;
+}
+
+.techPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.techPill {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  color: #211A15;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+}
+
+/* Footer */
+.footer {
+  padding: 1.25rem 2rem 1.75rem;
+  border-top: 1px solid #EFE7DC;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.contactActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.contactBtn {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DC;
+  color: #211A15;
+  font-size: 0.76rem;
+  font-weight: 700;
+  padding: 0.45rem 0.85rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+}
+
+.contactBtn:hover {
+  border-color: #BA8F55;
+  color: #A2773D;
+  background: #F8F4EE;
+}
+
+.primaryActions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.resumeActionBtn {
+  background: #FFFFFF;
+  border: 1px solid #BA8F55;
+  color: #A2773D;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.55rem 1.15rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.resumeActionBtn:hover {
+  background: #BA8F55;
+  color: #FCFAF7;
+}
+
+.chatActionBtn {
+  background: #211A15;
+  border: 1px solid #BA8F55;
+  color: #FCFAF7;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.55rem 1.25rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chatActionBtn:hover {
+  background: #BA8F55;
+  color: #211A15;
+}

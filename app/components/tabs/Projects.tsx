@@ -110,7 +110,7 @@ export default function Projects() {
         <div>
           <span className={styles.tag}>ENTERPRISE PORTFOLIO</span>
           <h2 className={styles.title}>
-            Selected <br /><span className="outline-orange">Works</span>
+            Flagship Enterprise Case Studies
           </h2>
           <p className={styles.subtitle}>
             A deep-dive into enterprise platforms, sports analytics, and real-time conditional telemetry systems built over 5.5+ years.

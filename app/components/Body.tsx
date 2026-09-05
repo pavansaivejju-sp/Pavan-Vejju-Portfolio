@@ -11,40 +11,49 @@ import styles from './Body.module.css';
 
 interface BodyProps {
   activeTab: string;
+  onOpenRecruiterModal?: () => void;
+  onOpenResumeModal?: () => void;
 }
 
-export default function Body({ activeTab }: BodyProps) {
-  const isStandaloneTab = activeTab === 'education' || activeTab === 'address';
-
+export default function Body({ activeTab, onOpenRecruiterModal, onOpenResumeModal }: BodyProps) {
   return (
     <main className={styles.body}>
       <div className={styles.container}>
         <div className={styles.content}>
-          {isStandaloneTab ? (
-            activeTab === 'education' ? (
+          <div className={styles.dashboardSections}>
+            {/* 01: Executive Hero & Value Proposition */}
+            <section id="personal" className={styles.dashboardSection}>
+              <PersonalDetails
+                onOpenRecruiterModal={onOpenRecruiterModal}
+                onOpenResumeModal={onOpenResumeModal}
+              />
+            </section>
+
+            {/* 02: Flagship Enterprise Case Studies */}
+            <section id="projects" className={styles.dashboardSection}>
+              <Projects />
+            </section>
+
+            {/* 03: Interactive Telemetry & Engineering Proof Lab */}
+            <section id="telemetry" className={styles.dashboardSection}>
+              <TelemetryDashboard />
+            </section>
+
+            {/* 04: Technical Competency & Tooling Matrix */}
+            <section id="tech-stack" className={styles.dashboardSection}>
+              <TechStack />
+            </section>
+
+            {/* 05: Academic Foundation & Credentials */}
+            <section id="education" className={styles.dashboardSection}>
               <EducationDetails />
-            ) : (
+            </section>
+
+            {/* 06: Work Preferences & Contact */}
+            <section id="address" className={styles.dashboardSection}>
               <Address />
-            )
-          ) : (
-            <div className={styles.dashboardSections}>
-              <section id="personal" className={styles.dashboardSection}>
-                <PersonalDetails />
-              </section>
-
-              <section id="telemetry" className={styles.dashboardSection}>
-                <TelemetryDashboard />
-              </section>
-
-              <section id="tech-stack" className={styles.dashboardSection}>
-                <TechStack />
-              </section>
-
-              <section id="projects" className={styles.dashboardSection}>
-                <Projects />
-              </section>
-            </div>
-          )}
+            </section>
+          </div>
         </div>
       </div>
     </main>

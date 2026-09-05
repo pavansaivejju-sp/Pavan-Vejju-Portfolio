@@ -8,22 +8,28 @@ interface HeaderProps {
   activeTab: string;
   onTabChange: (tab: string) => void;
   onOpenChatbot: () => void;
+  onOpenRecruiterModal?: () => void;
 }
 
-export default function Header({ activeTab, onTabChange, onOpenChatbot }: HeaderProps) {
+export default function Header({
+  activeTab,
+  onTabChange,
+  onOpenChatbot,
+  onOpenRecruiterModal,
+}: HeaderProps) {
   const [showResumeModal, setShowResumeModal] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const tabs = [
-    { id: 'personal', num: '01', label: 'Personal Details' },
-    { id: 'telemetry', num: '02', label: 'Interactive Dashboards' },
-    { id: 'tech-stack', num: '03', label: 'Tech Stack Matrix' },
-    { id: 'projects', num: '04', label: 'Featured Projects' },
+    { id: 'personal', num: '01', label: 'Overview' },
+    { id: 'projects', num: '02', label: 'Selected Works' },
+    { id: 'telemetry', num: '03', label: 'Telemetry Lab' },
+    { id: 'tech-stack', num: '04', label: 'Tech Matrix' },
     { id: 'education', num: '05', label: 'Education' },
-    { id: 'address', num: '06', label: 'Location' },
+    { id: 'address', num: '06', label: 'Contact' },
   ];
 
-  // Prevent scrolling when full-screen circular navigation is open
+  // Prevent scrolling when mobile drawer navigation is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -86,6 +92,18 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
           >
             📄 Resume
           </button>
+
+          {onOpenRecruiterModal && (
+            <button
+              type="button"
+              onClick={onOpenRecruiterModal}
+              className={styles.fastTrackBtn}
+              title="Fast Candidate Screening for Technical Recruiters"
+            >
+              ⚡ Fast-Track
+            </button>
+          )}
+
           <button
             type="button"
             onClick={onOpenChatbot}
@@ -143,9 +161,24 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
                 className={styles.menuLink}
               >
                 <span className={styles.menuNumber}>07</span>
-                <span className={styles.menuText}>ATS Resume Preview</span>
+                <span className={styles.menuText}>📄 ATS Resume Preview</span>
               </button>
             </li>
+            {onOpenRecruiterModal && (
+              <li className={styles.menuItem}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    onOpenRecruiterModal();
+                  }}
+                  className={`${styles.menuLink} ${styles.menuLinkHighlight}`}
+                >
+                  <span className={styles.menuNumber}>08</span>
+                  <span className={styles.menuText}>⚡ Recruiter Fast-Track (30s)</span>
+                </button>
+              </li>
+            )}
             <li className={styles.menuItem}>
               <button
                 type="button"
@@ -155,8 +188,8 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
                 }}
                 className={`${styles.menuLink} ${styles.menuLinkAccent}`}
               >
-                <span className={styles.menuNumber}>08</span>
-                <span className={styles.menuText}>Let&apos;s Talk / Chatbot</span>
+                <span className={styles.menuNumber}>09</span>
+                <span className={styles.menuText}>💬 Let&apos;s Talk / Chatbot</span>
               </button>
             </li>
           </ul>
@@ -244,4 +277,3 @@ export default function Header({ activeTab, onTabChange, onOpenChatbot }: Header
     </header>
   );
 }
-

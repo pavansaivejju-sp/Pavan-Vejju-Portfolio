@@ -121,6 +121,25 @@
   box-shadow: 0 3px 12px rgba(186, 143, 85, 0.3);
 }
 
+.fastTrackBtn {
+  background: rgba(186, 143, 85, 0.1);
+  border: 1.5px solid #BA8F55;
+  color: #A2773D;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.fastTrackBtn:hover {
+  background: #BA8F55;
+  color: #FCFAF7;
+  box-shadow: 0 3px 12px rgba(186, 143, 85, 0.35);
+}
+
 .hireBtn {
   background: #211A15;
   color: #FCFAF7;
@@ -370,6 +389,10 @@
 }
 
 .menuLinkAccent {
+  color: #BA8F55;
+}
+
+.menuLinkHighlight {
   color: #BA8F55;
 }
 
