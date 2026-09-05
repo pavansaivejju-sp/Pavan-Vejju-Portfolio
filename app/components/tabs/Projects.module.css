@@ -1,0 +1,274 @@
+.section {
+  color: #334155;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  margin: 0 0 0.4rem;
+  color: #2563eb;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: #020617;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.headingNote {
+  max-width: 22rem;
+  margin: 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  text-align: right;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.project {
+  display: grid;
+  width: min(100%, 68rem);
+  min-height: 222px;
+  margin: 0 auto;
+  grid-template-columns: 200px minmax(0, 1fr);
+  grid-template-areas: 'visual content';
+  gap: 0.65rem;
+  padding: 0.65rem;
+  border: 1px solid rgb(148 163 184 / 22%);
+  border-radius: 0.5rem;
+  background: rgb(255 255 255 / 78%);
+  box-shadow: 0 8px 22px rgb(67 91 120 / 8%);
+}
+
+.visual {
+  grid-area: visual;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  min-height: 200px;
+  max-width: 100%;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  background: #0f172a;
+}
+
+.projectImage {
+  object-fit: cover;
+  transition: transform 500ms ease;
+}
+
+.visual:hover .projectImage {
+  transform: scale(1.035);
+}
+
+.imageShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgb(2 6 23 / 4%), rgb(2 6 23 / 58%));
+  pointer-events: none;
+}
+
+.imageLabel {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  border: 1px solid rgb(255 255 255 / 35%);
+  border-radius: 999px;
+  padding: 0.3rem 0.6rem;
+  background: rgb(2 6 23 / 35%);
+  color: white;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+}
+
+.carouselControls {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  gap: 0.3rem;
+}
+
+.carouselDot {
+  width: 1.25rem;
+  height: 0.2rem;
+  border: 0;
+  border-radius: 999px;
+  padding: 0;
+  background: rgb(255 255 255 / 45%);
+  cursor: pointer;
+  transition: background 150ms ease, width 150ms ease;
+}
+
+.carouselDot:hover,
+.activeDot {
+  width: 2rem;
+  background: white;
+}
+
+.fallbackVisual {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  background: radial-gradient(circle at 20% 20%, #2563eb, transparent 38%), linear-gradient(135deg, #0f172a, #164e63);
+  color: white;
+}
+
+.fallbackNumber {
+  color: rgb(255 255 255 / 35%);
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.fallbackTitle {
+  max-width: 12rem;
+  margin-top: 0.75rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+
+.projectContent {
+  grid-area: content;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 1rem 1.25rem;
+}
+
+.reverseProject {
+  grid-template-columns: minmax(0, 1fr) 200px;
+  grid-template-areas: 'content visual';
+}
+
+.projectMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem;
+  color: #2563eb;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.projectName {
+  margin: 0.55rem 0 0;
+  color: #020617;
+  font-size: 1.45rem;
+  font-weight: 750;
+  line-height: 1.15;
+}
+
+.company {
+  margin: 0.35rem 0 0;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.overview,
+.technology {
+  margin: 0;
+}
+
+.overview {
+  margin-top: 0.9rem;
+  color: #0f172a;
+  font-size: 0.88rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.technology {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  max-height: 1.7rem;
+  margin-top: 0.9rem;
+  overflow: hidden;
+}
+
+.technology span {
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 0.2rem 0.45rem;
+  background: #eff6ff;
+  color: #1e40af;
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.learnMore {
+  align-self: flex-start;
+  display: inline-flex;
+  flex-shrink: 0;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  color: #2563eb;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 150ms ease, gap 150ms ease;
+}
+
+.learnMore:hover {
+  gap: 0.75rem;
+  color: #1d4ed8;
+}
+
+@media (max-width: 800px) {
+  .heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .headingNote {
+    text-align: left;
+  }
+
+  .project,
+  .reverseProject {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+
+  .visual {
+    width: 100%;
+    height: 200px;
+    min-height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .projectContent {
+    padding: 1rem;
+  }
+
+}

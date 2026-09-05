@@ -1,0 +1,257 @@
+.page {
+  min-height: 100vh;
+  color: #334155;
+}
+
+.container {
+  width: min(100% - 3rem, 72rem);
+  margin: 0 auto;
+  padding: 2.5rem 0 5rem;
+}
+
+.backLink {
+  display: inline-flex;
+  gap: 0.5rem;
+  color: #2563eb;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.backLink:hover {
+  color: #1d4ed8;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.85fr);
+  gap: 2.5rem;
+  align-items: center;
+  padding: 4rem 0 3rem;
+}
+
+.heroCopy {
+  max-width: 38rem;
+}
+
+.eyebrow,
+.sectionEyebrow {
+  margin: 0 0 0.6rem;
+  color: #2563eb;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  color: #020617;
+  font-size: clamp(2.2rem, 5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.98;
+}
+
+.lead {
+  max-width: 34rem;
+  margin: 1.5rem 0 0;
+  color: #475569;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.heroMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  margin-top: 1.5rem;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.heroMeta span + span::before {
+  padding-right: 1rem;
+  content: '/';
+  color: #93c5fd;
+}
+
+.heroVisual {
+  position: relative;
+  min-height: 22rem;
+  overflow: hidden;
+  border: 1px solid rgb(148 163 184 / 25%);
+  border-radius: 0.5rem;
+  background: #0f172a;
+  box-shadow: 0 20px 45px rgb(67 91 120 / 14%);
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.fallbackVisual {
+  display: flex;
+  align-items: flex-end;
+  padding: 2rem;
+  background: radial-gradient(circle at 15% 20%, #2563eb, transparent 35%), linear-gradient(135deg, #0f172a, #164e63);
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+  padding-bottom: 3.5rem;
+}
+
+.galleryImage {
+  position: relative;
+  height: 8rem;
+  overflow: hidden;
+  border-radius: 0.35rem;
+  background: #e2e8f0;
+}
+
+.galleryImage img {
+  object-fit: cover;
+}
+
+.detailGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.6fr);
+  gap: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgb(148 163 184 / 25%);
+}
+
+.mainColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.sectionBlock h2 {
+  margin: 0;
+  color: #020617;
+  font-size: 1.7rem;
+  font-weight: 750;
+}
+
+.sectionBlock > p:not(.sectionEyebrow) {
+  max-width: 46rem;
+  margin: 1rem 0 0;
+  color: #475569;
+  line-height: 1.8;
+}
+
+.responsibilities {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  list-style: none;
+  color: #475569;
+  line-height: 1.65;
+}
+
+.responsibilities li {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.responsibilities li::before {
+  position: absolute;
+  top: 0.7rem;
+  left: 0;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background: #3b82f6;
+  content: '';
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.factCard {
+  border: 1px solid rgb(148 163 184 / 22%);
+  border-radius: 0.5rem;
+  padding: 1.35rem;
+  background: rgb(255 255 255 / 65%);
+}
+
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 0;
+}
+
+.facts div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.facts dt {
+  color: #94a3b8;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.facts dd {
+  margin: 0;
+  color: #334155;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.technology {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.technology span {
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  padding: 0.3rem 0.55rem;
+  background: #eff6ff;
+  color: #1e40af;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: min(100% - 2rem, 72rem);
+  }
+
+  .hero,
+  .detailGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    gap: 2rem;
+    padding-top: 3rem;
+  }
+
+  .heroVisual {
+    min-height: 18rem;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

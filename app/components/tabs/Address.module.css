@@ -1,0 +1,29 @@
+.section {
+  color: #334155;
+}
+
+.title {
+  margin: 0 0 1.5rem;
+  color: #020617;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.card {
+  border: 1px solid #fed7aa;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  background: #fff7ed;
+}
+
+.message {
+  margin: 0;
+  color: #334155;
+  font-size: 1.125rem;
+}
+
+.hint {
+  margin: 0.5rem 0 0;
+  color: #64748b;
+  font-size: 0.875rem;
+}

@@ -1,0 +1,18 @@
+{
+  "name": "Pavan Sai Vejju",
+  "title": "Senior Front-End Developer (React JS)",
+  "experience": "5.5 Years",
+  "email": "pavansaivejju@gmail.com",
+  "mobile": "9133953205",
+  "linkedin": "https://www.linkedin.com/in/pavan-sai-vejju-2264231b2",
+  "summary": "Senior Frontend Engineer with 5+ years of experience building scalable enterprise and responsive web applications with modern frontend architecture.",
+  "skills": {
+    "frontendEngineering": ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "React Hooks", "Redux", "Redux Saga", "Tailwind CSS", "Fluent UI", "HTML5", "CSS3", "SCSS"],
+    "apiAndIntegration": ["REST APIs", "GraphQL", "Microsoft SignalR", "JWT Authentication", "API Integration", "Data Handling"],
+    "testingAndQuality": ["Jest", "React Testing Library", "Stryker Mutation Testing", "Unit Testing", "Code Quality Practices"],
+    "architecture": ["Micro Frontends", "Module Federation", "Atomic Design", "Component-Based Architecture"],
+    "visualization": ["Highcharts", "Recharts", "Interactive Dashboards", "Data Visualization"],
+    "devOpsAndTools": ["Git", "GitHub", "Azure DevOps", "CI/CD", "npm", "pnpm"],
+    "aiAssistedDevelopment": ["GitHub Copilot", "ChatGPT", "Cursor AI", "Claude AI", "Prompt Engineering", "AI-assisted Debugging & Code Optimization"]
+  }
+}

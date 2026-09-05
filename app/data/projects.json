@@ -1,0 +1,70 @@
+[
+  {
+    "slug": "fc26-game-stats-platform",
+    "name": "FC26 Game Stats Platform - Metaplore",
+    "client": "Electronic Arts",
+    "type": "Contract",
+    "category": "Sports analytics platform",
+    "teamSize": "Cross-functional Agile team",
+    "images": ["fc26-1", "fc26-2", "fc26-3"],
+    "technology": ["Next.js", "React", "TypeScript", "Tailwind", "Recharts", "Jest", "Stryker"],
+    "duration": "Jan 2026 - Present",
+    "overview": "An interactive EA FC26 analytics experience that turns match data into clear player insights, rankings, and performance trends.",
+    "description": "Interactive analytics dashboard for EA FC26 that provides players with insights into matches, wins, losses, rankings, and performance trends.",
+    "responsibilities": ["Developed reusable, responsive UI components and interactive analytics dashboards.", "Built player statistics modules, performance visualizations, and PNG export functionality.", "Integrated REST APIs and contributed to a scalable Micro Frontend architecture.", "Ensured high code quality through Jest unit testing and Stryker mutation testing.", "Collaborated with cross-functional Agile teams to deliver high-quality features."]
+  },
+  {
+    "slug": "symphony-trade-capture",
+    "name": "Symphony Trade Capture",
+    "company": "Amphora Software",
+    "type": "Contract",
+    "category": "Energy trading workflow",
+    "teamSize": "Product engineering team",
+    "images": [],
+    "technology": ["React.js", "React Hooks", "Redux", "Redux-Saga", "TypeScript", "HTML", "CSS", "JavaScript", "TanStack"],
+    "duration": "October 2025 - December 2025",
+    "overview": "A focused ETRM workflow for capturing, validating, pricing, and managing energy trades with reliable form and API interactions.",
+    "description": "Core module of Amphora's ETRM platform for energy trade capture, validation, pricing, and position management.",
+    "responsibilities": ["Built dynamic and responsive forms using TanStack Form with field-level validation and optimized state handling.", "Integrated GraphQL APIs for fetching and submitting trade data.", "Performed UI design, code refactoring, and performance improvements.", "Developed reusable common components and implemented unit testing using Jest and React Testing Library."]
+  },
+  {
+    "slug": "ugl-cms",
+    "name": "UGL CMS",
+    "company": "Techwave",
+    "client": "UGL / Pacific National",
+    "category": "Conditional monitoring system",
+    "teamSize": "40",
+    "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
+    "technology": ["React.js", "TypeScript", "Redux", "Redux Saga", "Fluent UI", "Microsoft SignalR", "Highcharts", "REST APIs", "Azure DevOps"],
+    "duration": "October 2023 - Present",
+    "overview": "A real-time conditional monitoring system for trains in South Wales, helping support teams monitor asset condition, status, location, and maintenance needs.",
+    "description": "The CMS experience combines live train telemetry, historical insights, dashboards, and operational reports for faster failure investigation and planning.",
+    "responsibilities": ["Developed modular UI components using React, TypeScript, and Fluent UI.", "Converted Figma designs into pixel-perfect, responsive screens.", "Applied Atomic Design with reusable atoms, molecules, and organisms.", "Built Highcharts heatmaps, spline area graphs, and bar charts for high-volume real-time data.", "Integrated REST APIs and Microsoft SignalR for live alerts and tracking.", "Developed PDF, CSV, and PNG report exports.", "Supported Azure DevOps CI/CD automation and Agile delivery."]
+  },
+  {
+    "slug": "ugl-pms",
+    "name": "UGL PMS",
+    "company": "Techwave",
+    "client": "UGL / Pacific National",
+    "category": "Performance management platform",
+    "teamSize": "30",
+    "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
+    "technology": ["React.js", "TypeScript", "Redux", "Redux Saga", "Fluent UI", "Microsoft SignalR", "Highcharts", "REST APIs", "Azure DevOps"],
+    "duration": "December 2022 - September 2023",
+    "overview": "A cloud-hosted asset performance and service monitoring application built on UGL's Integra platform.",
+    "description": "PMS enables configuration, performance event management, live service availability, SAP data integration, and daily, weekly, and monthly operational reporting.",
+    "responsibilities": ["Developed modular, maintainable UI components using React, TypeScript, and Fluent UI.", "Converted Figma designs into scalable, pixel-perfect responsive screens.", "Integrated REST APIs and enabled real-time updates with Microsoft SignalR.", "Managed complex state using Redux and Redux-Saga.", "Built report exports and Highcharts data visualizations.", "Spearheaded Maintenance Schedule and real-time data features.", "Supported Azure DevOps CI/CD and Agile ceremonies."]
+  },
+  {
+    "slug": "aman-travels",
+    "name": "Aman Travels",
+    "category": "Travel management platform",
+    "teamSize": "40",
+    "images": [],
+    "technology": ["React.js", "Redux", "Ant Design", "GraphQL", "HTML", "CSS", "JavaScript"],
+    "duration": "April 2021 - December 2021",
+    "overview": "A multilingual booking platform connecting travelers with hotels, apartments, transportation, and railway services across multiple regions.",
+    "description": "Multilingual travel management application providing booking services for hotels, transportation, apartments, and railway services through a responsive web platform.",
+    "responsibilities": ["Developed reusable React components and responsive UI screens using Ant Design.", "Integrated GraphQL APIs and Redux for efficient data management.", "Improved frontend performance using code optimization and modern React practices."]
+  }
+]

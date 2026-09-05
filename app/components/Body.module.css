@@ -1,0 +1,44 @@
+.body {
+  min-height: 100vh;
+  flex: 1;
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.content {
+  border: 1px solid rgb(255 255 255 / 70%);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: rgb(255 255 255 / 55%);
+  box-shadow: 0 24px 70px rgb(67 91 120 / 12%);
+  backdrop-filter: blur(8px);
+}
+
+.dashboardSections {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+
+.dashboardSection {
+  scroll-margin-top: 2rem;
+}
+
+.dashboardSection + .dashboardSection {
+  border-top: 1px solid rgb(148 163 184 / 25%);
+  padding-top: 4rem;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 4rem 2.5rem;
+  }
+
+  .content {
+    padding: 2.5rem;
+  }
+}

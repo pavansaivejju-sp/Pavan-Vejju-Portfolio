@@ -1,27 +1,28 @@
 
+'use client';
+
+import { useState } from 'react';
+import Header from './components/Header';
+import Body from './components/Body';
+
 export default function Home() {
+  const [activeTab, setActiveTab] = useState('personal');
+
+  const handleTabChange = (tab: string) => {
+    setActiveTab(tab);
+
+    if (['personal', 'tech-stack', 'projects'].includes(tab)) {
+      window.setTimeout(() => {
+        document.getElementById(tab)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 0);
+    }
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-zinc-50 px-6 text-center dark:bg-black">
-      <h1 className="text-4xl font-bold text-black dark:text-white">
-        Pavan Sai
-      </h1>
-
-      <p className="mt-3 text-xl text-zinc-600 dark:text-zinc-400">
-        Frontend Developer
-      </p>
-
-      <p className="mt-4 max-w-xl text-zinc-600 dark:text-zinc-400">
-        5+ years of experience building modern web applications using React,
-        TypeScript, JavaScript, Next.js, and Redux.
-      </p>
-
-      <a
-        href="/about"
-        className="mt-6 rounded-full bg-black px-6 py-3 text-white hover:bg-zinc-800"
-      >
-        Learn More
-      </a>
-    </main>
+    <div className="flex min-h-screen flex-col bg-zinc-50 dark:bg-black">
+      <Header activeTab={activeTab} onTabChange={handleTabChange} />
+      <Body activeTab={activeTab} />
+    </div>
   );
 }
 

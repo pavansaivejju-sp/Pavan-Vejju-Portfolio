@@ -1,0 +1,69 @@
+.section {
+  color: #334155;
+}
+
+.title {
+  margin: 0 0 1.5rem;
+  color: #020617;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.snapshot {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+  background: #020617;
+  box-shadow: 0 10px 20px rgb(15 23 42 / 18%);
+  color: white;
+}
+
+.snapshotGlow {
+  position: absolute;
+  top: -4rem;
+  right: -3rem;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background: rgb(59 130 246 / 30%);
+  filter: blur(2rem);
+}
+
+.eyebrow {
+  position: relative;
+  margin: 0 0 0.75rem;
+  color: #93c5fd;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.snapshotTitle {
+  position: relative;
+  max-width: 48rem;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.summary {
+  position: relative;
+  max-width: 56rem;
+  margin: 1rem 0 0;
+  color: #cbd5e1;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .snapshotTitle {
+    font-size: 1.5rem;
+  }
+}
