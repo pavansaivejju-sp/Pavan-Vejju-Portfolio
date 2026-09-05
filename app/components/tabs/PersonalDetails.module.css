@@ -221,6 +221,12 @@
   background: rgba(33, 26, 21, 0.04);
 }
 
+/* Visualizer Wrapper */
+.visualizerWrapper {
+  width: 100%;
+  margin: 0.25rem 0 0.5rem;
+}
+
 /* Executive Proof Metrics (The 4 Pillars of Credibility) */
 .kpiGrid {
   display: grid;
@@ -283,6 +289,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .provenanceTag {
@@ -293,29 +301,105 @@
   text-transform: uppercase;
 }
 
+.provenanceHint {
+  font-size: 0.72rem;
+  color: #8C827A;
+  font-weight: 600;
+}
+
 .selectWorkGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1rem;
+  gap: 1.15rem;
 }
 
 .selectWorkCard {
   background: #FCFAF7;
   border: 1px solid #EFE7DC;
-  border-radius: 0.85rem;
-  padding: 1.25rem;
+  border-radius: 1rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: 0.55rem;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 12px rgba(33, 26, 21, 0.02);
 }
 
 .selectWorkCard:hover {
   border-color: #BA8F55;
   background: #FFFFFF;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(186, 143, 85, 0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(186, 143, 85, 0.15);
+}
+
+.cardThumbnailWrapper {
+  position: relative;
+  width: 100%;
+  height: 125px;
+  background: #110E0B;
+  overflow: hidden;
+}
+
+.cardThumbnail {
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.selectWorkCard:hover .cardThumbnail {
+  transform: scale(1.05);
+}
+
+.thumbShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(17, 14, 11, 0.1) 0%, rgba(17, 14, 11, 0.75) 100%);
+  pointer-events: none;
+}
+
+.thumbBadge {
+  position: absolute;
+  bottom: 0.65rem;
+  left: 0.75rem;
+  z-index: 2;
+  font-size: 0.65rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #FCFAF7;
+  background: rgba(33, 26, 21, 0.85);
+  border: 1px solid #BA8F55;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.amphoraThumbFallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #211A15 0%, #3D2C1E 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.thumbIcon {
+  font-size: 1.75rem;
+}
+
+.thumbSub {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #DFCAAB;
+  letter-spacing: 0.04em;
+}
+
+.cardTextContent {
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
 }
 
 .workCardTop {

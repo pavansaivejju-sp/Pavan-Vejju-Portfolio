@@ -328,6 +328,89 @@
 .streamActions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.fpsBadge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #10B981;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  padding: 0.25rem 0.6rem;
+  border-radius: 9999px;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.speedButtonGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  background: #F8F4EE;
+  padding: 0.15rem;
+  border-radius: 9999px;
+  border: 1px solid #EFE7DC;
+}
+
+.speedBtn {
+  background: transparent;
+  border: none;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #635B55;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.speedBtn:hover {
+  color: #211A15;
+}
+
+.activeSpeedBtn {
+  background: #211A15;
+  color: #FCFAF7;
+}
+
+.anomalyTriggerBtn {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #DC2626;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.anomalyTriggerBtn:hover:not(:disabled) {
+  background: #EF4444;
+  color: #FCFAF7;
+}
+
+.anomalyTriggerBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.anomalyBanner {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #EF4444;
+  color: #B91C1C;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.5rem 0.85rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+  animation: pulseAlert 1.2s infinite;
+}
+
+@keyframes pulseAlert {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
 
 .streamControlBtn {

@@ -417,3 +417,276 @@
   }
 }
 
+/* Card Top Bar & View Mode Toggle */
+.cardTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #EFE7DC;
+}
+
+.cardViewToggle {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: #F8F4EE;
+  padding: 0.2rem;
+  border-radius: 9999px;
+  border: 1px solid #EFE7DC;
+}
+
+.toggleModeBtn {
+  background: transparent;
+  border: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.28rem 0.75rem;
+  border-radius: 9999px;
+  color: #635B55;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.toggleModeBtn:hover {
+  color: #211A15;
+}
+
+.activeToggleMode {
+  background: #211A15;
+  color: #FCFAF7;
+  border: 1px solid #BA8F55;
+  box-shadow: 0 2px 8px rgba(33, 26, 21, 0.15);
+}
+
+.zoomHint {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #FCFAF7;
+  background: rgba(33, 26, 21, 0.75);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.visual:hover .zoomHint {
+  opacity: 1;
+}
+
+/* System Architecture Blueprint */
+.blueprintContainer {
+  background: #191410;
+  border: 1px solid #BA8F55;
+  border-radius: 0.85rem;
+  padding: 1.15rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-height: 220px;
+}
+
+.blueprintHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blueprintTag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #BA8F55;
+}
+
+.blueprintSub {
+  font-size: 0.68rem;
+  color: #8C827A;
+}
+
+.blueprintNodes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.blueprintNode {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(239, 231, 220, 0.08);
+  border-radius: 0.5rem;
+  padding: 0.45rem 0.65rem;
+}
+
+.nodeIndex {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: #BA8F55;
+  background: rgba(186, 143, 85, 0.15);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+  line-height: 1.2;
+}
+
+.nodeText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.nodeStage {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #DFCAAB;
+  letter-spacing: 0.06em;
+}
+
+.nodeDetail {
+  font-size: 0.74rem;
+  color: #FCFAF7;
+  line-height: 1.35;
+}
+
+/* Lightbox Modal */
+.lightboxOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  background: rgba(17, 14, 11, 0.92);
+  backdrop-filter: blur(12px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.lightboxModal {
+  background: #211A15;
+  border: 1px solid #BA8F55;
+  border-radius: 1.25rem;
+  width: 100%;
+  max-width: 60rem;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+.lightboxHeader {
+  padding: 1.25rem 1.75rem;
+  border-bottom: 1px solid rgba(186, 143, 85, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.lightboxBrand {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  color: #BA8F55;
+}
+
+.lightboxTitle {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #FCFAF7;
+  margin: 0.2rem 0 0;
+}
+
+.lightboxCloseBtn {
+  background: transparent;
+  border: none;
+  color: #DFCAAB;
+  font-size: 2rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+
+.lightboxCloseBtn:hover {
+  color: #FCFAF7;
+}
+
+.lightboxBody {
+  position: relative;
+  width: 100%;
+  height: 55vh;
+  min-height: 340px;
+  background: #080706;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightboxImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.lightboxImage {
+  object-fit: contain;
+}
+
+.navArrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(33, 26, 21, 0.8);
+  border: 1px solid #BA8F55;
+  color: #FCFAF7;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  z-index: 10;
+  transition: all 0.2s ease;
+}
+
+.navArrow:hover {
+  background: #BA8F55;
+  color: #211A15;
+}
+
+.prevArrow { left: 1rem; }
+.nextArrow { right: 1rem; }
+
+.lightboxFooter {
+  padding: 0.85rem 1.75rem;
+  border-top: 1px solid rgba(186, 143, 85, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.counterText {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #DFCAAB;
+}
+
+.hintText {
+  font-size: 0.72rem;
+  color: #8C827A;
+}
+
+

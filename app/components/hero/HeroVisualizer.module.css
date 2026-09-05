@@ -1,0 +1,700 @@
+.visualizerCard {
+  background: #211A15;
+  border: 1px solid #BA8F55;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -8px rgba(33, 26, 21, 0.25);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.visualizerCard:hover {
+  border-color: #DFCAAB;
+  box-shadow: 0 20px 48px -6px rgba(186, 143, 85, 0.25);
+}
+
+/* Console Header */
+.consoleHeader {
+  background: #191410;
+  border-bottom: 1px solid rgba(186, 143, 85, 0.25);
+  padding: 0.85rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.headerTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.liveIndicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+}
+
+.liveDot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
+  background-color: #10b981;
+  box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.35);
+  animation: pulseLive 1.8s infinite;
+}
+
+@keyframes pulseLive {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+
+.liveLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #10b981;
+  letter-spacing: 0.08em;
+}
+
+.architectureTag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #BA8F55;
+  letter-spacing: 0.04em;
+}
+
+/* Mode Switcher Tabs */
+.modeTabs {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #110E0B;
+  padding: 0.25rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(239, 231, 220, 0.1);
+}
+
+.modeBtn {
+  background: transparent;
+  border: none;
+  color: #8C827A;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.modeBtn:hover {
+  color: #FCFAF7;
+}
+
+.activeModeBtn {
+  background: #BA8F55;
+  color: #211A15;
+  box-shadow: 0 2px 8px rgba(186, 143, 85, 0.35);
+}
+
+/* Panel Body */
+.panelBody {
+  position: relative;
+  min-height: 310px;
+  display: flex;
+  flex-direction: column;
+}
+
+.panelBackdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.backdropImage {
+  object-fit: cover;
+  opacity: 0.32;
+  filter: saturate(1.2) contrast(1.1);
+  transform: scale(1.02);
+}
+
+.backdropShade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(33, 26, 21, 0.94) 25%, rgba(33, 26, 21, 0.88) 70%, rgba(33, 26, 21, 0.96) 100%);
+  backdrop-filter: blur(4px);
+}
+
+.panelContent {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.panelContentNoBackdrop {
+  position: relative;
+  z-index: 1;
+  padding: 1.25rem 1.5rem 1.5rem;
+  background: #1E1712;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.subMetaTag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: #BA8F55;
+}
+
+.panelTitle {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #FCFAF7;
+  margin: 0.15rem 0 0;
+  letter-spacing: -0.02em;
+}
+
+/* EA FC26 Panel */
+.fc26Header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ovrBadge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #BA8F55;
+  color: #211A15;
+  width: 46px;
+  height: 46px;
+  border-radius: 0.65rem;
+  box-shadow: 0 4px 14px rgba(186, 143, 85, 0.4);
+}
+
+.ovrLabel {
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.ovrValue {
+  font-size: 1.3rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.radarLayout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .radarLayout {
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+}
+
+.radarSvgWrapper {
+  position: relative;
+  width: 220px;
+  height: 220px;
+  margin: 0 auto;
+}
+
+.radarSvg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.radarGridPoly {
+  fill: none;
+  stroke: rgba(239, 231, 220, 0.15);
+  stroke-width: 1;
+}
+
+.radarSpoke {
+  stroke: rgba(239, 231, 220, 0.15);
+  stroke-width: 1;
+  stroke-dasharray: 2 2;
+}
+
+.radarValuePoly {
+  fill: rgba(186, 143, 85, 0.35);
+  stroke: #BA8F55;
+  stroke-width: 2.5;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: drop-shadow(0 0 6px rgba(186, 143, 85, 0.5));
+}
+
+.vertexDot {
+  fill: #FCFAF7;
+  stroke: #BA8F55;
+  stroke-width: 2;
+  transition: all 0.35s ease;
+}
+
+/* Axis Labels around Radar */
+.axisLabel {
+  position: absolute;
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #DFCAAB;
+  pointer-events: none;
+  background: rgba(33, 26, 21, 0.85);
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.axisPac { top: 0px; left: 50%; transform: translateX(-50%); }
+.axisSho { top: 38px; right: 0px; }
+.axisPas { bottom: 38px; right: 0px; }
+.axisDri { bottom: 0px; left: 50%; transform: translateX(-50%); }
+.axisDef { bottom: 38px; left: 0px; }
+.axisPhy { top: 38px; left: 0px; }
+
+/* Radar Controls */
+.radarControls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.controlsHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.miniLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: #8C827A;
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid rgba(239, 231, 220, 0.2);
+  color: #8C827A;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.resetBtn:hover {
+  color: #FCFAF7;
+  border-color: #BA8F55;
+}
+
+.statButtons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.45rem;
+}
+
+.tunerBtn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(186, 143, 85, 0.25);
+  color: #FCFAF7;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.45rem 0.65rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.tunerBtn:hover {
+  background: #BA8F55;
+  color: #211A15;
+  border-color: #BA8F55;
+}
+
+.matchStatsBox {
+  background: rgba(17, 14, 11, 0.7);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.statMetric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.metricKey {
+  font-size: 0.6rem;
+  font-weight: 800;
+  color: #8C827A;
+}
+
+.metricVal {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #FCFAF7;
+}
+
+.metricValHighlight {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #10B981;
+}
+
+/* UGL Locomotive Telemetry */
+.uglHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pingBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #10B981;
+}
+
+.greenPulse {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background-color: #10b981;
+  box-shadow: 0 0 6px #10b981;
+}
+
+.anomalyBanner {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #EF4444;
+  color: #FCA5A5;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.5rem;
+  animation: pulseAlert 1.2s infinite;
+}
+
+@keyframes pulseAlert {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.oscilloscopeContainer {
+  background: #0E0B09;
+  border: 1px solid rgba(186, 143, 85, 0.3);
+  border-radius: 0.75rem;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.oscilloscopeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.scopeLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #BA8F55;
+}
+
+.packetCount {
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: #8C827A;
+}
+
+.oscilloscopeSvg {
+  width: 100%;
+  height: 55px;
+}
+
+.wavePolyline {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: all 0.2s linear;
+}
+
+.telemetryGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.65rem;
+}
+
+@media (min-width: 640px) {
+  .telemetryGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.telemetrySensor {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(239, 231, 220, 0.1);
+  border-radius: 0.65rem;
+  padding: 0.65rem 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  transition: all 0.2s ease;
+}
+
+.sensorWarning {
+  background: rgba(239, 68, 68, 0.15);
+  border-color: #EF4444;
+}
+
+.sensorName {
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #8C827A;
+}
+
+.sensorValue {
+  font-size: 1.15rem;
+  font-weight: 900;
+  color: #FCFAF7;
+}
+
+.sensorValue small {
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #BA8F55;
+}
+
+.statusNominal {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #10B981;
+}
+
+.statusAlert {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #EF4444;
+}
+
+.uglActions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.anomalyBtn {
+  background: #BA8F55;
+  color: #211A15;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 0.5rem 1.15rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.anomalyBtn:hover:not(:disabled) {
+  background: #DFCAAB;
+  transform: translateY(-1px);
+}
+
+.anomalyBtn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Amphora Panel */
+.amphoraHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.validationBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: rgba(186, 143, 85, 0.15);
+  border: 1px solid #BA8F55;
+  color: #DFCAAB;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.checkIcon {
+  color: #10B981;
+  font-weight: 900;
+}
+
+.tradeTicket {
+  background: #15110E;
+  border: 1px solid rgba(186, 143, 85, 0.25);
+  border-radius: 0.85rem;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.tradeInputRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .tradeInputRow {
+    grid-template-columns: 1.2fr 1.8fr;
+  }
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.fieldLabel {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #8C827A;
+}
+
+.tradeSelect {
+  background: #211A15;
+  border: 1px solid rgba(186, 143, 85, 0.4);
+  color: #FCFAF7;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.5rem;
+  outline: none;
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.volumeSlider {
+  flex: 1;
+  accent-color: #BA8F55;
+  cursor: pointer;
+}
+
+.volumeDisplay {
+  font-size: 0.85rem;
+  font-weight: 900;
+  color: #BA8F55;
+  min-width: 60px;
+  text-align: right;
+}
+
+.pricingSummary {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(239, 231, 220, 0.08);
+  border-radius: 0.65rem;
+  padding: 0.85rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.priceCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.priceSub {
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: #8C827A;
+}
+
+.priceVal {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #FCFAF7;
+}
+
+.notionalVal {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #10B981;
+}
+
+.tradeFooter {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.executeBtn {
+  background: #BA8F55;
+  color: #211A15;
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 0.6rem 1.35rem;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.executeBtn:hover {
+  background: #DFCAAB;
+  transform: translateY(-1px);
+}
+
+.ticketSuccess {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid #10B981;
+  color: #A7F3D0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+}

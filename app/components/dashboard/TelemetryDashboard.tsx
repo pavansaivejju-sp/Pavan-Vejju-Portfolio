@@ -18,26 +18,65 @@ export default function TelemetryDashboard() {
   const [currentTemp, setCurrentTemp] = useState(64);
   const [vibration, setVibration] = useState(2.4);
   const [packetCount, setPacketCount] = useState(14820);
+  const [streamSpeed, setStreamSpeed] = useState<number>(1);
+  const [fps, setFps] = useState<number>(60);
+  const [isAnomalySpike, setIsAnomalySpike] = useState<boolean>(false);
+
+  // Real-time browser FPS meter
+  useEffect(() => {
+    let frameCount = 0;
+    let lastTime = performance.now();
+    let animId: number;
+
+    const measureFps = (now: number) => {
+      frameCount++;
+      if (now - lastTime >= 1000) {
+        setFps(Math.round((frameCount * 1000) / (now - lastTime)));
+        frameCount = 0;
+        lastTime = now;
+      }
+      animId = requestAnimationFrame(measureFps);
+    };
+
+    animId = requestAnimationFrame(measureFps);
+    return () => cancelAnimationFrame(animId);
+  }, []);
 
   // Live streaming effect for SignalR simulation
   useEffect(() => {
     if (!isStreaming || activeView !== 'ugl-telemetry') return;
 
+    const intervalTime = Math.round(1600 / streamSpeed);
+
     const interval = setInterval(() => {
       setTelemetryPoints((prev) => {
         const last = prev[prev.length - 1];
-        // Random fluctuation between -2 and +3, bounded between 35 and 75
+        if (isAnomalySpike) {
+          const next = 78 + Math.floor(Math.random() * 8);
+          setCurrentTemp(next);
+          setVibration(5.42);
+          setPacketCount((c) => c + 4);
+          return [...prev.slice(1), next];
+        }
+
         const delta = Math.floor(Math.random() * 6) - 2.5;
-        const next = Math.min(75, Math.max(38, Math.round(last + delta)));
+        const next = Math.min(72, Math.max(40, Math.round(last + delta)));
         setCurrentTemp(next);
         setVibration(Number((2.1 + (next - 40) * 0.04 + Math.random() * 0.2).toFixed(2)));
         setPacketCount((c) => c + 1);
         return [...prev.slice(1), next];
       });
-    }, 1600);
+    }, intervalTime);
 
     return () => clearInterval(interval);
-  }, [isStreaming, activeView]);
+  }, [isStreaming, activeView, streamSpeed, isAnomalySpike]);
+
+  const triggerTelemetryAnomaly = () => {
+    setIsAnomalySpike(true);
+    setTimeout(() => {
+      setIsAnomalySpike(false);
+    }, 4000);
+  };
 
   // FC26 interactive data
   const [fc26Metric, setFc26Metric] = useState<'winRate' | 'stamina' | 'goals'>('winRate');
@@ -274,15 +313,56 @@ export default function TelemetryDashboard() {
                 </div>
 
                 <div className={styles.streamActions}>
+                  <span className={styles.fpsBadge}>⚡ {fps} FPS Rendering</span>
+
+                  <div className={styles.speedButtonGroup}>
+                    <button
+                      type="button"
+                      className={`${styles.speedBtn} ${streamSpeed === 1 ? styles.activeSpeedBtn : ''}`}
+                      onClick={() => setStreamSpeed(1)}
+                    >
+                      1x
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.speedBtn} ${streamSpeed === 2 ? styles.activeSpeedBtn : ''}`}
+                      onClick={() => setStreamSpeed(2)}
+                    >
+                      2x
+                    </button>
+                    <button
+                      type="button"
+                      className={`${styles.speedBtn} ${streamSpeed === 5 ? styles.activeSpeedBtn : ''}`}
+                      onClick={() => setStreamSpeed(5)}
+                    >
+                      Turbo
+                    </button>
+                  </div>
+
+                  <button
+                    type="button"
+                    className={styles.anomalyTriggerBtn}
+                    onClick={triggerTelemetryAnomaly}
+                    disabled={isAnomalySpike}
+                  >
+                    {isAnomalySpike ? '🚨 Anomaly Active' : '⚡ Simulate Spike'}
+                  </button>
+
                   <button
                     type="button"
                     className={`${styles.streamControlBtn} ${isStreaming ? styles.pauseBtn : styles.playBtn}`}
                     onClick={() => setIsStreaming(!isStreaming)}
                   >
-                    {isStreaming ? '⏸ Pause Stream' : '▶ Resume Live Stream'}
+                    {isStreaming ? '⏸ Pause' : '▶ Resume'}
                   </button>
                 </div>
               </div>
+
+              {isAnomalySpike && (
+                <div className={styles.anomalyBanner}>
+                  <span>🚨 CRITICAL TELEMETRY SPIKE: Bogie-3 Axle Bearing Exceeded Normal Threshold (+5.42 mm/s / 84°C)</span>
+                </div>
+              )}
 
               {/* Streaming Area Chart */}
               <div className={styles.svgWrapper}>

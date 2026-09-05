@@ -1,7 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import personalData from '../../data/personal.json';
+import HeroVisualizer from '../hero/HeroVisualizer';
+import fc26ImageOne from '../../assets/ea-sports-fc-26.jpg';
+import uglImageOne from '../../assets/UGL-1.png';
 import styles from './PersonalDetails.module.css';
 
 interface PersonalDetailsProps {
@@ -124,6 +128,11 @@ export default function PersonalDetails({
           </a>
         </div>
 
+        {/* --- LIVE INTERACTIVE ENGINEERING CONSOLE (0-Scroll Proof of Mastery) --- */}
+        <div className={styles.visualizerWrapper}>
+          <HeroVisualizer />
+        </div>
+
         {/* Executive Proof Metrics (The 4 Pillars of Credibility) */}
         <div className={styles.kpiGrid}>
           <div className={styles.kpiCard}>
@@ -148,62 +157,102 @@ export default function PersonalDetails({
           </div>
         </div>
 
-        {/* Enterprise Provenance Showcase (Above the Fold) */}
+        {/* Enterprise Provenance Showcase with Real Screenshots */}
         <div className={styles.provenanceShowcase}>
           <div className={styles.provenanceHeader}>
-            <span className={styles.provenanceTag}>ENTERPRISE TRACK RECORD &amp; PROVEN PRODUCTION STACK</span>
+            <span className={styles.provenanceTag}>FLAGSHIP ENTERPRISE ENGAGEMENTS</span>
+            <span className={styles.provenanceHint}>Click to inspect case studies</span>
           </div>
 
           <div className={styles.selectWorkGrid}>
             <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.workCardTop}>
-                <span className={styles.workIndex}>01</span>
-                <span className={styles.workCompany}>ELECTRONIC ARTS (EA)</span>
+              <div className={styles.cardThumbnailWrapper}>
+                <Image
+                  src={fc26ImageOne}
+                  alt="EA Sports FC26 Platform"
+                  fill
+                  className={styles.cardThumbnail}
+                  sizes="300px"
+                />
+                <div className={styles.thumbShade} />
+                <span className={styles.thumbBadge}>EA FC26</span>
               </div>
-              <h4 className={styles.workTitle}>FC26 Stats Analytics Platform</h4>
-              <p className={styles.workDesc}>
-                High-scale competitive gaming analytics dashboard with micro-frontends, Recharts, and Stryker mutation testing.
-              </p>
-              <div className={styles.workTechTags}>
-                <span>React 19</span>
-                <span>Next.js</span>
-                <span>Micro-Frontends</span>
-                <span>Recharts</span>
-                <span>Stryker</span>
+
+              <div className={styles.cardTextContent}>
+                <div className={styles.workCardTop}>
+                  <span className={styles.workIndex}>01</span>
+                  <span className={styles.workCompany}>ELECTRONIC ARTS (EA)</span>
+                </div>
+                <h4 className={styles.workTitle}>FC26 Stats Analytics Platform</h4>
+                <p className={styles.workDesc}>
+                  Gaming analytics dashboard with micro-frontends, Recharts, and Stryker mutation testing.
+                </p>
+                <div className={styles.workTechTags}>
+                  <span>React 19</span>
+                  <span>Next.js</span>
+                  <span>Micro-Frontends</span>
+                  <span>Recharts</span>
+                  <span>Stryker</span>
+                </div>
               </div>
             </a>
 
             <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.workCardTop}>
-                <span className={styles.workIndex}>02</span>
-                <span className={styles.workCompany}>AMPHORA SOFTWARE</span>
+              <div className={styles.cardThumbnailWrapper}>
+                <div className={styles.amphoraThumbFallback}>
+                  <span className={styles.thumbIcon}>⚡</span>
+                  <span className={styles.thumbSub}>ETRM Deal Capture</span>
+                </div>
+                <div className={styles.thumbShade} />
+                <span className={styles.thumbBadge}>AMPHORA</span>
               </div>
-              <h4 className={styles.workTitle}>Symphony Trade Capture</h4>
-              <p className={styles.workDesc}>
-                Real-time energy trading deal capture, pricing, and risk management with dynamic TanStack Forms &amp; GraphQL pipelines.
-              </p>
-              <div className={styles.workTechTags}>
-                <span>React.js</span>
-                <span>TanStack Form</span>
-                <span>GraphQL</span>
-                <span>Redux-Saga</span>
+
+              <div className={styles.cardTextContent}>
+                <div className={styles.workCardTop}>
+                  <span className={styles.workIndex}>02</span>
+                  <span className={styles.workCompany}>AMPHORA SOFTWARE</span>
+                </div>
+                <h4 className={styles.workTitle}>Symphony Trade Capture</h4>
+                <p className={styles.workDesc}>
+                  Real-time energy trading deal capture, pricing, and dynamic TanStack Forms with GraphQL.
+                </p>
+                <div className={styles.workTechTags}>
+                  <span>React.js</span>
+                  <span>TanStack Form</span>
+                  <span>GraphQL</span>
+                  <span>Redux-Saga</span>
+                </div>
               </div>
             </a>
 
             <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.workCardTop}>
-                <span className={styles.workIndex}>03</span>
-                <span className={styles.workCompany}>UGL &amp; PACIFIC NATIONAL</span>
+              <div className={styles.cardThumbnailWrapper}>
+                <Image
+                  src={uglImageOne}
+                  alt="UGL Locomotive CMS"
+                  fill
+                  className={styles.cardThumbnail}
+                  sizes="300px"
+                />
+                <div className={styles.thumbShade} />
+                <span className={styles.thumbBadge}>UGL RAIL</span>
               </div>
-              <h4 className={styles.workTitle}>Locomotive Telemetry CMS</h4>
-              <p className={styles.workDesc}>
-                Real-time SignalR train vibration monitoring, Highcharts heatmaps, and Fluent UI mission-critical controls.
-              </p>
-              <div className={styles.workTechTags}>
-                <span>React.js</span>
-                <span>SignalR</span>
-                <span>Highcharts</span>
-                <span>Fluent UI</span>
+
+              <div className={styles.cardTextContent}>
+                <div className={styles.workCardTop}>
+                  <span className={styles.workIndex}>03</span>
+                  <span className={styles.workCompany}>UGL &amp; PACIFIC NATIONAL</span>
+                </div>
+                <h4 className={styles.workTitle}>Locomotive Telemetry CMS</h4>
+                <p className={styles.workDesc}>
+                  Real-time SignalR train vibration monitoring, Highcharts heatmaps, and Fluent UI controls.
+                </p>
+                <div className={styles.workTechTags}>
+                  <span>React.js</span>
+                  <span>SignalR</span>
+                  <span>Highcharts</span>
+                  <span>Fluent UI</span>
+                </div>
               </div>
             </a>
           </div>
