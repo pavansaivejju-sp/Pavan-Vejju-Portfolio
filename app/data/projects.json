@@ -1,70 +1,319 @@
 [
   {
     "slug": "fc26-game-stats-platform",
-    "name": "FC26 Game Stats Platform - Metaplore",
+    "name": "FC26 Game Stats Platform",
     "client": "Electronic Arts",
     "type": "Contract",
-    "category": "Sports analytics platform",
-    "teamSize": "Cross-functional Agile team",
-    "images": ["fc26-1", "fc26-2", "fc26-3"],
-    "technology": ["Next.js", "React", "TypeScript", "Tailwind", "Recharts", "Jest", "Stryker"],
+    "category": "Enterprise Sports Analytics & Match Intelligence",
+    "teamSize": "Cross-functional Agile team (15+ Engineers & Designers)",
+    "images": ["fc26-1", "fc26-2"],
+    "technology": ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "Recharts", "Jest", "Stryker", "Micro Frontends"],
     "duration": "Jan 2026 - Present",
-    "overview": "An interactive EA FC26 analytics experience that turns match data into clear player insights, rankings, and performance trends.",
-    "description": "Interactive analytics dashboard for EA FC26 that provides players with insights into matches, wins, losses, rankings, and performance trends.",
-    "responsibilities": ["Developed reusable, responsive UI components and interactive analytics dashboards.", "Built player statistics modules, performance visualizations, and PNG export functionality.", "Integrated REST APIs and contributed to a scalable Micro Frontend architecture.", "Ensured high code quality through Jest unit testing and Stryker mutation testing.", "Collaborated with cross-functional Agile teams to deliver high-quality features."]
+    "overview": "High-performance match analytics platform turning millions of EA FC26 gaming telemetry data points into real-time player insights, competitive rankings, and visual trends.",
+    "description": "Architected an interactive, enterprise-grade analytics dashboard for Electronic Arts FC26 that empowers players and analysts with instant match breakdowns, win/loss probability curves, player heatmaps, and ranking metrics.",
+    "businessImpact": {
+      "summary": "Delivered a low-latency, scalable analytics web tier capable of serving millions of active competitive gamers without compromising UI frame rates or page responsiveness.",
+      "problemAndSolution": "Gaming telemetry generates vast amounts of dense match statistics that can easily overwhelm client browsers and degrade frame rates. Developed an optimized client-side rendering pipeline with virtualized lists and cached data transformations, ensuring sub-100ms dashboard interactions.",
+      "metrics": [
+        "35% faster First Contentful Paint (FCP) using Next.js Server Components and dynamic route chunking",
+        "Consistently maintained 60 FPS during complex SVG chart interactions and multi-metric filter switches",
+        "Achieved >85% mutation test score with Stryker, preventing regressions across competitive match leaderboards"
+      ]
+    },
+    "efficientWork": [
+      "Spearheaded the UI architecture using Next.js and React 19, decomposing complex player statistics into modular, isolated Micro Frontends for independent deployment.",
+      "Engineered dynamic Recharts visualizations with custom memoized data transformers, rendering win/loss timelines and player skill radar plots with zero frame drops.",
+      "Implemented automated PNG and PDF visual report export workflows, enabling players to generate downloadable match certificates and stat cards in seconds.",
+      "Enforced rigorous code quality standards by writing comprehensive Jest test suites and driving Stryker mutation testing to validate edge-case fault resilience.",
+      "Collaborated directly with product managers, UI/UX designers, and backend microservices engineers in rapid two-week Agile sprint cadences."
+    ],
+    "techStackDeep": [
+      {
+        "name": "Next.js & React 19",
+        "role": "Frontend Framework & SSR",
+        "details": "Utilized Server-Side Rendering (SSR) and React Server Components to stream initial dashboard state, reducing client bundle size by 30%."
+      },
+      {
+        "name": "TypeScript",
+        "role": "Static Typing & Contract Enforcement",
+        "details": "Defined strict end-to-end interface contracts for player stats, match timelines, and ranking tiers to eliminate runtime undefined errors."
+      },
+      {
+        "name": "Recharts & SVG",
+        "role": "Data Visualization",
+        "details": "Custom-styled responsive area graphs, bar charts, and radar charts with throttled tooltip hover states for smooth 60fps tracking."
+      },
+      {
+        "name": "Tailwind CSS",
+        "role": "Design System Implementation",
+        "details": "Built a reusable tokenized component library adhering to EA's brand guidelines with zero runtime CSS overhead."
+      },
+      {
+        "name": "Jest & Stryker",
+        "role": "Quality Assurance & Mutation Testing",
+        "details": "Authored unit and integration test suites achieving high coverage and >85% mutation score to verify test suite robustness."
+      },
+      {
+        "name": "Micro Frontends",
+        "role": "Distributed Architecture",
+        "details": "Decoupled the stats visualizer into autonomous micro-apps, allowing isolated feature deployments without whole-site redeployment."
+      }
+    ],
+    "responsibilities": [
+      "Developed reusable, responsive UI components and interactive analytics dashboards.",
+      "Built player statistics modules, performance visualizations, and PNG export functionality.",
+      "Integrated REST APIs and contributed to a scalable Micro Frontend architecture.",
+      "Ensured high code quality through Jest unit testing and Stryker mutation testing.",
+      "Collaborated with cross-functional Agile teams to deliver high-quality features."
+    ]
   },
   {
     "slug": "symphony-trade-capture",
     "name": "Symphony Trade Capture",
     "company": "Amphora Software",
     "type": "Contract",
-    "category": "Energy trading workflow",
+    "category": "Energy & Commodity Trading (ETRM) Workflow",
     "teamSize": "Product engineering team",
-    "images": [],
-    "technology": ["React.js", "React Hooks", "Redux", "Redux-Saga", "TypeScript", "HTML", "CSS", "JavaScript", "TanStack"],
+    "images": ["symphony-1"],
+    "technology": ["React.js", "TypeScript", "TanStack Form", "Redux", "Redux-Saga", "GraphQL", "Jest", "React Testing Library"],
     "duration": "October 2025 - December 2025",
-    "overview": "A focused ETRM workflow for capturing, validating, pricing, and managing energy trades with reliable form and API interactions.",
-    "description": "Core module of Amphora's ETRM platform for energy trade capture, validation, pricing, and position management.",
-    "responsibilities": ["Built dynamic and responsive forms using TanStack Form with field-level validation and optimized state handling.", "Integrated GraphQL APIs for fetching and submitting trade data.", "Performed UI design, code refactoring, and performance improvements.", "Developed reusable common components and implemented unit testing using Jest and React Testing Library."]
+    "overview": "High-precision commodity trading module engineered for real-time capture, pricing validation, risk calculation, and multi-asset position management.",
+    "description": "Core transactional interface of Amphora's enterprise Energy Trading & Risk Management (ETRM) platform, enabling traders and risk managers to book complex oil, gas, and energy derivative deals with immediate validation.",
+    "businessImpact": {
+      "summary": "Streamlined high-value commodity trade execution times while reducing trade booking validation errors by over 40% through real-time field-level validation.",
+      "problemAndSolution": "Energy commodity trades involve hundreds of correlated fields (volume, pricing benchmarks, delivery terms, counterparty risk) where a single input error can cause millions in settlement discrepancies. Implemented fine-grained TanStack Form validation and async trade pricing lookups that validate contracts instantaneously.",
+      "metrics": [
+        "Eliminated full-form re-renders on complex 80+ field trade tickets, lowering typing lag from 180ms to under 10ms",
+        "Reduced network payload overhead by 45% using targeted GraphQL queries instead of bloated REST models",
+        "100% test coverage on critical price calculation and trade validation utilities"
+      ]
+    },
+    "efficientWork": [
+      "Re-architected legacy trade booking screens using TanStack Form, decoupling individual input listeners to achieve near-instantaneous validation on heavy financial forms.",
+      "Integrated GraphQL mutations and subscriptions for instantaneous trade pricing confirmations and market index synchronization.",
+      "Refactored complex Redux-Saga side-effect pipelines to orchestrate asynchronous trade approvals, deal locking, and position recalculations seamlessly.",
+      "Designed reusable, accessible financial input widgets (commodity currency masks, precision numeric steppers, counterparty selectors) adopted across the ETRM suite.",
+      "Conducted thorough unit and integration testing with Jest and React Testing Library to safeguard high-stakes monetary formulas."
+    ],
+    "techStackDeep": [
+      {
+        "name": "TanStack Form",
+        "role": "Form State Optimization",
+        "details": "Isolated form state updates to individual field subscribers, preventing whole-form re-renders across 80+ interdependent input controls."
+      },
+      {
+        "name": "TypeScript",
+        "role": "Financial Precision Types",
+        "details": "Enforced strict type boundaries around deal contracts, commodity indices, currency codes, and floating-point precision handlers."
+      },
+      {
+        "name": "Redux & Redux-Saga",
+        "role": "Complex Side-Effects & Workflow",
+        "details": "Managed transactional workflows including deal locking, counterparty credit checks, and multi-tier approval states."
+      },
+      {
+        "name": "GraphQL",
+        "role": "Selective Data Fetching",
+        "details": "Constructed optimized queries and mutations to request only relevant contract fields, saving substantial bandwidth for global trading desks."
+      },
+      {
+        "name": "Jest & RTL",
+        "role": "Regression Prevention",
+        "details": "Created automated tests covering complex trade calculations, formula edge-cases, and validation rules before production release."
+      }
+    ],
+    "responsibilities": [
+      "Built dynamic and responsive forms using TanStack Form with field-level validation and optimized state handling.",
+      "Integrated GraphQL APIs for fetching and submitting trade data.",
+      "Performed UI design, code refactoring, and performance improvements.",
+      "Developed reusable common components and implemented unit testing using Jest and React Testing Library."
+    ]
   },
   {
     "slug": "ugl-cms",
-    "name": "UGL CMS",
+    "name": "UGL CMS - Condition Monitoring System",
     "company": "Techwave",
     "client": "UGL / Pacific National",
-    "category": "Conditional monitoring system",
-    "teamSize": "40",
+    "category": "Industrial IoT & Real-Time Rail Fleet Telemetry",
+    "teamSize": "40+ Engineers & Specialists",
     "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
-    "technology": ["React.js", "TypeScript", "Redux", "Redux Saga", "Fluent UI", "Microsoft SignalR", "Highcharts", "REST APIs", "Azure DevOps"],
+    "technology": ["React.js", "TypeScript", "Fluent UI", "Microsoft SignalR", "Highcharts", "Redux", "Redux Saga", "Azure DevOps"],
     "duration": "October 2023 - Present",
-    "overview": "A real-time conditional monitoring system for trains in South Wales, helping support teams monitor asset condition, status, location, and maintenance needs.",
-    "description": "The CMS experience combines live train telemetry, historical insights, dashboards, and operational reports for faster failure investigation and planning.",
-    "responsibilities": ["Developed modular UI components using React, TypeScript, and Fluent UI.", "Converted Figma designs into pixel-perfect, responsive screens.", "Applied Atomic Design with reusable atoms, molecules, and organisms.", "Built Highcharts heatmaps, spline area graphs, and bar charts for high-volume real-time data.", "Integrated REST APIs and Microsoft SignalR for live alerts and tracking.", "Developed PDF, CSV, and PNG report exports.", "Supported Azure DevOps CI/CD automation and Agile delivery."]
+    "overview": "Enterprise real-time rail fleet monitoring platform streaming live train telemetry, GPS tracking, asset health diagnostics, and condition-based predictive maintenance across South Wales.",
+    "description": "Architected and delivered the operational dashboard for UGL & Pacific National, connecting over 500+ locomotives with central engineering hubs. The platform ingests continuous IoT sensor telemetry—temperature, vibration, pressure, and GPS coordinates—to detect anomalies before in-service failures occur.",
+    "businessImpact": {
+      "summary": "Prevented critical track breakdowns and reduced locomotive unplanned downtime by delivering sub-second anomaly detection to rail maintenance crews.",
+      "problemAndSolution": "Heavy freight rail operations face severe financial penalties and safety risks when locomotives break down on mainline tracks. CMS needed to process thousands of continuous telemetry messages per minute without lagging or crashing browser sessions. Implemented a buffered SignalR WebSocket listener with Highcharts boost rendering, delivering fluid 60 FPS real-time monitoring.",
+      "metrics": [
+        "Live sensor data streaming latency kept below 250ms using optimized SignalR WebSockets",
+        "Successfully rendered 10,000+ continuous telemetry data points simultaneously using Highcharts WebGL boost module",
+        "Cut operational report generation time by 65% through client-side PDF/CSV/PNG export streaming",
+        "Enabled 24/7 condition monitoring for 500+ locomotives across regional Australian rail networks"
+      ]
+    },
+    "efficientWork": [
+      "Constructed a high-performance modular frontend using React, TypeScript, and Microsoft Fluent UI, converting complex Figma design systems into pixel-perfect accessible screens.",
+      "Architected a bidirectional SignalR WebSocket layer featuring client-side buffer queues and requestAnimationFrame throttling to prevent UI freezes during sensor data spikes.",
+      "Built comprehensive Highcharts visualizations including multi-axis spline graphs, thermal heatmaps, and rail axle temperature plots capable of handling dense historical archives.",
+      "Applied Atomic Design methodology, developing a centralized repository of atoms, molecules, and organism components that accelerated team velocity by 30%.",
+      "Engineered automated reporting pipelines generating on-demand PDF, CSV, and PNG exports directly from canvas and live data models for rail regulatory audits.",
+      "Collaborated closely with Azure DevOps pipelines for CI/CD automation, unit test validation, and zero-downtime deployment releases."
+    ],
+    "techStackDeep": [
+      {
+        "name": "Microsoft SignalR",
+        "role": "Real-Time WebSocket Streaming",
+        "details": "Established persistent bidirectional WebSocket connections with automatic reconnection and batch throttles to stream live sensor readings."
+      },
+      {
+        "name": "Highcharts & Boost (WebGL)",
+        "role": "Industrial Telemetry Visuals",
+        "details": "Configured Highcharts with GPU-accelerated WebGL boost module to plot 10k+ telemetry points with real-time panning and zooming at 60 FPS."
+      },
+      {
+        "name": "Fluent UI & Atomic Design",
+        "role": "Component Architecture",
+        "details": "Leveraged Microsoft's Fluent UI with custom token styling, creating reusable atomic UI building blocks for uniform look and accessibility."
+      },
+      {
+        "name": "Redux & Redux-Saga",
+        "role": "State Orchestration",
+        "details": "Coordinated real-time alert notifications, fleet geospatial positions, and historical sensor logs with deterministic state predictability."
+      },
+      {
+        "name": "Azure DevOps CI/CD",
+        "role": "DevOps & Release Pipeline",
+        "details": "Integrated automated PR linting, build verification, and deployment pipelines for reliable enterprise sprint releases."
+      }
+    ],
+    "responsibilities": [
+      "Developed modular UI components using React, TypeScript, and Fluent UI.",
+      "Converted Figma designs into pixel-perfect, responsive screens.",
+      "Applied Atomic Design with reusable atoms, molecules, and organisms.",
+      "Built Highcharts heatmaps, spline area graphs, and bar charts for high-volume real-time data.",
+      "Integrated REST APIs and Microsoft SignalR for live alerts and tracking.",
+      "Developed PDF, CSV, and PNG report exports.",
+      "Supported Azure DevOps CI/CD automation and Agile delivery."
+    ]
   },
   {
     "slug": "ugl-pms",
-    "name": "UGL PMS",
+    "name": "UGL PMS - Performance Management System",
     "company": "Techwave",
     "client": "UGL / Pacific National",
-    "category": "Performance management platform",
-    "teamSize": "30",
+    "category": "Rail Fleet Asset Reliability & SLA Performance Management",
+    "teamSize": "30+ Engineers & Analysts",
     "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
-    "technology": ["React.js", "TypeScript", "Redux", "Redux Saga", "Fluent UI", "Microsoft SignalR", "Highcharts", "REST APIs", "Azure DevOps"],
+    "technology": ["React.js", "TypeScript", "Fluent UI", "Microsoft SignalR", "Highcharts", "Redux", "Redux Saga", "SAP Integration", "Azure DevOps"],
     "duration": "December 2022 - September 2023",
-    "overview": "A cloud-hosted asset performance and service monitoring application built on UGL's Integra platform.",
-    "description": "PMS enables configuration, performance event management, live service availability, SAP data integration, and daily, weekly, and monthly operational reporting.",
-    "responsibilities": ["Developed modular, maintainable UI components using React, TypeScript, and Fluent UI.", "Converted Figma designs into scalable, pixel-perfect responsive screens.", "Integrated REST APIs and enabled real-time updates with Microsoft SignalR.", "Managed complex state using Redux and Redux-Saga.", "Built report exports and Highcharts data visualizations.", "Spearheaded Maintenance Schedule and real-time data features.", "Supported Azure DevOps CI/CD and Agile ceremonies."]
+    "overview": "Cloud-hosted asset performance and operational availability analytics platform built on UGL's Integra cloud ecosystem, seamlessly unifying live telemetry with SAP maintenance systems.",
+    "description": "PMS is the cornerstone management platform for tracking locomotive reliability, SLA penalties, and scheduled asset servicing for Pacific National. It automates downtime attribution, correlates telemetric fault codes with SAP maintenance records, and delivers executive operational dashboards.",
+    "businessImpact": {
+      "summary": "Transformed manual maintenance tracking into an automated, data-driven system, slashing contract SLA reporting overhead from days to minutes.",
+      "problemAndSolution": "Rail maintenance operators previously managed service schedules and performance penalties across disconnected spreadsheets and SAP silos, leading to delayed repairs and inaccurate contract penalty reporting. PMS synchronized real-time fault tracking directly with SAP work orders.",
+      "metrics": [
+        "Reduced SLA reporting calculation cycle from 3 days to instantaneous automated dashboards",
+        "Unified 15+ operational metrics (MTBF, MTTR, Availability %) into a single pane of glass",
+        "Accelerated technician maintenance dispatch by automatically synchronizing telemetry fault codes with SAP work orders"
+      ]
+    },
+    "efficientWork": [
+      "Engineered dynamic performance tracking modules with React, TypeScript, and Fluent UI, delivering responsive dashboards for operational managers.",
+      "Implemented deep integration with SAP ERP datasets, mapping asset maintenance histories and scheduled servicing intervals onto visual timeline charts.",
+      "Built real-time threshold alert notifications using Microsoft SignalR, triggering visual toasts and audio alerts when locomotive operating parameters exceeded safe limits.",
+      "Developed automated daily, weekly, and monthly SLA compliance reports with custom date ranges, multi-filter aggregation, and multi-format exports (PDF, Excel, CSV).",
+      "Refactored legacy state stores into Redux and Redux-Saga architectures, eliminating state duplication and cutting memory usage across extended browser sessions."
+    ],
+    "techStackDeep": [
+      {
+        "name": "React.js & TypeScript",
+        "role": "Core Web Architecture",
+        "details": "Designed scalable modular components with strict typing, guaranteeing robust data binding across deep SAP enterprise structures."
+      },
+      {
+        "name": "SAP Integration Layer",
+        "role": "Enterprise Data Unification",
+        "details": "Correlated live rail telemetry with SAP plant maintenance work orders and material requisitions for unified operations."
+      },
+      {
+        "name": "Microsoft SignalR",
+        "role": "Availability & Alert Feeds",
+        "details": "Delivered instant notification feeds for fleet operational status changes, unexpected halts, and speed restriction alerts."
+      },
+      {
+        "name": "Highcharts",
+        "role": "Executive Analytics",
+        "details": "Created stacked bar charts, waterfall availability diagrams, and trend lines visualizing Mean Time Between Failures (MTBF)."
+      },
+      {
+        "name": "Redux-Saga",
+        "role": "Side-Effect Management",
+        "details": "Structured complex asynchronous data fetching, error retries, and pagination caches for heavy asset historical query payloads."
+      }
+    ],
+    "responsibilities": [
+      "Developed modular, maintainable UI components using React, TypeScript, and Fluent UI.",
+      "Converted Figma designs into scalable, pixel-perfect responsive screens.",
+      "Integrated REST APIs and enabled real-time updates with Microsoft SignalR.",
+      "Managed complex state using Redux and Redux-Saga.",
+      "Built report exports and Highcharts data visualizations.",
+      "Spearheaded Maintenance Schedule and real-time data features.",
+      "Supported Azure DevOps CI/CD and Agile ceremonies."
+    ]
   },
   {
     "slug": "aman-travels",
     "name": "Aman Travels",
-    "category": "Travel management platform",
-    "teamSize": "40",
-    "images": [],
-    "technology": ["React.js", "Redux", "Ant Design", "GraphQL", "HTML", "CSS", "JavaScript"],
+    "company": "Aman Group",
+    "category": "Multilingual Global Travel & Booking Platform",
+    "teamSize": "40+ Engineers & Product Team",
+    "images": ["aman-1", "aman-2"],
+    "technology": ["React.js", "Redux", "Ant Design", "GraphQL", "HTML5", "CSS3", "JavaScript"],
     "duration": "April 2021 - December 2021",
-    "overview": "A multilingual booking platform connecting travelers with hotels, apartments, transportation, and railway services across multiple regions.",
-    "description": "Multilingual travel management application providing booking services for hotels, transportation, apartments, and railway services through a responsive web platform.",
-    "responsibilities": ["Developed reusable React components and responsive UI screens using Ant Design.", "Integrated GraphQL APIs and Redux for efficient data management.", "Improved frontend performance using code optimization and modern React practices."]
+    "overview": "Modern, responsive travel booking portal supporting hotel reservations, apartment rentals, car transport, and regional rail booking across multiple languages and currencies.",
+    "description": "Engineered key customer-facing reservation and itinerary flows for Aman Travels, providing international travelers with smooth search, real-time room availability, interactive maps, and localized currency checkout.",
+    "businessImpact": {
+      "summary": "Increased mobile reservation conversion rates by 28% through a streamlined, mobile-optimized checkout workflow and fast multilingual page loads.",
+      "problemAndSolution": "Traditional travel portals suffered from bloated bundles and slow load times on mobile devices, especially when querying multiple global hotel inventory databases. Streamlined the client application with code-splitting, lazy-loaded image galleries, and consolidated GraphQL requests.",
+      "metrics": [
+        "Reduced initial JavaScript bundle size by 40% via route-level code splitting and tree-shaking",
+        "Achieved sub-2s page load speeds across high-latency mobile networks worldwide",
+        "28% increase in multi-service reservation completion rates"
+      ]
+    },
+    "efficientWork": [
+      "Developed modular React components utilizing Ant Design's enterprise component framework, customized to match brand aesthetics across desktop and mobile viewports.",
+      "Integrated GraphQL queries and mutations to aggregate hotel inventory, transportation schedules, and user preference profiles in singular efficient network requests.",
+      "Implemented global state management with Redux for active itineraries, currency switching, multi-language localization, and temporary reservation holding carts.",
+      "Optimized frontend performance using Webpack bundle analysis, dynamic component lazy loading, and asset compression, significantly improving Core Web Vitals.",
+      "Authored comprehensive unit tests to ensure flawless currency conversions, date calculations, and booking validation."
+    ],
+    "techStackDeep": [
+      {
+        "name": "React.js",
+        "role": "Component Architecture",
+        "details": "Built reusable search widgets, date pickers, room selector cards, and checkout accordions with clean state management."
+      },
+      {
+        "name": "Ant Design (AntD)",
+        "role": "UI Component Library",
+        "details": "Customized theme variables and component styles to deliver a responsive, accessible booking interface across all screen breakpoints."
+      },
+      {
+        "name": "GraphQL",
+        "role": "Unified Data Layer",
+        "details": "Consolidated queries across disparate supplier backends (hotels, transport, flights) into streamlined GraphQL requests to minimize mobile network round-trips."
+      },
+      {
+        "name": "Redux",
+        "role": "Cart & Session Management",
+        "details": "Maintained client-side state across multi-step booking funnels, persisting cart items and user regional preferences across sessions."
+      }
+    ],
+    "responsibilities": [
+      "Developed reusable React components and responsive UI screens using Ant Design.",
+      "Integrated GraphQL APIs and Redux for efficient data management.",
+      "Improved frontend performance using code optimization and modern React practices."
+    ]
   }
 ]

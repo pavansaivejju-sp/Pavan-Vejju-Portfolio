@@ -1,4 +1,12 @@
 {
-  "available": false,
-  "message": "Address details were not included in the resume."
+  "location": "Hyderabad",
+  "address": "Kondapur, Hyderabad",
+  "city": "Hyderabad",
+  "area": "Kondapur",
+  "state": "Telangana",
+  "country": "India",
+  "pincode": "500084",
+  "landmark": "Near HITEC City / Cyberabad",
+  "available": true,
+  "message": "Located in Kondapur, Hyderabad (PIN: 500084). Available for local on-site, hybrid, and global remote opportunities."
 }

@@ -1,34 +1,44 @@
 @import "tailwindcss";
 
 :root {
-  /* AAVARNA Luxury Design System Color Tokens */
-  --background: #FCFAF7;
-  --foreground: #211A15;
-  --color-canvas: #FCFAF7;
-  --color-espresso: #211A15;
-  --color-gold: #BA8F55;
-  --color-gold-dark: #A2773D;
-  --color-gold-light: #DFCAAB;
-  --color-card: #FFFFFF;
-  --color-card-muted: #F8F4EE;
-  --color-border: #EFE7DC;
+  /* Rich & Attractive Luxury Modern Theme Tokens */
+  --bg-space: #070A0F;
+  --bg-surface: rgba(13, 19, 33, 0.72);
+  --bg-surface-elevated: rgba(20, 29, 48, 0.85);
+  --bg-glass-card: rgba(15, 23, 42, 0.65);
+  
+  --border-glass: rgba(255, 255, 255, 0.08);
+  --border-glass-hover: rgba(99, 102, 241, 0.4);
+  --border-glow: rgba(56, 189, 248, 0.35);
 
-  /* Aliased tokens for seamless component theming */
-  --orange-primary: #BA8F55;
-  --orange-hover: #A2773D;
-  --orange-glow: rgba(186, 143, 85, 0.35);
-  --cream-card: #FFFFFF;
-  --cream-card-hover: #F8F4EE;
-  --cream-card-border: #EFE7DC;
-  --text-dark: #211A15;
-  --text-muted: #635B55;
-  --text-light-muted: #8C827A;
+  --text-primary: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #94A3B8;
+  --text-dim: #64748B;
+
+  /* Rich Radiant Accent Gradients */
+  --accent-cyan: #38BDF8;
+  --accent-indigo: #6366F1;
+  --accent-purple: #A855F7;
+  --accent-gold: #F59E0B;
+  --accent-gold-light: #FDE68A;
+  --accent-emerald: #10B981;
+
+  --gradient-brand: linear-gradient(135deg, #38BDF8 0%, #6366F1 50%, #A855F7 100%);
+  --gradient-gold: linear-gradient(135deg, #FDE68A 0%, #F59E0B 100%);
+  --gradient-surface: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+  --gradient-glow-btn: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+
+  /* Fonts */
+  --font-body: var(--font-sans, 'Plus Jakarta Sans', sans-serif);
+  --font-display: var(--font-heading, 'Outfit', sans-serif);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: var(--bg-space);
+  --color-foreground: var(--text-primary);
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-display);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -38,156 +48,144 @@
 
 html {
   scroll-behavior: smooth;
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background-color: #FCFAF7;
-  color: var(--foreground);
-  font-family: var(--font-geist-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--bg-space);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  background-image:
-    radial-gradient(circle at 10% 10%, rgba(186, 143, 85, 0.05), transparent 40%),
-    radial-gradient(circle at 90% 20%, rgba(33, 26, 21, 0.03), transparent 45%),
-    radial-gradient(circle at 50% 80%, rgba(186, 143, 85, 0.04), transparent 50%);
+  /* Rich, atmospheric ambient lighting mesh */
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 85% 25%, rgba(168, 85, 247, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 50% 60%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 75% 85%, rgba(245, 158, 11, 0.05) 0%, transparent 40%);
   background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Outline Typography Classes */
-.outline-text,
-.outline-crimson,
-.outline-orange,
-.outline-gold {
-  -webkit-text-stroke: 2px #BA8F55;
+/* Radiant Typography Utilities */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gradient {
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
-  transition: all 0.3s ease;
 }
 
-.outline-text:hover,
-.outline-crimson:hover,
-.outline-orange:hover,
-.outline-gold:hover {
-  -webkit-text-fill-color: #BA8F55;
-  color: #BA8F55;
-}
-
-.outline-white {
-  -webkit-text-stroke: 2px #FFFFFF;
+.text-gradient-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  color: transparent;
-  transition: all 0.3s ease;
 }
 
-.outline-white:hover {
-  -webkit-text-fill-color: #FFFFFF;
+/* Glass Card */
+.glass-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  border-color: var(--border-glass-hover);
+  box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Luxury Glowing Button */
+.btn-glow-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.85rem;
+  background: var(--gradient-glow-btn);
   color: #FFFFFF;
-}
-
-/* Reference Action Link CTA style (matching AAVARNA gold with arrow) */
-.ref-action-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-size: 0.85rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #A2773D;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  background: transparent;
-  border: none;
-  padding: 0;
-}
-
-.ref-action-cta:hover {
-  color: #BA8F55;
-  transform: translateX(4px);
-}
-
-.ref-action-cta .arrow {
-  font-size: 1.15rem;
-  line-height: 1;
-  transition: transform 0.25s ease;
-}
-
-.ref-action-cta:hover .arrow {
-  transform: translateX(4px);
-}
-
-/* Signature Luxury CTA Button */
-.explore-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1.85rem;
-  background: #211A15;
-  color: #FCFAF7;
-  border: 1px solid #BA8F55;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 9999px;
-  font-size: 0.88rem;
-  font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  box-shadow: 0 0 25px rgba(99, 102, 241, 0.45), 0 4px 12px rgba(0, 0, 0, 0.3);
   cursor: pointer;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: 0 8px 24px rgba(33, 26, 21, 0.14);
+  text-decoration: none;
 }
 
-.explore-btn:hover {
-  background: #BA8F55;
-  border-color: #A2773D;
+.btn-glow-primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 35px rgba(99, 102, 241, 0.65), 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-glow-primary:active {
+  transform: translateY(1px);
+}
+
+/* Secondary Frosted Glass Button */
+.btn-glass-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-glass-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(186, 143, 85, 0.35);
-  color: #211A15;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
 }
 
-.explore-btn .arrow-icon {
-  width: 1.1rem;
-  height: 1.1rem;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: transform 0.25s ease;
-}
-
-.explore-btn:hover .arrow-icon {
-  transform: translateX(4px);
+/* Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.35);
+  color: #FFFFFF;
 }
 
 /* Custom minimal scrollbar */
 ::-webkit-scrollbar {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FCFAF7;
+  background: var(--bg-space);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(186, 143, 85, 0.3);
+  background: rgba(255, 255, 255, 0.12);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #BA8F55;
-}
-
-::selection {
-  background: rgba(186, 143, 85, 0.25);
-  color: #211A15;
+  background: rgba(99, 102, 241, 0.5);
 }
 
 button {
   cursor: pointer;
   font-family: inherit;
 }
+
 

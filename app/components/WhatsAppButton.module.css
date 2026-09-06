@@ -1,0 +1,104 @@
+/* ==========================================================================
+   Luxury Emerald Floating WhatsApp Button
+   ========================================================================== */
+.floatingButton {
+  position: fixed;
+  bottom: 2.25rem;
+  right: 2.25rem;
+  z-index: 999;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9999px;
+  box-shadow: 
+    0 12px 28px -4px rgba(16, 185, 129, 0.5),
+    0 4px 12px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  padding: 0.75rem 1.35rem 0.75rem 1.05rem;
+  text-decoration: none;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  user-select: none;
+  backdrop-filter: blur(8px);
+}
+
+.floatingButton:hover {
+  background: linear-gradient(135deg, #34D399 0%, #10B981 100%);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 
+    0 18px 36px -4px rgba(16, 185, 129, 0.65),
+    0 6px 16px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #FFFFFF;
+}
+
+.floatingButton:active {
+  transform: translateY(1px);
+}
+
+.iconWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsappSvg {
+  fill: #FFFFFF;
+  position: relative;
+  z-index: 2;
+  transition: transform 0.25s ease;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+}
+
+.floatingButton:hover .whatsappSvg {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.pulseRing {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(52, 211, 153, 0.6);
+  animation: pulse 2.4s infinite cubic-bezier(0.25, 1, 0.5, 1);
+  pointer-events: none;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  60% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+}
+
+.buttonLabel {
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .floatingButton {
+    bottom: 1.5rem;
+    right: 1.5rem;
+    padding: 0.85rem;
+    border-radius: 50%;
+  }
+
+  .buttonLabel {
+    display: none;
+  }
+}

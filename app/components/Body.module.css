@@ -4,33 +4,19 @@
 }
 
 .container {
-  max-width: 82rem;
+  max-width: 76rem;
   margin: 0 auto;
-  padding: 2.5rem 1.5rem 6rem;
+  padding: 2.5rem 1.75rem 6rem;
 }
 
 .content {
-  border-radius: 1.5rem;
-  transition: all 0.3s ease;
-}
-
-.dashboardSections {
   display: flex;
   flex-direction: column;
-  gap: 3.5rem;
-}
-
-.dashboardSection {
-  scroll-margin-top: 2rem;
-}
-
-.dashboardSection + .dashboardSection {
-  border-top: 1px solid #EFE7DC;
-  padding-top: 3.5rem;
+  gap: 4rem;
 }
 
 @media (min-width: 640px) {
   .container {
-    padding: 2.5rem 2rem 6rem;
+    padding: 3rem 2rem 6rem;
   }
 }

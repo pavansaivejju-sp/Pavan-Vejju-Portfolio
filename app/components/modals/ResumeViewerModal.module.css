@@ -1,0 +1,454 @@
+/* Backdrop */
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(18, 14, 11, 0.82);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalDialog {
+  background: #090D16;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 920px;
+  height: 92vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 
+    0 25px 60px -10px rgba(0, 0, 0, 0.85),
+    0 0 50px rgba(99, 102, 241, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  animation: scaleUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Control Bar */
+.controlBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.95rem 1.75rem;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.controlTitleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.documentBadge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #BA8F55;
+  background: rgba(186, 143, 85, 0.12);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.documentName {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #F8FAFC;
+  font-family: var(--font-body, 'Plus Jakarta Sans', sans-serif);
+}
+
+.experienceTag {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #FDE68A;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+}
+
+.controlActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.downloadActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.45rem 1.15rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+}
+
+.downloadActionBtn:hover {
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(124, 58, 237, 0.45);
+}
+
+.printActionBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.06);
+  color: #CBD5E1;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.printActionBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.closeActionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #CBD5E1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeActionBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #F87171;
+}
+
+/* Scroll Canvas */
+.scrollCanvas {
+  flex: 1;
+  overflow-y: auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+  background: #060910;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.5) #090D16;
+}
+
+.scrollCanvas::-webkit-scrollbar {
+  width: 7px;
+}
+
+.scrollCanvas::-webkit-scrollbar-track {
+  background: #090D16;
+}
+
+.scrollCanvas::-webkit-scrollbar-thumb {
+  background: #BA8F55;
+  border-radius: 9999px;
+}
+
+/* ========================================================= */
+/* RESUME SHEET (Matches Attached PDF letter-to-letter)      */
+/* ========================================================= */
+.resumeSheet {
+  background: #FFFFFF;
+  width: 100%;
+  max-width: 760px;
+  min-height: 1040px;
+  padding: 48px 52px 56px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid #E2D9CE;
+  position: relative;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #1A1A1A;
+  line-height: 1.45;
+  font-size: 9.5pt;
+  box-sizing: border-box;
+}
+
+.pageNumberBadge {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-size: 8pt;
+  color: #888888;
+  font-family: var(--font-geist-mono), monospace;
+}
+
+/* Header */
+.resumeHeader {
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.candidateName {
+  font-size: 19pt;
+  font-weight: 800;
+  color: #1A365D; /* Navy Blue #1A365D matching original */
+  margin: 0 0 6px 0;
+  letter-spacing: 0.04em;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.subtitleRow {
+  font-size: 10pt;
+  color: #222222;
+  margin-bottom: 5px;
+}
+
+.yellowHighlight {
+  background-color: #FFFF00; /* Bright yellow highlighter */
+  color: #000000;
+  padding: 1px 4px;
+  font-weight: 700;
+  border-radius: 1px;
+}
+
+.contactRow {
+  font-size: 9.5pt;
+  color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.contactLink {
+  color: #333333;
+  text-decoration: none;
+}
+
+.contactLink:hover {
+  text-decoration: underline;
+}
+
+.bulletSep {
+  color: #333333;
+  user-select: none;
+}
+
+.linkedinLink {
+  color: #0066CC;
+  text-decoration: underline;
+}
+
+/* Sections */
+.section {
+  margin-bottom: 16px;
+}
+
+.sectionHeading {
+  font-size: 12.5pt;
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 3px 0;
+  letter-spacing: 0.01em;
+}
+
+.educationHeading {
+  font-size: 12.5pt;
+  font-weight: 800;
+  color: #4A777A; /* Muted teal/blue from screenshot */
+  margin: 0 0 3px 0;
+  letter-spacing: 0.01em;
+}
+
+.headingDivider {
+  width: 100%;
+  height: 1px;
+  background-color: #555555;
+  margin-bottom: 10px;
+}
+
+.summaryParagraph {
+  font-size: 9.5pt;
+  color: #1A1A1A;
+  line-height: 1.5;
+  margin: 0;
+  text-align: justify;
+}
+
+/* Skills */
+.skillsList {
+  display: flex;
+  flex-direction: column;
+  gap: 4.5px;
+}
+
+.skillItem {
+  font-size: 9.5pt;
+  color: #1A1A1A;
+  line-height: 1.45;
+}
+
+.skillCategory {
+  font-weight: 700;
+  color: #000000;
+}
+
+/* Projects */
+.projectBlock {
+  margin-bottom: 16px;
+}
+
+.projectTitle {
+  font-size: 10.5pt;
+  font-weight: 800;
+  color: #000000;
+  margin: 0 0 5px 0;
+  line-height: 1.35;
+}
+
+.projectMetaLine {
+  font-size: 9.5pt;
+  color: #1A1A1A;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+
+.projectDescLine {
+  font-size: 9.5pt;
+  color: #1A1A1A;
+  margin-bottom: 7px;
+  line-height: 1.45;
+}
+
+.metaLabel {
+  font-weight: 800;
+  color: #000000;
+}
+
+.rolesHeading {
+  font-size: 10pt;
+  font-weight: 800;
+  color: #000000;
+  margin: 7px 0 5px 0;
+}
+
+.bulletList {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.bulletList li {
+  position: relative;
+  padding-left: 14px;
+  font-size: 9.5pt;
+  color: #1A1A1A;
+  line-height: 1.45;
+}
+
+.bulletList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: -1px;
+  color: #000000;
+  font-size: 11pt;
+}
+
+.educationContent {
+  font-size: 9.5pt;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ========================================================= */
+/* PRINT MEDIA STYLES                                        */
+/* ========================================================= */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+
+  .modalBackdrop,
+  .modalBackdrop * {
+    visibility: visible !important;
+  }
+
+  .modalBackdrop {
+    position: static !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  .modalDialog {
+    border: none !important;
+    box-shadow: none !important;
+    height: auto !important;
+    max-width: 100% !important;
+  }
+
+  .controlBar {
+    display: none !important;
+  }
+
+  .scrollCanvas {
+    padding: 0 !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+
+  .resumeSheet {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 20mm !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    max-width: 100% !important;
+  }
+
+  .pageNumberBadge {
+    display: none !important;
+  }
+}

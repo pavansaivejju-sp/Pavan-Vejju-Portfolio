@@ -1,381 +1,220 @@
 'use client';
 
-import React, { useState } from 'react';
-import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 import personalData from '../../data/personal.json';
-import HeroVisualizer from '../hero/HeroVisualizer';
-import fc26ImageOne from '../../assets/ea-sports-fc-26.jpg';
-import uglImageOne from '../../assets/UGL-1.png';
+import { calculateExperience } from '../../utils/experience';
+import { downloadResumePdf } from '../../utils/downloadResumePdf';
+import ResumeViewerModal from '../modals/ResumeViewerModal';
 import styles from './PersonalDetails.module.css';
 
 interface PersonalDetailsProps {
-  onOpenRecruiterModal?: () => void;
   onOpenResumeModal?: () => void;
 }
 
-export default function PersonalDetails({
-  onOpenRecruiterModal,
-  onOpenResumeModal,
-}: PersonalDetailsProps) {
-  const [activeTimelineYear, setActiveTimelineYear] = useState<string>('2026');
+export default function PersonalDetails({ onOpenResumeModal }: PersonalDetailsProps) {
+  const experience = calculateExperience('2021-04-26');
+  const [showResumeModal, setShowResumeModal] = useState(false);
 
-  const careerTimeline = [
-    {
-      year: '2026',
-      period: 'Jan 2026 - Present',
-      role: 'Senior Front-End Developer',
-      company: 'Metaplore / Electronic Arts',
-      project: 'FC26 Game Stats Platform',
-      highlight: 'Interactive sports analytics dashboard with Recharts, micro-frontend architecture, Jest testing, and Stryker mutation score optimization.',
-      tech: ['Next.js', 'React 19', 'TypeScript', 'Tailwind', 'Recharts', 'Jest', 'Stryker'],
-    },
-    {
-      year: '2025',
-      period: 'Oct 2025 - Dec 2025',
-      role: 'Front-End Developer (Contract)',
-      company: 'Amphora Software',
-      project: 'Symphony Trade Capture',
-      highlight: 'Energy trade capture, validation, pricing & position management workflow using dynamic TanStack Forms and GraphQL pipelines.',
-      tech: ['React.js', 'Redux-Saga', 'TanStack Form', 'GraphQL', 'TypeScript'],
-    },
-    {
-      year: '2024',
-      period: 'Oct 2023 - Present',
-      role: 'Senior React Developer',
-      company: 'Techwave / UGL & Pacific National',
-      project: 'UGL CMS (Conditional Monitoring)',
-      highlight: 'Real-time train telemetry streaming across South Wales locomotives using Microsoft SignalR and high-frequency Highcharts heatmaps.',
-      tech: ['React.js', 'Microsoft SignalR', 'Fluent UI', 'Highcharts', 'Azure DevOps'],
-    },
-    {
-      year: '2023',
-      period: 'Dec 2022 - Sep 2023',
-      role: 'Front-End Developer',
-      company: 'Techwave / UGL',
-      project: 'UGL PMS (Performance Management)',
-      highlight: 'Asset performance monitoring, live service availability, SAP integration, and complex Redux-Saga asynchronous event management.',
-      tech: ['React.js', 'Redux', 'Redux Saga', 'Fluent UI', 'SignalR', 'REST APIs'],
-    },
-    {
-      year: '2021',
-      period: 'Apr 2021 - Dec 2021',
-      role: 'Front-End Developer',
-      company: 'Aman Travels',
-      project: 'Aman Travels Multilingual Platform',
-      highlight: 'Multilingual travel booking platform for hotels, transport, and railways with Ant Design and GraphQL state management.',
-      tech: ['React.js', 'Redux', 'Ant Design', 'GraphQL'],
-    },
+  // Typing animation phrases
+  const roles = [
+    'React Developer',
+    'Next.js Specialist',
+    'TypeScript Engineer',
+    'Front-End Specialist',
   ];
+
+  const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const fullText = roles[currentRoleIndex];
+    const typingSpeed = isDeleting ? 40 : 80;
+
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing forward
+        setCurrentText(fullText.substring(0, currentText.length + 1));
+        if (currentText.length + 1 === fullText.length) {
+          // Pause at full text
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        setCurrentText(fullText.substring(0, currentText.length - 1));
+        if (currentText.length === 0) {
+          setIsDeleting(false);
+          setCurrentRoleIndex((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentRoleIndex, roles]);
+
+  const techStack = [
+    'React.js',
+    'Next.js',
+    'TypeScript',
+    'JavaScript (ES6+)',
+    'Redux & Redux-Saga',
+    'Tailwind CSS',
+    'Microsoft SignalR',
+    'Highcharts & Recharts',
+    'TanStack Form',
+    'REST APIs & GraphQL',
+    'Jest & RTL',
+    'Git & Azure DevOps',
+  ];
+
+  const handleScrollToProjects = () => {
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <div className={styles.container}>
-      {/* 0-Scroll Recruiter Impact Hero */}
-      <section className={styles.heroSection}>
-        {/* Eyebrow & Status Row */}
-        <div className={styles.heroTopMeta}>
-          <span className={styles.heroTagBadge}>✦ SENIOR FRONT-END SPECIALIST &amp; REACT ARCHITECT ✦</span>
-          <span className={styles.experienceHighlight}>
-            <span className={styles.expIcon}>🏆</span>
-            <strong>5.5+ Years</strong> Production Experience
-          </span>
-          <span className={styles.availabilityBadge}>
-            <span className={styles.pulseDot} />
-            Available for Senior / Lead Roles
-          </span>
-          <span className={styles.locationBadge}>
-            📍 Bangalore / Remote Open
-          </span>
+      {/* Centered Hero matching itomdev sketchbook aesthetic */}
+      <section id="about" className={styles.heroSection}>
+        {/* Ambient Top Glow */}
+        <div className={styles.heroGlow} />
+
+        {/* Top Eyebrow Badge - Highlighting Experience at the top */}
+        <div className={styles.badgeWrapper}>
+          <div className={styles.statusPill}>
+            <span className={styles.statusPulse} />
+            <span className={styles.badgeText}>Senior Frontend Developer</span>
+            <span className={styles.badgeDot}>•</span>
+            <strong className={styles.topExpHighlight}>⭐ {experience.formatted} Experience</strong>
+          </div>
         </div>
 
-        {/* Name & Headline */}
-        <div className={styles.heroIntro}>
-          <h1 className={styles.heroName}>
-            Architecting High-Scale Enterprise Frontends &amp; Real-Time Telemetry Systems.
-          </h1>
-          <p className={styles.heroHeadline}>
-            I am <strong>Pavan Sai Vejju</strong>, a Senior React &amp; Next.js Engineer with <strong>5.5+ years</strong> delivering mission-critical applications for <strong>Electronic Arts (EA Sports)</strong>, <strong>Amphora Software</strong>, and <strong>UGL Rail &amp; Pacific National</strong>. Specialized in high-frequency SignalR WebSockets, micro-frontends, dynamic TanStack form state, and 85%+ Stryker mutation-tested quality.
-          </p>
+        {/* Radiant Headline for Pavan Sai Vejju */}
+        <h1 className={styles.nameHeadline}>
+          <span className={styles.nameFirst}>Pavan Sai </span>
+          <span className={styles.nameLast}>Vejju</span>
+        </h1>
+
+        {/* Modern Dynamic Typing Row */}
+        <div className={styles.typingRow}>
+          <span className={styles.typingStatic}>Specializing in </span>
+          <span className={styles.typingDynamic}>{currentText}</span>
+          <span className={styles.cursor}>|</span>
         </div>
 
-        {/* Fast Action CTAs */}
-        <div className={styles.heroActionsRow}>
-          {onOpenResumeModal ? (
-            <button type="button" onClick={onOpenResumeModal} className={styles.primaryResumeBtn}>
-              <span>📄 Download ATS Resume (PDF)</span>
-            </button>
-          ) : (
-            <a href="#contact" className={styles.primaryResumeBtn}>
-              <span>📄 Download ATS Resume</span>
-            </a>
-          )}
+        {/* Sleek Enterprise Tagline */}
+        <div className={styles.taglineBadge}>
+          <span className={styles.taglineIcon}>✨</span>
+          <span>Scalable Web Engineering &amp; High-Performance Enterprise UI</span>
+        </div>
 
-          {onOpenRecruiterModal && (
-            <button
-              type="button"
-              onClick={onOpenRecruiterModal}
-              className={styles.recruiterFastTrackBtn}
+        {/* Clean Paragraph Description with Dynamically Highlighted Experience */}
+        <p className={styles.bioText}>
+          Building high-performance, accessible, and scalable web experiences with{' '}
+          <strong className={styles.accentText}>{experience.formatted}</strong> of dedicated production expertise in React, Next.js, and TypeScript ecosystems.
+        </p>
+
+        {/* Action Buttons: View Projects, View Resume, Download Resume */}
+        <div className={styles.ctaRow}>
+          <button
+            type="button"
+            onClick={handleScrollToProjects}
+            className={styles.primaryBtn}
+          >
+            <span>Explore Projects</span>
+            <span className={styles.arrowIcon}>↗</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setShowResumeModal(true)}
+            className={styles.secondaryBtn}
+            title="View detailed interactive resume"
+          >
+            <span className={styles.resumeIcon}>📄</span>
+            <span>View Resume</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={downloadResumePdf}
+            className={styles.downloadPdfBtn}
+            title="Download official resume"
+          >
+            <span className={styles.downloadIcon}>⬇</span>
+            <span>Download Resume</span>
+          </button>
+        </div>
+
+        {/* Contact Links Row (Email | LinkedIn | Mobile | WhatsApp) */}
+        <div id="contact" className={styles.contactRow}>
+          <a href={`mailto:${personalData.email}`} className={styles.contactLink} title="Send Email">
+            <span className={styles.linkIcon}>✉</span>
+            <span>Email</span>
+          </a>
+          <span className={styles.divider}>•</span>
+          <a
+            href={personalData.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.contactLink}
+            title="LinkedIn Profile"
+          >
+            <span className={styles.linkIcon}>🔗</span>
+            <span>LinkedIn</span>
+          </a>
+          <span className={styles.divider}>•</span>
+          <a href={`tel:${personalData.mobile}`} className={styles.contactLink} title="Call Phone">
+            <span className={styles.linkIcon}>📞</span>
+            <span>+91 {personalData.mobile}</span>
+          </a>
+          <span className={styles.divider}>•</span>
+          <a
+            href="https://wa.me/919133953205?text=Hi%20Pavan%2C%20I%20came%20across%20your%20portfolio%20and%20would%20like%20to%20connect%20with%20you%20regarding%20an%20exciting%20frontend%20opportunity."
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`${styles.contactLink} ${styles.whatsappLink}`}
+            aria-label="Chat on WhatsApp with Pavan"
+          >
+            <svg
+              className={styles.whatsappIcon}
+              width="17"
+              height="17"
+              viewBox="0 0 24 24"
+              fill="currentColor"
             >
-              <span>⚡ Recruiter Fast-Track (30s)</span>
-            </button>
-          )}
-
-          <a href="#projects" className={styles.secondaryCtaBtn}>
-            <span>View Case Studies ⟶</span>
-          </a>
-
-          <a href="#telemetry" className={styles.tertiaryCtaBtn}>
-            <span>Launch Telemetry Lab ⟶</span>
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+            </svg>
+            <span>WhatsApp</span>
           </a>
         </div>
 
-        {/* --- LIVE INTERACTIVE ENGINEERING CONSOLE (0-Scroll Proof of Mastery) --- */}
-        <div className={styles.visualizerWrapper}>
-          <HeroVisualizer />
-        </div>
-
-        {/* Executive Proof Metrics (The 4 Pillars of Credibility) */}
-        <div className={styles.kpiGrid}>
-          <div className={styles.kpiCard}>
-            <span className={styles.kpiNumber}>5.5+</span>
-            <span className={styles.kpiLabel}>Years Enterprise Experience</span>
-            <span className={styles.kpiSub}>React 19, Next.js, TypeScript</span>
-          </div>
-          <div className={styles.kpiCard}>
-            <span className={styles.kpiNumber}>3</span>
-            <span className={styles.kpiLabel}>Global Industry Leaders</span>
-            <span className={styles.kpiSub}>Electronic Arts • Amphora • UGL Rail</span>
-          </div>
-          <div className={styles.kpiCard}>
-            <span className={styles.kpiNumber}>60 FPS</span>
-            <span className={styles.kpiLabel}>Real-Time Telemetry Streaming</span>
-            <span className={styles.kpiSub}>SignalR WebSockets &amp; Highcharts</span>
-          </div>
-          <div className={styles.kpiCard}>
-            <span className={styles.kpiNumber}>85%+</span>
-            <span className={styles.kpiLabel}>Stryker Mutation Quality</span>
-            <span className={styles.kpiSub}>Resilient, bug-resistant test suites</span>
-          </div>
-        </div>
-
-        {/* Enterprise Provenance Showcase with Real Screenshots */}
-        <div className={styles.provenanceShowcase}>
-          <div className={styles.provenanceHeader}>
-            <span className={styles.provenanceTag}>FLAGSHIP ENTERPRISE ENGAGEMENTS</span>
-            <span className={styles.provenanceHint}>Click to inspect case studies</span>
-          </div>
-
-          <div className={styles.selectWorkGrid}>
-            <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.cardThumbnailWrapper}>
-                <Image
-                  src={fc26ImageOne}
-                  alt="EA Sports FC26 Platform"
-                  fill
-                  className={styles.cardThumbnail}
-                  sizes="300px"
-                />
-                <div className={styles.thumbShade} />
-                <span className={styles.thumbBadge}>EA FC26</span>
-              </div>
-
-              <div className={styles.cardTextContent}>
-                <div className={styles.workCardTop}>
-                  <span className={styles.workIndex}>01</span>
-                  <span className={styles.workCompany}>ELECTRONIC ARTS (EA)</span>
-                </div>
-                <h4 className={styles.workTitle}>FC26 Stats Analytics Platform</h4>
-                <p className={styles.workDesc}>
-                  Gaming analytics dashboard with micro-frontends, Recharts, and Stryker mutation testing.
-                </p>
-                <div className={styles.workTechTags}>
-                  <span>React 19</span>
-                  <span>Next.js</span>
-                  <span>Micro-Frontends</span>
-                  <span>Recharts</span>
-                  <span>Stryker</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.cardThumbnailWrapper}>
-                <div className={styles.amphoraThumbFallback}>
-                  <span className={styles.thumbIcon}>⚡</span>
-                  <span className={styles.thumbSub}>ETRM Deal Capture</span>
-                </div>
-                <div className={styles.thumbShade} />
-                <span className={styles.thumbBadge}>AMPHORA</span>
-              </div>
-
-              <div className={styles.cardTextContent}>
-                <div className={styles.workCardTop}>
-                  <span className={styles.workIndex}>02</span>
-                  <span className={styles.workCompany}>AMPHORA SOFTWARE</span>
-                </div>
-                <h4 className={styles.workTitle}>Symphony Trade Capture</h4>
-                <p className={styles.workDesc}>
-                  Real-time energy trading deal capture, pricing, and dynamic TanStack Forms with GraphQL.
-                </p>
-                <div className={styles.workTechTags}>
-                  <span>React.js</span>
-                  <span>TanStack Form</span>
-                  <span>GraphQL</span>
-                  <span>Redux-Saga</span>
-                </div>
-              </div>
-            </a>
-
-            <a href="#projects" className={styles.selectWorkCard}>
-              <div className={styles.cardThumbnailWrapper}>
-                <Image
-                  src={uglImageOne}
-                  alt="UGL Locomotive CMS"
-                  fill
-                  className={styles.cardThumbnail}
-                  sizes="300px"
-                />
-                <div className={styles.thumbShade} />
-                <span className={styles.thumbBadge}>UGL RAIL</span>
-              </div>
-
-              <div className={styles.cardTextContent}>
-                <div className={styles.workCardTop}>
-                  <span className={styles.workIndex}>03</span>
-                  <span className={styles.workCompany}>UGL &amp; PACIFIC NATIONAL</span>
-                </div>
-                <h4 className={styles.workTitle}>Locomotive Telemetry CMS</h4>
-                <p className={styles.workDesc}>
-                  Real-time SignalR train vibration monitoring, Highcharts heatmaps, and Fluent UI controls.
-                </p>
-                <div className={styles.workTechTags}>
-                  <span>React.js</span>
-                  <span>SignalR</span>
-                  <span>Highcharts</span>
-                  <span>Fluent UI</span>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          {/* Core Production Stack Strip */}
-          <div className={styles.coreStackStrip}>
-            <span className={styles.coreStackLabel}>CORE STACK:</span>
-            <div className={styles.coreStackPills}>
-              <span className={styles.corePill}>React 19 / 18</span>
-              <span className={styles.corePill}>Next.js 16/15</span>
-              <span className={styles.corePill}>TypeScript Strict</span>
-              <span className={styles.corePill}>Micro-Frontends</span>
-              <span className={styles.corePill}>SignalR WebSockets</span>
-              <span className={styles.corePill}>Highcharts &amp; Recharts</span>
-              <span className={styles.corePill}>TanStack Form</span>
-              <span className={styles.corePill}>Redux-Saga</span>
-              <span className={styles.corePill}>Jest &amp; RTL</span>
-              <span className={styles.corePill}>Stryker Mutation</span>
-              <span className={styles.corePill}>Azure DevOps CI/CD</span>
-            </div>
-          </div>
+        {/* Scroll Indicator */}
+        <div className={styles.scrollIndicator} onClick={handleScrollToProjects}>
+          <span className={styles.scrollText}>SCROLL TO EXHIBITION</span>
+          <span className={styles.scrollArrow}>↓</span>
         </div>
       </section>
 
-      {/* Architectural Philosophy Bar */}
-      <div className={styles.philosophySection}>
-        <div className={styles.philosophyTag}>ENGINEERING PRINCIPLE</div>
-        <blockquote className={styles.philosophyQuote}>
-          &ldquo;Engineering robust, deterministic user interfaces with zero-drift state management, predictable rendering lifecycles, and resilient mutation-tested test suites.&rdquo;
-        </blockquote>
-      </div>
-
-      {/* Profile Snapshot & Pillars */}
-      <div className={styles.profileCard}>
-        <div className={styles.cardHeader}>
-          <span className={styles.tag}>TECHNICAL ARCHITECTURE SPECIFICATION</span>
-          <span className={styles.experienceBadge}>Production Ready</span>
+      {/* Clean Tech Stack Strip */}
+      <section id="tech-stack" className={styles.techSection}>
+        <div className={styles.techHeader}>
+          <span className={styles.techEyebrow}>TECHNOLOGIES</span>
+          <h3 className={styles.techTitle}>Core Production Stack</h3>
         </div>
-
-        <h3 className={styles.headline}>
-          Specialized in high-scale front-end architectures that perform reliably under heavy concurrent load.
-        </h3>
-
-        {/* Core Architectural Pillars */}
-        <div className={styles.pillarsGrid}>
-          <div className={styles.pillar}>
-            <span className={styles.pillarIcon}>⚛️</span>
-            <div>
-              <h5>React 19 &amp; Next.js Modern Stack</h5>
-              <p>TypeScript strict mode, React Server &amp; Client components, custom hooks, atomic design, and Turbopack optimization.</p>
-            </div>
-          </div>
-          <div className={styles.pillar}>
-            <span className={styles.pillarIcon}>📡</span>
-            <div>
-              <h5>Real-Time Telemetry &amp; Streaming</h5>
-              <p>Bidirectional Microsoft SignalR WebSockets, REST, GraphQL, and high-frequency real-time data ingestion at 60 FPS.</p>
-            </div>
-          </div>
-          <div className={styles.pillar}>
-            <span className={styles.pillarIcon}>🧩</span>
-            <div>
-              <h5>Micro Frontends &amp; Module Federation</h5>
-              <p>Independent module deployment, shared design systems (Fluent UI, Tailwind CSS), and decoupled architectures.</p>
-            </div>
-          </div>
-          <div className={styles.pillar}>
-            <span className={styles.pillarIcon}>🛡️</span>
-            <div>
-              <h5>Mutation &amp; Quality Engineering</h5>
-              <p>Jest unit tests, React Testing Library, and Stryker Mutation Testing to verify code resilience under unexpected edge cases.</p>
-            </div>
-          </div>
+        <div className={styles.techList}>
+          {techStack.map((tech) => (
+            <span key={tech} className={styles.techPill}>
+              {tech}
+            </span>
+          ))}
         </div>
-      </div>
+      </section>
 
-      {/* Interactive Career Progression Timeline */}
-      <div className={styles.timelineSection}>
-        <div className={styles.timelineHeader}>
-          <div>
-            <span className={styles.tag}>PROFESSIONAL TIMELINE</span>
-            <h3 className={styles.timelineTitle}>5.5+ Years Career Trajectory</h3>
-            <p className={styles.timelineSub}>
-              Select a milestone year to inspect enterprise roles, delivered platforms, and architectural contributions.
-            </p>
-          </div>
-          <div className={styles.yearPills}>
-            {careerTimeline.map((item) => (
-              <button
-                key={item.year}
-                type="button"
-                className={`${styles.yearBtn} ${activeTimelineYear === item.year ? styles.activeYearBtn : ''}`}
-                onClick={() => setActiveTimelineYear(item.year)}
-              >
-                {item.year}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className={styles.timelineList}>
-          {careerTimeline
-            .filter((item) => activeTimelineYear === 'all' || item.year === activeTimelineYear)
-            .map((item) => (
-              <div key={item.project} className={styles.timelineItem}>
-                <div className={styles.timelinePeriodBadge}>{item.period}</div>
-                <div className={styles.timelineContent}>
-                  <div className={styles.roleLine}>
-                    <h4 className={styles.timelineRole}>{item.role}</h4>
-                    <span className={styles.companyTag}>{item.company}</span>
-                  </div>
-                  <h5 className={styles.projectName}>{item.project}</h5>
-                  <p className={styles.highlightText}>{item.highlight}</p>
-                  <div className={styles.techPills}>
-                    {item.tech.map((t) => (
-                      <span key={t} className={styles.techPill}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-        </div>
-      </div>
+      {/* Full Resume Viewer Modal matching exact attached PDF */}
+      <ResumeViewerModal
+        isOpen={showResumeModal}
+        onClose={() => setShowResumeModal(false)}
+      />
     </div>
   );
 }
