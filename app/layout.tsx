@@ -3,6 +3,8 @@ import { Plus_Jakarta_Sans, Outfit, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Footer from "./components/Footer";
 import WhatsAppButton from "./components/WhatsAppButton";
+import { LanguageProvider } from "./i18n/LanguageProvider";
+import { getRequestLocale } from "./i18n/serverLocale";
 
 const plusJakarta = Plus_Jakarta_Sans({
   variable: "--font-sans",
@@ -26,16 +28,20 @@ export const metadata: Metadata = {
   description: "Senior Frontend Engineer with 5.5+ years of experience building scalable enterprise and responsive web applications with modern frontend architecture.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default async function RootLayout({ children }: LayoutProps<"/">) {
+  const locale = await getRequestLocale();
+
   return (
     <html
-      lang="en"
+      lang={locale}
       className={`${plusJakarta.variable} ${outfit.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {children}
-        <Footer />
-        <WhatsAppButton />
+        <LanguageProvider initialLocale={locale}>
+          {children}
+          <Footer />
+          <WhatsAppButton />
+        </LanguageProvider>
       </body>
     </html>
   );

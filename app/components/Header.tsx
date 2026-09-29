@@ -5,6 +5,7 @@ import personalData from '../data/personal.json';
 import { calculateExperience } from '../utils/experience';
 import { downloadResumePdf } from '../utils/downloadResumePdf';
 import ResumeViewerModal from './modals/ResumeViewerModal';
+import { useLanguage } from '../i18n/LanguageProvider';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -13,17 +14,18 @@ interface HeaderProps {
 }
 
 export default function Header({ activeTab = 'home', onTabChange }: HeaderProps) {
+  const { locale, setLocale, text } = useLanguage();
   const experience = calculateExperience('2021-04-26');
   const [currentSection, setCurrentSection] = useState('home');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [showResumeModal, setShowResumeModal] = useState(false);
 
   const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'tech-stack', label: 'Tech Stack' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
+    { id: 'home', label: text.home },
+    { id: 'about', label: text.about },
+    { id: 'tech-stack', label: text.techStack },
+    { id: 'projects', label: text.projects },
+    { id: 'contact', label: text.contact },
   ];
 
   // Smart selection with IntersectionObserver
@@ -107,8 +109,22 @@ export default function Header({ activeTab = 'home', onTabChange }: HeaderProps)
             </div>
           </nav>
 
-          <span className={styles.headerExpBadge} title="Total Professional Experience">
-            ⭐ {experience.formatted}
+          <div className={styles.languageSwitch} role="group" aria-label={text.language}>
+            {(['en', 'de'] as const).map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={`${styles.languageOption} ${locale === option ? styles.languageActive : ''}`}
+                aria-pressed={locale === option}
+                onClick={() => setLocale(option)}
+              >
+                {option.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
+          <span className={styles.headerExpBadge} title={text.experience}>
+            ⭐ {locale === 'de' ? `${experience.displayYears.replace('.', ',')} Jahre` : experience.formatted}
           </span>
 
           {/* Mobile Hamburger Toggle */}
@@ -116,7 +132,7 @@ export default function Header({ activeTab = 'home', onTabChange }: HeaderProps)
             type="button"
             className={`${styles.mobileToggle} ${isMenuOpen ? styles.toggleActive : ''}`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label="Toggle Navigation"
+            aria-label={locale === 'de' ? 'Navigation umschalten' : 'Toggle Navigation'}
           >
             <span className={styles.bar} />
             <span className={styles.bar} />
@@ -147,7 +163,7 @@ export default function Header({ activeTab = 'home', onTabChange }: HeaderProps)
               }}
               className={styles.mobileResumeBtn}
             >
-              View Resume 📄
+              {text.viewResume} 📄
             </button>
 
             <button
@@ -158,7 +174,7 @@ export default function Header({ activeTab = 'home', onTabChange }: HeaderProps)
               }}
               className={styles.mobileDownloadBtn}
             >
-              Download Resume ⬇
+              {text.downloadResume} ⬇
             </button>
           </div>
         </div>

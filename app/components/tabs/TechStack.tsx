@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import personalData from '../../data/personal.json';
+import { useLanguage } from '../../i18n/LanguageProvider';
 import styles from './TechStack.module.css';
 
 export default function TechStack() {
+  const { text } = useLanguage();
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
@@ -48,10 +50,10 @@ export default function TechStack() {
     <section className={styles.container}>
       <div className={styles.headerRow}>
         <div>
-          <span className={styles.tag}>ENGINEERING MATRIX</span>
-          <h2 className={styles.title}>Technical Stack &amp; Tooling</h2>
+          <span className={styles.tag}>{text.engineeringMatrix}</span>
+          <h2 className={styles.title}>{text.stackTitle}</h2>
           <p className={styles.subtitle}>
-            Core competencies across modern frontend architecture, state orchestration, testing, and real-time visualization ({totalSkillsCount} total competencies).
+            {text.stackSubtitle} ({totalSkillsCount} {text.skillsCount}).
           </p>
         </div>
 
@@ -59,7 +61,7 @@ export default function TechStack() {
         <div className={styles.searchBox}>
           <input
             type="text"
-            placeholder="Search skills (e.g. SignalR, Next.js, Jest)..."
+            placeholder={text.searchSkills}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className={styles.searchInput}
@@ -83,7 +85,7 @@ export default function TechStack() {
           className={`${styles.pillBtn} ${activeCategory === 'all' ? styles.activePill : ''}`}
           onClick={() => setActiveCategory('all')}
         >
-          All Categories ({categories.length})
+          {text.allCategories} ({categories.length})
         </button>
         {categories.map((cat) => (
           <button
@@ -92,7 +94,7 @@ export default function TechStack() {
             className={`${styles.pillBtn} ${activeCategory === cat ? styles.activePill : ''}`}
             onClick={() => setActiveCategory(cat)}
           >
-            {cat.replace(/([A-Z])/g, ' $1').trim()}
+            {text.skillCategories[cat as keyof typeof text.skillCategories] ?? cat.replace(/([A-Z])/g, ' $1').trim()}
           </button>
         ))}
       </div>
@@ -103,7 +105,7 @@ export default function TechStack() {
           <div className={styles.connectionHeader}>
             <span className={styles.connectionIcon}>🔗</span>
             <span>
-              Production Usage for <strong>{selectedSkill}</strong>:
+              {text.productionUsage} <strong>{selectedSkill}</strong>:
             </span>
             <button
               type="button"
@@ -129,10 +131,10 @@ export default function TechStack() {
           <article key={category} className={styles.skillCard}>
             <div className={styles.cardHeader}>
               <h3 className={styles.categoryTitle}>
-                {category.replace(/([A-Z])/g, ' $1')}
+                {text.skillCategories[category as keyof typeof text.skillCategories] ?? category.replace(/([A-Z])/g, ' $1')}
               </h3>
               <span className={styles.skillCountBadge}>
-                {skills.length} skills
+                {skills.length} {text.skillsCount}
               </span>
             </div>
 
@@ -151,7 +153,7 @@ export default function TechStack() {
                         setSelectedSkill(isSelected ? null : skill);
                       }
                     }}
-                    title={hasProjects ? `Click to view projects using ${skill}` : undefined}
+                    title={hasProjects ? `${text.clickToViewProjects} ${skill}` : undefined}
                   >
                     {skill}
                     {hasProjects && <span className={styles.linkDot}>•</span>}
@@ -164,7 +166,7 @@ export default function TechStack() {
       </div>
 
       <p className={styles.matrixHint}>
-        💡 <em>Tip: Technologies marked with a dot (•) can be clicked to inspect which enterprise projects utilized them in production.</em>
+        💡 <em>{text.skillHint}</em>
       </p>
     </section>
   );

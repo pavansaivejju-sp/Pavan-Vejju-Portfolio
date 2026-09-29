@@ -148,6 +148,38 @@
   box-shadow: 0 0 22px rgba(245, 158, 11, 0.25);
 }
 
+.languageSwitch {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.045);
+}
+
+.languageOption {
+  min-width: 34px;
+  min-height: 30px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  color: #94A3B8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.languageOption:hover {
+  color: #FFFFFF;
+}
+
+.languageActive {
+  background: rgba(56, 189, 248, 0.18);
+  color: #BAE6FD;
+}
+
 @media (max-width: 640px) {
   .headerExpBadge {
     display: none;

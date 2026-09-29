@@ -5,6 +5,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import projectsData from '../../data/projects.json';
 import { projectImageMap } from '../../data/projectImages';
+import { useLanguage } from '../../i18n/LanguageProvider';
+import { getProjectText } from '../../i18n/projectText';
 import styles from './Projects.module.css';
 
 interface ProjectItem {
@@ -22,6 +24,7 @@ interface ProjectItem {
 }
 
 function ProjectCard({ project, index }: { project: ProjectItem; index: number }) {
+  const { text } = useLanguage();
   const imagesKeys = project.images || [];
   const validImages = imagesKeys
     .map((imgKey) => ({
@@ -76,7 +79,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
     <Link
       href={`/projects/${project.slug}`}
       className={styles.projectCard}
-      aria-label={`View details for ${project.name}`}
+      aria-label={`${text.viewDetails}: ${project.name}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -164,7 +167,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
         {!isCurrentSlideLogo && <div className={styles.imageOverlay} />}
         
         <span className={styles.projectIndex}>0{index + 1}</span>
-        <span className={styles.quickViewHint}>View Details ↗</span>
+        <span className={styles.quickViewHint}>{text.viewDetails} ↗</span>
       </div>
 
       {/* Card Content */}
@@ -199,7 +202,7 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
         {/* Card Action Button */}
         <div className={styles.cardFooter}>
           <span className={styles.viewDetailsBtn}>
-            <span>View Details</span>
+            <span>{text.viewDetails}</span>
             <svg
               className={styles.btnIcon}
               width="14"
@@ -222,19 +225,19 @@ function ProjectCard({ project, index }: { project: ProjectItem; index: number }
 }
 
 export default function Projects() {
+  const { locale, text } = useLanguage();
+
   return (
     <section id="projects" className={styles.container}>
       <div className={styles.header}>
-        <span className={styles.eyebrow}>Portfolio &amp; Case Studies</span>
-        <h2 className={styles.title}>Projects</h2>
-        <p className={styles.subtitle}>
-          Enterprise web applications and platforms built for industry leaders. Click any project to view comprehensive architecture, business impact, and tech stack details.
-        </p>
+        <span className={styles.eyebrow}>{text.portfolioCaseStudies}</span>
+        <h2 className={styles.title}>{text.projectsTitle}</h2>
+        <p className={styles.subtitle}>{text.projectsSubtitle}</p>
       </div>
 
       <div className={styles.projectsGrid}>
         {projectsData.map((project, index) => (
-          <ProjectCard key={project.slug} project={project} index={index} />
+          <ProjectCard key={project.slug} project={getProjectText(project, locale) as ProjectItem} index={index} />
         ))}
       </div>
     </section>
