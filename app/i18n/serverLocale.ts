@@ -3,7 +3,7 @@ import type { Locale } from './translations';
 
 export function resolveLocale(
   savedLocale: string | undefined,
-  country: string | undefined,
+  country: string | null | undefined,
   acceptLanguage: string | undefined,
 ): Locale {
   if (savedLocale === 'en' || savedLocale === 'de') return savedLocale;
