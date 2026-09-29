@@ -133,7 +133,7 @@ export default function PersonalDetails({ onOpenResumeModal }: PersonalDetailsPr
 
           <button
             type="button"
-            onClick={downloadResumePdf}
+            onClick={() => downloadResumePdf()}
             className={styles.downloadPdfBtn}
             title={text.downloadResume}
           >

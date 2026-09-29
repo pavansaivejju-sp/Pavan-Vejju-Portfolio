@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { calculateExperience } from '../../utils/experience';
 import { downloadResumePdf } from '../../utils/downloadResumePdf';
+import { useLanguage } from '../../i18n/LanguageProvider';
 import styles from './ResumeViewerModal.module.css';
 
 interface ResumeViewerModalProps {
@@ -11,7 +12,17 @@ interface ResumeViewerModalProps {
 }
 
 export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModalProps) {
+  const { locale, text } = useLanguage();
   const experience = calculateExperience('2021-04-26');
+  const pdfFrameRef = useRef<HTMLIFrameElement>(null);
+  const resumeFile = locale === 'de' ? 'Pavan_Sai_Vejju_Resume_DE.pdf' : 'Pavan_Sai_Vejju_Resume.pdf';
+  const formattedExperience = locale === 'de'
+    ? `${experience.displayYears.replace('.', ',')} Jahre`
+    : experience.formatted;
+
+  const handlePrint = () => {
+    pdfFrameRef.current?.contentWindow?.print();
+  };
 
   // Handle Escape key
   useEffect(() => {
@@ -44,16 +55,16 @@ export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModal
         {/* Top Control Bar */}
         <div className={styles.controlBar}>
           <div className={styles.controlTitleGroup}>
-            <span className={styles.documentBadge}>Official PDF Resume</span>
-            <span className={styles.documentName}>Pavan_Sai_Vejju_Resume.pdf</span>
-            <span className={styles.experienceTag}>⭐ {experience.formatted}</span>
+            <span className={styles.documentBadge}>{text.resumeDocument}</span>
+            <span className={styles.documentName}>{resumeFile}</span>
+            <span className={styles.experienceTag}>⭐ {formattedExperience}</span>
           </div>
 
           <div className={styles.controlActions}>
             <button
               type="button"
               className={styles.downloadActionBtn}
-              onClick={downloadResumePdf}
+              onClick={() => downloadResumePdf(locale)}
               title="Download official resume"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -61,13 +72,13 @@ export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModal
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              <span>Download Resume</span>
+              <span>{text.downloadResume}</span>
             </button>
 
             <button
               type="button"
               className={styles.printActionBtn}
-              onClick={() => window.print()}
+              onClick={handlePrint}
               title="Print document"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -75,14 +86,14 @@ export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModal
                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
                 <rect x="6" y="14" width="12" height="8" />
               </svg>
-              <span>Print</span>
+              <span>{text.printResume}</span>
             </button>
 
             <button
               type="button"
               className={styles.closeActionBtn}
               onClick={onClose}
-              aria-label="Close resume viewer"
+              aria-label={text.closeResume}
             >
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="18" y1="6" x2="6" y2="18" />
@@ -94,6 +105,13 @@ export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModal
 
         {/* Scrollable Document Canvas */}
         <div className={styles.scrollCanvas}>
+          <iframe
+            ref={pdfFrameRef}
+            className={styles.resumePdfFrame}
+            src={`/${resumeFile}#toolbar=0&navpanes=0&view=FitH`}
+            title={locale === 'de' ? 'Lebenslauf-Vorschau' : 'Resume preview'}
+          />
+          <div hidden>
           {/* ========================================================= */}
           {/* PAGE 1 */}
           {/* ========================================================= */}
@@ -319,6 +337,7 @@ export default function ResumeViewerModal({ isOpen, onClose }: ResumeViewerModal
               </p>
             </section>
           </article>
+          </div>
         </div>
       </div>
     </div>

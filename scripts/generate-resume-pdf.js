@@ -1,496 +1,389 @@
+const fs = require('node:fs');
+const path = require('node:path');
 const { jsPDF } = require('jspdf');
-const fs = require('fs');
-const path = require('path');
 
-function calculateExperience(startDateStr = '2021-04-26') {
-  const startDate = new Date(startDateStr);
-  const now = new Date();
-  const diffTime = Math.abs(now.getTime() - startDate.getTime());
-  const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
-  const rounded = Math.round(diffYears * 2) / 2;
-  return `${rounded}+ Years`;
+const outputDirectory = path.join(__dirname, '../public');
+const startDate = new Date(2021, 3, 26);
+
+function experienceAt(date = new Date()) {
+  let months = (date.getFullYear() - startDate.getFullYear()) * 12 + date.getMonth() - startDate.getMonth();
+  if (date.getDate() < startDate.getDate()) months -= 1;
+  months = Math.max(0, months);
+  return `${Math.floor(months / 12)}.${(months % 12) + 1}`;
 }
 
-function buildResumePdf() {
-  const expText = calculateExperience('2021-04-26');
-  const doc = new jsPDF({
-    orientation: 'portrait',
-    unit: 'pt',
-    format: 'a4',
-  });
+function completedExperience() {
+  let months = (new Date().getFullYear() - startDate.getFullYear()) * 12 + new Date().getMonth() - startDate.getMonth();
+  if (new Date().getDate() < startDate.getDate()) months -= 1;
+  months = Math.max(0, months);
+  return {
+    years: Math.floor(months / 12),
+    months: months % 12,
+  };
+}
 
-  const pageWidth = doc.internal.pageSize.getWidth(); // ~595.28 pt
-  const pageHeight = doc.internal.pageSize.getHeight(); // ~841.89 pt
+function germanExperience() {
+  const { years, months } = completedExperience();
+  const yearText = `${years} ${years === 1 ? 'Jahr' : 'Jahre'}`;
+  const monthText = `${months} ${months === 1 ? 'Monat' : 'Monate'}`;
+  return `${yearText} und ${monthText}`;
+}
+
+const resumes = {
+  en: {
+    filename: 'Pavan_Sai_Vejju_Resume_Generated_EN.pdf',
+    email: 'pavansaivejju@gmail.com',
+    location: 'Hyderabad, India',
+    linkedinLabel: 'LinkedIn Profile',
+    experience: `${experienceAt()} Years`,
+    heading: 'CURRICULUM VITAE',
+    subtitle: 'Front-End Developer (React JS)',
+    sections: {
+      summary: 'Professional Summary',
+      skills: 'Technical Skills',
+      experience: 'Professional Experience',
+      education: 'Education',
+      responsibilities: 'Key Contributions',
+    },
+    summary: `Front-End Developer with ${experienceAt()} years of experience building and scaling high-performance web applications using React.js, TypeScript, Next.js (SSR/SSG), and Micro-frontends. Strong background in frontend system design, REST API integration, real-time data handling, data visualization, and advanced state management. Experienced in performance optimization, cross-browser compatibility, and maintainable delivery in Agile environments.`,
+    skills: [
+      ['Frontend Engineering', 'React.js, Next.js (SSR/SSG), TypeScript, JavaScript (ES6+), React Hooks, HTML5, CSS3, SCSS, Tailwind CSS, Fluent UI, Bootstrap'],
+      ['Architecture & State Management', 'Micro-frontends, Module Federation, System Design, Atomic Design, Component-Based Architecture, Redux, Redux Toolkit, Redux-Saga, Context API'],
+      ['APIs & Integration', 'REST APIs, GraphQL, Microsoft SignalR, JWT Authentication, Contentful SDK'],
+      ['Testing & Visualization', 'Jest, React Testing Library, Stryker, Highcharts, Recharts, Interactive Dashboards'],
+      ['DevOps & AI Tools', 'Git, GitHub, Azure DevOps, CI/CD, npm, pnpm, GitHub Copilot, ChatGPT, Cursor AI, Claude AI'],
+    ],
+    jobs: [
+      {
+        company: 'Metaplore (Electronic Arts) | Front-End Developer | Jan 2026 - Present',
+        projects: [
+          {
+            title: 'Loyalty Contentful Hub | Jul 2026 - Present',
+            description: "Custom Contentful SDK application for EA's loyalty platform, enabling business teams to configure reward-program content models.",
+            bullets: [
+              'Developed custom Contentful UI extensions and interactive forms with Next.js and TypeScript.',
+              'Created landing and reward-page configuration modules to streamline content schema creation.',
+              'Implemented tag-based role access controls for secure, structured content delivery.',
+            ],
+          },
+          {
+            title: 'EA MVP+ Membership Platform | Mar 2026 - Jul 2026',
+            description: 'Scalable Next.js platform for cross-franchise rewards, early access incentives, and bundle subscriptions.',
+            bullets: [
+              'Built dynamic nested routing for parent, child, and optional sub-program hierarchies without hardcoded paths.',
+              'Synchronized global and local state with REST APIs for reward validation and eligibility checks.',
+              'Implemented Module Federation micro-frontends, lazy loading, and component-level performance improvements.',
+              'Added unit and integration coverage using Jest and React Testing Library.',
+            ],
+          },
+          {
+            title: 'FC26 Game Stats Platform | Jan 2026 - Mar 2026',
+            description: "Player statistics platform for EA's FC26 with interactive match-performance visualizations.",
+            bullets: [
+              'Built Recharts visualizations for win ratios, match statistics, and historical gameplay metrics.',
+              'Implemented downloadable PNG snapshots of player statistics.',
+              'Wrote Jest tests and used Stryker mutation testing to validate implemented modules.',
+            ],
+          },
+        ],
+      },
+      {
+        company: 'Amphora Software | Front-End Developer | Oct 2025 - Dec 2025',
+        projects: [
+          {
+            title: 'Symphony Trade Capture',
+            description: 'Energy commodity trade-management module within Amphora ETRM.',
+            bullets: [
+              'Built responsive TanStack Form workflows with field-level validation and optimized state handling.',
+              'Integrated GraphQL APIs for fetching and submitting trade data.',
+              'Developed reusable components and tests with Jest and React Testing Library.',
+            ],
+          },
+        ],
+      },
+      {
+        company: 'Techwave | Front-End Developer | Apr 2021 - Oct 2025',
+        projects: [
+          {
+            title: 'UGL CMS | Oct 2023 - Oct 2025',
+            description: 'Condition Monitoring System helping support teams monitor live train asset conditions and maintenance needs.',
+            bullets: [
+              'Built real-time dashboards and Highcharts heatmaps, spline graphs, and bar charts using React.',
+              'Integrated Microsoft SignalR for live updates and asset tracking.',
+              'Applied Atomic Design, Fluent UI, Redux, and Redux-Saga to build reusable components and manage application state.',
+            ],
+          },
+          {
+            title: 'UGL PMS | Jan 2022 - Sep 2023',
+            description: 'Cloud-hosted asset-performance and service-monitoring application with SAP integration.',
+            bullets: [
+              'Delivered the Maintenance Schedule module, SAP synchronization, and automated PDF/CSV/PNG reports.',
+              'Configured Azure DevOps CI/CD pipelines and deployments.',
+            ],
+          },
+          {
+            title: 'Aman Travels | Apr 2021 - Dec 2021',
+            description: 'Multilingual travel booking and services application.',
+            bullets: [
+              'Developed reusable React and Ant Design interfaces and integrated GraphQL APIs.',
+              'Improved frontend performance using code splitting and caching techniques.',
+            ],
+          },
+        ],
+      },
+    ],
+    education: 'Bachelor of Technology (B.Tech) | Jawaharlal Nehru Technological University, Kakinada | 2019',
+  },
+  de: {
+    filename: 'Pavan_Sai_Vejju_Resume_Generated_DE.pdf',
+    email: 'pavanvejju19@gmail.com',
+    location: 'Hyderabad, Indien',
+    linkedinLabel: 'LinkedIn-Profil',
+    experience: germanExperience(),
+    heading: 'LEBENSLAUF',
+    subtitle: 'Frontend-Entwickler (React JS)',
+    sections: {
+      summary: 'Profil',
+      skills: 'Technische Kenntnisse',
+      experience: 'Berufserfahrung',
+      education: 'Ausbildung',
+      responsibilities: 'Wichtige Beiträge',
+    },
+    summary: `Frontend-Entwickler mit ${germanExperience()} Berufserfahrung in der Entwicklung leistungsstarker Webanwendungen mit React.js, TypeScript, Next.js (SSR/SSG) und Microfrontends. Schwerpunkte sind Frontend-Systemdesign, REST-APIs, Echtzeitdaten, Datenvisualisierung und fortgeschrittene Zustandsverwaltung. Erfahrung mit Performance-Optimierung, Browserkompatibilität und wartbarer Softwareentwicklung in Agile-Teams.`,
+    skills: [
+      ['Frontend-Entwicklung', 'React.js, Next.js (SSR/SSG), TypeScript, JavaScript (ES6+), React Hooks, HTML5, CSS3, SCSS, Tailwind CSS, Fluent UI, Bootstrap'],
+      ['Architektur und Zustandsverwaltung', 'Microfrontends, Module Federation, Systemdesign, Atomic Design, komponentenbasierte Architektur, Redux, Redux Toolkit, Redux-Saga, Context API'],
+      ['APIs und Integration', 'REST-APIs, GraphQL, Microsoft SignalR, JWT-Authentifizierung, Contentful SDK'],
+      ['Testing und Visualisierung', 'Jest, React Testing Library, Stryker, Highcharts, Recharts, interaktive Dashboards'],
+      ['DevOps und KI-Werkzeuge', 'Git, GitHub, Azure DevOps, CI/CD, npm, pnpm, GitHub Copilot, ChatGPT, Cursor AI, Claude AI'],
+    ],
+    jobs: [
+      {
+        company: 'Metaplore (Electronic Arts) | Frontend-Entwickler | 01/2026 - heute',
+        projects: [
+          {
+            title: 'Loyalty Contentful Hub | 07/2026 - heute',
+            description: 'Contentful-SDK-Anwendung für die Loyalty-Plattform von EA zur Verwaltung von Inhaltsmodellen für Prämienprogramme.',
+            bullets: [
+              'Entwicklung benutzerdefinierter Contentful-UI-Erweiterungen und interaktiver Formulare mit Next.js und TypeScript.',
+              'Erstellung von Konfigurationsmodulen für Landingpages und Prämienseiten.',
+              'Einführung tagbasierter Zugriffsrechte für sichere und strukturierte Inhalte.',
+            ],
+          },
+          {
+            title: 'EA MVP+ Mitgliedschaftsplattform | 03/2026 - 07/2026',
+            description: 'Skalierbare Next.js-Plattform für spielübergreifende Prämien, Early Access und Abonnements.',
+            bullets: [
+              'Implementierung dynamischer, verschachtelter Routen ohne fest codierte Programmpfade.',
+              'Synchronisierung globaler und lokaler Zustände mit REST-APIs für Prämien- und Berechtigungsprüfungen.',
+              'Aufbau einer Microfrontend-Architektur mit Module Federation, Lazy Loading und Performance-Optimierungen.',
+              'Erstellung von Unit- und Integrationstests mit Jest und React Testing Library.',
+            ],
+          },
+          {
+            title: 'FC26-Spielstatistikplattform | 01/2026 - 03/2026',
+            description: 'Statistikplattform für EA FC26 mit interaktiver Visualisierung von Spieler- und Matchdaten.',
+            bullets: [
+              'Entwicklung von Recharts-Diagrammen für Gewinnquoten, Matchstatistiken und historische Spieldaten.',
+              'Implementierung herunterladbarer PNG-Schnappschüsse von Spielerstatistiken.',
+              'Jest-Tests und Stryker-Mutationstests zur Prüfung der implementierten Module.',
+            ],
+          },
+        ],
+      },
+      {
+        company: 'Amphora Software | Frontend-Entwickler | 10/2025 - 12/2025',
+        projects: [
+          {
+            title: 'Symphony Trade Capture',
+            description: 'Modul zur Erfassung und Verwaltung von Energiegeschäften in Amphoras ETRM-Plattform.',
+            bullets: [
+              'Entwicklung responsiver TanStack-Formulare mit Feldvalidierung und optimierter Zustandsverwaltung.',
+              'Integration von GraphQL-APIs zum Abrufen und Übermitteln von Handelsdaten.',
+              'Entwicklung wiederverwendbarer Komponenten und Tests mit Jest und React Testing Library.',
+            ],
+          },
+        ],
+      },
+      {
+        company: 'Techwave | Frontend-Entwickler | 04/2021 - 10/2025',
+        projects: [
+          {
+            title: 'UGL CMS | 10/2023 - 10/2025',
+            description: 'System zur Zustandsüberwachung von Zuganlagen und zur Erkennung von Wartungsbedarf.',
+            bullets: [
+              'Entwicklung von Echtzeit-Dashboards und Highcharts-Visualisierungen mit React.',
+              'Integration von Microsoft SignalR für Live-Aktualisierungen und Anlagenverfolgung.',
+              'Nutzung von Atomic Design, Fluent UI, Redux und Redux-Saga für Komponenten und Anwendungszustände.',
+            ],
+          },
+          {
+            title: 'UGL PMS | 01/2022 - 09/2023',
+            description: 'Cloudbasierte Plattform zur Anlagenleistung und Serviceüberwachung mit SAP-Integration.',
+            bullets: [
+              'Entwicklung der Wartungsplanung, SAP-Synchronisierung und automatisierter PDF-, CSV- und PNG-Berichte.',
+              'Einrichtung von CI/CD-Pipelines und Deployments mit Azure DevOps.',
+            ],
+          },
+          {
+            title: 'Aman Travels | 04/2021 - 12/2021',
+            description: 'Mehrsprachige Anwendung für Reisebuchungen und Dienstleistungen.',
+            bullets: [
+              'Entwicklung wiederverwendbarer React- und Ant-Design-Oberflächen sowie Integration von GraphQL-APIs.',
+              'Verbesserung der Frontend-Performance durch Code-Splitting und Caching.',
+            ],
+          },
+        ],
+      },
+    ],
+    education: 'Bachelor of Technology (B.Tech) | Jawaharlal Nehru Technological University, Kakinada | 2019',
+  },
+};
+
+function buildResume(locale, content) {
+  const doc = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a4' });
+  const pageWidth = doc.internal.pageSize.getWidth();
+  const pageHeight = doc.internal.pageSize.getHeight();
   const margin = 42;
-  const contentWidth = pageWidth - margin * 2; // ~511 pt
+  const contentWidth = pageWidth - margin * 2;
+  let y = 44;
 
-  let y = 45;
+  const ensureSpace = (height) => {
+    if (y + height > pageHeight - 42) {
+      doc.addPage();
+      y = 44;
+    }
+  };
 
-  // Helper function for section headings with horizontal line
-  function drawSectionHeader(title, color = [0, 0, 0]) {
+  const sectionHeading = (title) => {
+    ensureSpace(34);
+    y += 7;
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(13);
-    doc.setTextColor(color[0], color[1], color[2]);
+    doc.setFontSize(12);
+    doc.setTextColor(26, 54, 93);
     doc.text(title, margin, y);
     y += 5;
-    doc.setDrawColor(70, 70, 70);
-    doc.setLineWidth(0.75);
-    doc.line(margin, y, margin + contentWidth, y);
-    y += 14;
-  }
+    doc.setDrawColor(186, 143, 85);
+    doc.setLineWidth(1);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 15;
+  };
 
-  // ==========================================
-  // PAGE 1
-  // ==========================================
+  const paragraph = (value, options = {}) => {
+    doc.setFont('helvetica', options.bold ? 'bold' : 'normal');
+    doc.setFontSize(options.size || 9.2);
+    doc.setTextColor(35, 35, 35);
+    const lines = doc.splitTextToSize(value, contentWidth - (options.indent || 0));
+    for (const line of lines) {
+      ensureSpace(13);
+      doc.text(line, margin + (options.indent || 0), y);
+      y += 12.5;
+    }
+  };
 
-  // 1. Header - PAVAN SAI VEJJU
   doc.setFont('helvetica', 'bold');
   doc.setFontSize(18);
-  doc.setTextColor(26, 54, 93); // Navy Blue #1A365D
+  doc.setTextColor(26, 54, 93);
   doc.text('PAVAN SAI VEJJU', pageWidth / 2, y, { align: 'center' });
-  y += 18;
-
-  // 2. Subtitle with Highlighted Experience
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(10.5);
-  doc.setTextColor(30, 30, 30);
-  const prefix = 'Front-End Developer (React JS) || Work Experience : ';
-  const prefixWidth = doc.getTextWidth(prefix);
-  const highlightWidth = doc.getTextWidth(expText);
-  const totalSubWidth = prefixWidth + highlightWidth;
-  const subStartX = (pageWidth - totalSubWidth) / 2;
-
-  doc.text(prefix, subStartX, y);
-
-  // Yellow Highlight Box
-  doc.setFillColor(255, 235, 59); // Yellow
-  doc.rect(subStartX + prefixWidth - 2, y - 9.5, highlightWidth + 4, 13, 'F');
+  y += 17;
   doc.setFont('helvetica', 'bold');
-  doc.setTextColor(0, 0, 0);
-  doc.text(expText, subStartX + prefixWidth, y);
-  y += 15;
-
-  // 3. Contact Line
+  doc.setFontSize(9);
+  doc.setTextColor(100, 100, 100);
+  doc.text(content.heading, pageWidth / 2, y, { align: 'center' });
+  y += 14;
   doc.setFont('helvetica', 'normal');
   doc.setFontSize(10);
-  doc.setTextColor(30, 30, 30);
-  const contactPart1 = 'Email: pavansaivejju@gmail.com || mobile: 9133953205 || ';
-  const contactPart2 = 'LinkedIn Profile';
-  const c1Width = doc.getTextWidth(contactPart1);
-  const c2Width = doc.getTextWidth(contactPart2);
-  const contactTotal = c1Width + c2Width;
-  const contactStartX = (pageWidth - contactTotal) / 2;
-
-  doc.text(contactPart1, contactStartX, y);
-  doc.setTextColor(0, 102, 204); // Blue link
-  doc.text(contactPart2, contactStartX + c1Width, y);
-  doc.link(contactStartX + c1Width, y - 9, c2Width, 11, {
-    url: 'https://www.linkedin.com/in/pavan-sai-vejju-2264231b2',
-  });
-  // underline link
-  doc.setDrawColor(0, 102, 204);
-  doc.setLineWidth(0.5);
-  doc.line(contactStartX + c1Width, y + 1.5, contactStartX + c1Width + c2Width, y + 1.5);
-  y += 24;
-
-  // ==========================================
-  // Professional Summary
-  // ==========================================
-  drawSectionHeader('Professional Summary');
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.5);
-  doc.setTextColor(30, 30, 30);
-
-  const summaryP1 = `Senior Frontend Engineer with ${expText.replace('+', '+')} of experience building scalable enterprise and responsive web applications in `;
-  const highlightedSkills = 'React.js, Nextjs ,TypeScript, Redux, Redux-Saga, JavaScript, HTML5, and CSS3,';
-  const summaryP2 = ' and modern frontend architecture. Experienced in Micro Frontends, real-time applications, data visualization, and performance optimization. Skilled at state management, API integrations, and real-time data handling, while ensuring cross-browser compatibility, accessibility, and pixel-perfect UI implementation. Proficient in leveraging AI-assisted development tools such as GitHub Copilot, ChatGPT, and Cursor AI to accelerate development, improve code quality, and streamline debugging. Passionate about building intelligent,user-centric applications with clean architecture and maintainable code.';
-
-  // Render paragraph with highlighted section
-  const fullSummary = summaryP1 + highlightedSkills + summaryP2;
-  const summaryLines = doc.splitTextToSize(fullSummary, contentWidth);
-
-  // We highlight the specific line segment where React.js ... CSS3, appears
-  // For exact layout rendering in PDF:
-  summaryLines.forEach((line) => {
-    if (line.includes('React.js, Nextjs') || line.includes('TypeScript, Redux') || line.includes('HTML5, and CSS3,')) {
-      // Find matching index in this line to highlight
-      const matchStart = line.indexOf('React.js');
-      if (matchStart !== -1) {
-        const before = line.substring(0, matchStart);
-        const match = line.substring(matchStart);
-        const bW = doc.getTextWidth(before);
-        const mW = doc.getTextWidth(match);
-        doc.setFillColor(255, 235, 59);
-        doc.rect(margin + bW - 1, y - 8.5, mW + 2, 11, 'F');
-      } else if (line.includes('HTML5, and CSS3,')) {
-        const matchEnd = line.indexOf('and modern');
-        const match = matchEnd !== -1 ? line.substring(0, matchEnd) : line;
-        const mW = doc.getTextWidth(match);
-        doc.setFillColor(255, 235, 59);
-        doc.rect(margin - 1, y - 8.5, mW + 2, 11, 'F');
-      } else {
-        const mW = doc.getTextWidth(line);
-        doc.setFillColor(255, 235, 59);
-        doc.rect(margin - 1, y - 8.5, mW + 2, 11, 'F');
-      }
+  doc.setTextColor(35, 35, 35);
+  doc.text(`${content.subtitle} | ${content.experience}`, pageWidth / 2, y, { align: 'center' });
+  y += 15;
+  doc.setFontSize(9);
+  const contactParts = [content.location, content.email, '+91 9133953205', content.linkedinLabel];
+  const contactSeparators = [' | ', ' | ', ' | '];
+  const contactWidth = contactParts.reduce((width, part) => width + doc.getTextWidth(part), 0) + contactSeparators.reduce((width, part) => width + doc.getTextWidth(part), 0);
+  let contactX = (pageWidth - contactWidth) / 2;
+  contactParts.forEach((part, index) => {
+    const partWidth = doc.getTextWidth(part);
+    doc.text(part, contactX, y);
+    if (index === 1) doc.link(contactX, y - 9, partWidth, 11, { url: `mailto:${content.email}` });
+    if (index === 3) doc.link(contactX, y - 9, partWidth, 11, { url: 'https://www.linkedin.com/in/pavan-sai-vejju-2264231b2' });
+    contactX += partWidth;
+    if (contactSeparators[index]) {
+      doc.text(contactSeparators[index], contactX, y);
+      contactX += doc.getTextWidth(contactSeparators[index]);
     }
-    doc.setTextColor(30, 30, 30);
-    doc.text(line, margin, y);
-    y += 13.5;
   });
-  y += 10;
+  y += 12;
 
-  // ==========================================
-  // Technical Skills
-  // ==========================================
-  drawSectionHeader('Technical Skills');
+  sectionHeading(content.sections.summary);
+  paragraph(content.summary);
 
-  const skillsData = [
-    {
-      label: 'Frontend Engineering: ',
-      text: 'React.js, Next.js, TypeScript, JavaScript (ES6+), React Hooks, Redux, Redux toolkit(RTK), Redux Saga, Tailwind CSS, Fluent UI, HTML5, CSS3, SCSS',
-    },
-    {
-      label: 'API & Integration: ',
-      text: 'REST APIs, GraphQL, Microsoft SignalR, JWT Authentication, API Integration, Data Handling',
-    },
-    {
-      label: 'Testing & Quality: ',
-      text: 'Jest, React Testing Library, Stryker Mutation Testing, Unit Testing, Code Quality Practices',
-    },
-    {
-      label: 'Architecture: ',
-      text: 'Micro Frontends, Module Federation, Atomic Design, Component-Based Architecture',
-    },
-    {
-      label: 'Visualization: ',
-      text: 'High charts, Recharts, Interactive Dashboards, Data Visualization',
-    },
-    {
-      label: 'DevOps & Tools: ',
-      text: 'Git, GitHub, Azure DevOps, CI/CD, npm, pnpm',
-    },
-    {
-      label: 'AI-Assisted Development: ',
-      text: 'GitHub Copilot, ChatGPT, Cursor AI, Claude AI, Prompt Engineering, AI-assisted Debugging & Code Optimization',
-    },
-  ];
-
-  skillsData.forEach((skill) => {
+  sectionHeading(content.sections.skills);
+  for (const [label, skills] of content.skills) {
     doc.setFont('helvetica', 'bold');
-    doc.setFontSize(9.5);
-    doc.setTextColor(20, 20, 20);
-    const labelW = doc.getTextWidth(skill.label);
-
-    const fullLine = skill.label + skill.text;
-    const wrapped = doc.splitTextToSize(fullLine, contentWidth);
-
-    wrapped.forEach((line, lineIdx) => {
-      if (lineIdx === 0) {
-        doc.setFont('helvetica', 'bold');
-        doc.text(skill.label, margin, y);
+    doc.setFontSize(8.8);
+    const labelWidth = doc.getTextWidth(`${label}: `);
+    const lines = doc.splitTextToSize(`${label}: ${skills}`, contentWidth);
+    lines.forEach((line, index) => {
+      ensureSpace(12);
+      if (index === 0) {
+        doc.setTextColor(25, 25, 25);
+        doc.text(`${label}: `, margin, y);
         doc.setFont('helvetica', 'normal');
-        const rest = line.replace(skill.label, '');
-        doc.text(rest, margin + labelW, y);
+        doc.text(line.slice(`${label}: `.length), margin + labelWidth, y);
       } else {
         doc.setFont('helvetica', 'normal');
         doc.text(line, margin, y);
       }
-      y += 13.5;
+      y += 12;
     });
-    y += 1.5;
-  });
-  y += 10;
-
-  // ==========================================
-  // Projects (Heading)
-  // ==========================================
-  drawSectionHeader('Projects');
-
-  // Project 1: FC26 Game Stats Platform
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10.5);
-  doc.setTextColor(20, 20, 20);
-  doc.text('FC26 Game Stats Platform - Metaplore - (Client: Electronic Arts) - (contract)', margin, y);
-  y += 14;
-
-  // Tech line
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  const p1TechLabel = 'Tech: ';
-  doc.text(p1TechLabel, margin, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('Next.js | React | TypeScript | Tailwind | Recharts | Jest | Stryker', margin + doc.getTextWidth(p1TechLabel), y);
-  y += 13.5;
-
-  // Description line
-  const p1DescFull = 'Description: Game Stats Platform is an interactive analytics dashboard for EA FC26 that provides players with insights into matches, wins, losses, rankings, and performance trends. Duration: Jan 2026 – present';
-  const p1DescLines = doc.splitTextToSize(p1DescFull, contentWidth);
-  p1DescLines.forEach((line) => {
-    if (line.startsWith('Description:')) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Description: ', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.text(line.replace('Description: ', ''), margin + doc.getTextWidth('Description: '), y);
-    } else {
-      doc.setFont('helvetica', 'normal');
-      doc.text(line, margin, y);
-    }
-    y += 13.5;
-  });
-  y += 3;
-
-  // Roles & Responsibilities
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.text('Roles & Responsibilities', margin, y);
-  y += 14;
-
-  const fc26Bullets = [
-    'Developed reusable, responsive UI components and interactive analytics dashboards.',
-    'Built player statistics modules, performance visualizations, and PNG export functionality.',
-    'Integrated REST APIs and contributed to a scalable Micro Frontend architecture.',
-    'Ensured high code quality through Jest unit testing and Stryker mutation testing.',
-    'Collaborated with cross-functional Agile teams to deliver high-quality features.',
-  ];
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.5);
-  fc26Bullets.forEach((bullet) => {
-    doc.text('•', margin + 8, y);
-    const bulletLines = doc.splitTextToSize(bullet, contentWidth - 24);
-    bulletLines.forEach((line, lIdx) => {
-      doc.text(line, margin + 20, y);
-      y += 13;
-    });
-  });
-
-  // ==========================================
-  // PAGE 2
-  // ==========================================
-  doc.addPage();
-  y = 45;
-
-  // Project 2: Symphony Trade Capture
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10.5);
-  doc.setTextColor(20, 20, 20);
-  doc.text('Symphony- Trade-capture - Amphora Software (contract)', margin, y);
-  y += 14;
-
-  // Tech line
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  const p2TechLabel = 'Tech: ';
-  doc.text(p2TechLabel, margin, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('React.js, React Hooks, Redux, Redux-Saga, TypeScript, HTML, CSS, JavaScript, Tan stack', margin + doc.getTextWidth(p2TechLabel), y);
-  y += 13.5;
-
-  // Duration
-  doc.setFont('helvetica', 'bold');
-  const p2DurLabel = 'Duration : ';
-  doc.text(p2DurLabel, margin, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('October 2025 – December 2025', margin + doc.getTextWidth(p2DurLabel), y);
-  y += 13.5;
-
-  // Description
-  const p2DescFull = "Description: Symphony Trade Capture is a core module of Amphora's ETRM platform that streamlines energy trade capture, validation, pricing, and position management.";
-  const p2DescLines = doc.splitTextToSize(p2DescFull, contentWidth);
-  p2DescLines.forEach((line) => {
-    if (line.startsWith('Description:')) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Description: ', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.text(line.replace('Description: ', ''), margin + doc.getTextWidth('Description: '), y);
-    } else {
-      doc.setFont('helvetica', 'normal');
-      doc.text(line, margin, y);
-    }
-    y += 13.5;
-  });
-  y += 3;
-
-  // Responsibilities
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.text('Responsibilities:', margin, y);
-  y += 14;
-
-  const symphonyBullets = [
-    'Built dynamic and responsive forms using TanStack Form, with field-level validation and optimized state handling.',
-    'Integrated GraphQL APIs for fetching and submitting trade data, ensuring efficient schema-based communication.',
-    'Performed UI design, code refactoring, and performance improvements, adhering to clean and scalable coding standards.',
-    'Developed reusable common components and implemented unit testing using Jest and React Testing Library to ensure reliability and maintainability.',
-  ];
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.5);
-  symphonyBullets.forEach((bullet) => {
-    doc.text('•', margin + 8, y);
-    const bulletLines = doc.splitTextToSize(bullet, contentWidth - 24);
-    bulletLines.forEach((line) => {
-      doc.text(line, margin + 20, y);
-      y += 13;
-    });
-  });
-  y += 14;
-
-  // Project 3: UGL CMS & PMS - Techwave
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10.5);
-  doc.setTextColor(20, 20, 20);
-  doc.text('UGL CMS & PMS - Techwave', margin, y);
-  y += 14;
-
-  // Tech Stack & Duration line
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  const uglTechFull = 'Tech Stack: React.js | TypeScript | Redux |Redux toolkit(RTK)| Redux Saga | Fluent UI | Microsoft SignalR | Highcharts | REST APIs | Jest|Azure DevOps Duration: January 2022 – October -2025';
-  const uglTechLines = doc.splitTextToSize(uglTechFull, contentWidth);
-  uglTechLines.forEach((line) => {
-    doc.setFont('helvetica', 'normal');
-    if (line.startsWith('Tech Stack:')) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Tech Stack: ', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.text(line.replace('Tech Stack: ', ''), margin + doc.getTextWidth('Tech Stack: '), y);
-    } else {
-      doc.text(line, margin, y);
-    }
-    y += 13.5;
-  });
-
-  // Description
-  const uglDescFull = 'Description: UGL CMS & PMS are enterprise railway asset monitoring and performance management applications that provide real-time train condition monitoring, asset health insights, operational reporting, and maintenance planning.';
-  const uglDescLines = doc.splitTextToSize(uglDescFull, contentWidth);
-  uglDescLines.forEach((line) => {
-    if (line.startsWith('Description:')) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Description: ', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.text(line.replace('Description: ', ''), margin + doc.getTextWidth('Description: '), y);
-    } else {
-      doc.setFont('helvetica', 'normal');
-      doc.text(line, margin, y);
-    }
-    y += 13.5;
-  });
-  y += 3;
-
-  // Roles & Responsibilities
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.text('Roles & Responsibilities:', margin, y);
-  y += 14;
-
-  const uglBullets = [
-    'Developed scalable and reusable UI components using React.js, TypeScript, and Fluent UI.',
-    'Built interactive dashboards and data visualizations using Highcharts for asset monitoring and performance analysis.',
-    'Implemented real-time data updates using Microsoft SignalR and integrated REST APIs for backend communication.',
-    'Managed complex application state using Redux and Redux Saga with optimized frontend architecture.',
-    'Improved application performance through reusable components, code optimization, and responsive design practices.',
-    'Supported CI/CD deployments using Azure DevOps and collaborated with Agile teams for feature delivery',
-  ];
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.5);
-  uglBullets.forEach((bullet) => {
-    doc.text('•', margin + 8, y);
-    const bulletLines = doc.splitTextToSize(bullet, contentWidth - 24);
-    bulletLines.forEach((line) => {
-      doc.text(line, margin + 20, y);
-      y += 13;
-    });
-  });
-  y += 14;
-
-  // Project 4: Aman Travels
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10.5);
-  doc.setTextColor(20, 20, 20);
-  doc.text('Aman Travels', margin, y);
-  y += 14;
-
-  // Tech Stack line
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  const amanTechLabel = 'Tech Stack: ';
-  doc.text(amanTechLabel, margin, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('React.js | Redux | Ant Design | GraphQL | HTML | CSS | Jest|JavaScript', margin + doc.getTextWidth(amanTechLabel), y);
-  y += 13.5;
-
-  // Duration
-  doc.setFont('helvetica', 'bold');
-  const amanDurLabel = 'Duration: ';
-  doc.text(amanDurLabel, margin, y);
-  doc.setFont('helvetica', 'normal');
-  doc.text('April 2021 – December 2021', margin + doc.getTextWidth(amanDurLabel), y);
-  y += 13.5;
-
-  // Description
-  const amanDescFull = 'Description: Multilingual travel management application providing booking services for hotels, transportation, apartments, and railway services through a responsive web platform.';
-  const amanDescLines = doc.splitTextToSize(amanDescFull, contentWidth);
-  amanDescLines.forEach((line) => {
-    if (line.startsWith('Description:')) {
-      doc.setFont('helvetica', 'bold');
-      doc.text('Description: ', margin, y);
-      doc.setFont('helvetica', 'normal');
-      doc.text(line.replace('Description: ', ''), margin + doc.getTextWidth('Description: '), y);
-    } else {
-      doc.setFont('helvetica', 'normal');
-      doc.text(line, margin, y);
-    }
-    y += 13.5;
-  });
-  y += 3;
-
-  // Roles & Responsibilities
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(10);
-  doc.text('Roles & Responsibilities:', margin, y);
-  y += 14;
-
-  const amanBullets = [
-    'Developed reusable React components and responsive UI screens using Ant Design.',
-    'Integrated GraphQL APIs and Redux for efficient data management.',
-    'Improved frontend performance using code optimization and modern React practices.',
-  ];
-
-  doc.setFont('helvetica', 'normal');
-  doc.setFontSize(9.5);
-  amanBullets.forEach((bullet) => {
-    doc.text('•', margin + 8, y);
-    const bulletLines = doc.splitTextToSize(bullet, contentWidth - 24);
-    bulletLines.forEach((line) => {
-      doc.text(line, margin + 20, y);
-      y += 13;
-    });
-  });
-  y += 20;
-
-  // ==========================================
-  // Education
-  // ==========================================
-  drawSectionHeader('Education', [74, 119, 122]); // Muted blue/teal #4A777A as in screenshot
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(9.5);
-  doc.setTextColor(20, 20, 20);
-  doc.text('Bachelor of Technology (B.Tech), Jawaharlal Nehru Technological University, Kakinada - 2019', margin, y);
-
-  // Save to public directory
-  const outDir = path.join(__dirname, '../public');
-  if (!fs.existsSync(outDir)) {
-    fs.mkdirSync(outDir, { recursive: true });
+    y += 2;
   }
-  const filePath = path.join(outDir, 'Pavan_Sai_Vejju_Resume.pdf');
-  const pdfBuffer = Buffer.from(doc.output('arraybuffer'));
-  fs.writeFileSync(filePath, pdfBuffer);
-  console.log('Resume PDF generated successfully at:', filePath);
+
+  sectionHeading(content.sections.experience);
+  for (const job of content.jobs) {
+    ensureSpace(25);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(10);
+    doc.setTextColor(26, 54, 93);
+    doc.text(doc.splitTextToSize(job.company, contentWidth), margin, y);
+    y += 14;
+
+    for (const project of job.projects) {
+      ensureSpace(30);
+      doc.setFont('helvetica', 'bold');
+      doc.setFontSize(9.3);
+      doc.setTextColor(35, 35, 35);
+      const titleLines = doc.splitTextToSize(project.title, contentWidth - 8);
+      titleLines.forEach((line) => {
+        ensureSpace(12);
+        doc.text(line, margin + 8, y);
+        y += 12;
+      });
+      paragraph(project.description, { indent: 8, size: 8.7 });
+      for (const bullet of project.bullets) {
+        paragraph(`- ${bullet}`, { indent: 16, size: 8.7 });
+      }
+      y += 4;
+    }
+    y += 4;
+  }
+
+  sectionHeading(content.sections.education);
+  paragraph(content.education, { bold: true });
+
+  const pageCount = doc.getNumberOfPages();
+  for (let page = 1; page <= pageCount; page += 1) {
+    doc.setPage(page);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(8);
+    doc.setTextColor(120, 120, 120);
+    doc.text(`${page} / ${pageCount}`, pageWidth - margin, pageHeight - 22, { align: 'right' });
+  }
+
+  const filePath = path.join(outputDirectory, content.filename);
+  fs.writeFileSync(filePath, Buffer.from(doc.output('arraybuffer')));
+  console.log(`Generated ${locale} resume: ${filePath}`);
 }
 
-buildResumePdf();
+fs.mkdirSync(outputDirectory, { recursive: true });
+for (const [locale, content] of Object.entries(resumes)) buildResume(locale, content);
