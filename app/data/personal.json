@@ -1,16 +1,15 @@
 {
   "name": "Pavan Sai Vejju",
-  "title": "Senior Front-End Developer (React JS)",
-  "experience": "5.5 Years",
+  "title": "Front-End Developer (React JS)",
   "email": "pavansaivejju@gmail.com",
   "mobile": "9133953205",
   "linkedin": "https://www.linkedin.com/in/pavan-sai-vejju-2264231b2",
-  "summary": "Senior Frontend Engineer with 5+ years of experience building scalable enterprise and responsive web applications with modern frontend architecture.",
+  "summary": "Frontend Developer building and scaling high-performance web applications using React.js, TypeScript, Next.js, and Micro-frontends. Experienced in frontend system design, REST API integration, real-time data handling, data visualization, advanced state management, performance optimization, and cross-browser compatibility in Agile environments.",
   "skills": {
     "frontendEngineering": ["React.js", "Next.js", "TypeScript", "JavaScript (ES6+)", "React Hooks", "Redux", "Redux Saga", "Tailwind CSS", "Fluent UI", "HTML5", "CSS3", "SCSS"],
     "apiAndIntegration": ["REST APIs", "GraphQL", "Microsoft SignalR", "JWT Authentication", "API Integration", "Data Handling"],
     "testingAndQuality": ["Jest", "React Testing Library", "Stryker Mutation Testing", "Unit Testing", "Code Quality Practices"],
-    "architecture": ["Micro Frontends", "Module Federation", "Atomic Design", "Component-Based Architecture"],
+    "architectureAndStateManagement": ["Micro-frontends", "Module Federation", "System Design", "State Management", "Atomic Design", "Component-Based Architecture", "Redux", "Redux Toolkit", "Redux-Saga", "Context API"],
     "visualization": ["Highcharts", "Recharts", "Interactive Dashboards", "Data Visualization"],
     "devOpsAndTools": ["Git", "GitHub", "Azure DevOps", "CI/CD", "npm", "pnpm"],
     "aiAssistedDevelopment": ["GitHub Copilot", "ChatGPT", "Cursor AI", "Claude AI", "Prompt Engineering", "AI-assisted Debugging & Code Optimization"]

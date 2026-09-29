@@ -1,24 +1,21 @@
-/**
- * Utility to calculate dynamic work experience from the start date (April 26, 2021).
- * Calculates the exact duration and rounds to the nearest half-year (0.5).
- * e.g., 5.36 years -> 5.5+ Years
- */
-export function calculateExperience(startDateStr = '2021-04-26') {
-  const startDate = new Date(startDateStr);
-  const now = new Date();
-  
-  const diffTime = Math.abs(now.getTime() - startDate.getTime());
-  const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
-  
-  // Round to nearest 0.5 (half year)
-  const rounded = Math.round(diffYears * 2) / 2;
-  const displayYears = rounded % 1 === 0 ? `${rounded}.0` : `${rounded}`;
+export function calculateExperience(startDateStr = '2021-04-26', asOfDate = new Date()) {
+  const [startYear, startMonth, startDay] = startDateStr.split('-').map(Number);
+  let totalMonths =
+    (asOfDate.getFullYear() - startYear) * 12 +
+    (asOfDate.getMonth() + 1 - startMonth);
+
+  if (asOfDate.getDate() < startDay) totalMonths -= 1;
+  totalMonths = Math.max(0, totalMonths);
+
+  const years = Math.floor(totalMonths / 12);
+  const runningMonth = (totalMonths % 12) + 1;
+  const formatted = `${years}.${runningMonth} Years`;
 
   return {
-    rawYears: diffYears,
-    yearsNumber: rounded,
-    displayYears,
-    formatted: `${displayYears}+ Years`, // e.g. "5.5+ Years"
-    shortFormatted: `${displayYears}+ Yrs`,
+    rawYears: totalMonths / 12,
+    yearsNumber: totalMonths / 12,
+    displayYears: `${years}.${runningMonth}`,
+    formatted,
+    shortFormatted: formatted,
   };
 }

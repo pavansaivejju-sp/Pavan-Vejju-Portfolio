@@ -1,5 +1,35 @@
 [
   {
+    "slug": "ea-loyalty-contentful-hub",
+    "name": "Loyalty Contentful Hub",
+    "company": "Metaplore",
+    "client": "Electronic Arts",
+    "type": "Contract",
+    "category": "Contentful SDK Application",
+    "teamSize": "Product engineering team",
+    "images": [],
+    "technology": ["Contentful SDK", "Next.js", "TypeScript", "React.js", "Role-Based Access Control"],
+    "duration": "Jul 2026 - Present",
+    "overview": "A custom Contentful SDK application for EA's loyalty platform, enabling business teams to configure and manage content models for reward programs.",
+    "description": "The application provides structured configuration for loyalty landing and reward pages, with role-based access controls to support secure content management and downstream delivery.",
+    "responsibilities": ["Developed custom UI extensions and interactive forms using the Contentful SDK, Next.js, and TypeScript.", "Created configuration modules for landing and reward pages, streamlining content type schema creation for business teams.", "Implemented role-based access control through tags to secure user permissions and keep content structured for downstream applications."]
+  },
+  {
+    "slug": "ea-mvp-membership-platform",
+    "name": "EA MVP+ Membership Platform",
+    "company": "Metaplore",
+    "client": "Electronic Arts",
+    "type": "Contract",
+    "category": "Digital Membership & Rewards",
+    "teamSize": "Cross-functional Agile team",
+    "images": [],
+    "technology": ["Next.js", "React.js", "TypeScript", "REST APIs", "Module Federation", "Jest", "React Testing Library"],
+    "duration": "Mar 2026 - Jul 2026",
+    "overview": "A scalable Next.js platform for EA MVP+, supporting cross-franchise digital rewards, early access incentives, and bundle subscriptions.",
+    "description": "The platform resolves nested program hierarchies and coordinates reward validation and eligibility checks through synchronized global and local state and REST APIs.",
+    "responsibilities": ["Implemented dynamic nested routing to resolve parent, child, and optional sub-program hierarchies without hardcoded paths.", "Managed global and local application state with REST API synchronization for asynchronous reward validation and user eligibility checks.", "Implemented a Micro-frontend architecture using Module Federation and applied component-level memoization and lazy loading for performance.", "Wrote unit and integration tests using Jest and React Testing Library."]
+  },
+  {
     "slug": "fc26-game-stats-platform",
     "name": "FC26 Game Stats Platform",
     "client": "Electronic Arts",
@@ -8,7 +38,7 @@
     "teamSize": "Cross-functional Agile team (15+ Engineers & Designers)",
     "images": ["fc26-1", "fc26-2"],
     "technology": ["Next.js", "React 19", "TypeScript", "Tailwind CSS", "Recharts", "Jest", "Stryker", "Micro Frontends"],
-    "duration": "Jan 2026 - Present",
+    "duration": "Jan 2026 - Mar 2026",
     "overview": "High-performance match analytics platform turning millions of EA FC26 gaming telemetry data points into real-time player insights, competitive rankings, and visual trends.",
     "description": "Architected an interactive, enterprise-grade analytics dashboard for Electronic Arts FC26 that empowers players and analysts with instant match breakdowns, win/loss probability curves, player heatmaps, and ranking metrics.",
     "businessImpact": {
@@ -138,7 +168,7 @@
     "teamSize": "40+ Engineers & Specialists",
     "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
     "technology": ["React.js", "TypeScript", "Fluent UI", "Microsoft SignalR", "Highcharts", "Redux", "Redux Saga", "Azure DevOps"],
-    "duration": "October 2023 - Present",
+    "duration": "Oct 2023 - Oct 2025",
     "overview": "Enterprise real-time rail fleet monitoring platform streaming live train telemetry, GPS tracking, asset health diagnostics, and condition-based predictive maintenance across South Wales.",
     "description": "Architected and delivered the operational dashboard for UGL & Pacific National, connecting over 500+ locomotives with central engineering hubs. The platform ingests continuous IoT sensor telemetry—temperature, vibration, pressure, and GPS coordinates—to detect anomalies before in-service failures occur.",
     "businessImpact": {
@@ -205,7 +235,7 @@
     "teamSize": "30+ Engineers & Analysts",
     "images": ["ugl-1", "ugl-2", "ugl-3", "ugl-4", "ugl-5"],
     "technology": ["React.js", "TypeScript", "Fluent UI", "Microsoft SignalR", "Highcharts", "Redux", "Redux Saga", "SAP Integration", "Azure DevOps"],
-    "duration": "December 2022 - September 2023",
+    "duration": "Jan 2022 - Sep 2023",
     "overview": "Cloud-hosted asset performance and operational availability analytics platform built on UGL's Integra cloud ecosystem, seamlessly unifying live telemetry with SAP maintenance systems.",
     "description": "PMS is the cornerstone management platform for tracking locomotive reliability, SLA penalties, and scheduled asset servicing for Pacific National. It automates downtime attribution, correlates telemetric fault codes with SAP maintenance records, and delivers executive operational dashboards.",
     "businessImpact": {
